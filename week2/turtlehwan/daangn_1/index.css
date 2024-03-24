@@ -32,10 +32,87 @@ button {
   gap: 16px;
 }
 
+/*<!-- 게시글 정보 -->*/
+.product {
+  width: 100%;
+  padding: 16px;
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  border-bottom: 1px solid #d9d9d9;
+  position: relative;
+}
+
+.product__img {
+  border-radius: 4px;
+}
+
+.product__info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: left;
+}
+
+.product__title {
+  margin: 0;
+  /* 16 */
+  color: #000;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 125% */
+}
+
+.product__location__date-time--latest {
+  color: #8c8c8c;
+
+  /* 12 */
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px; /* 133.333% */
+}
+
+.product__price {
+  color: #ff7e36;
+  font-family: Inter;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 22px; /* 146.667% */
+}
+
+.product__icon {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  display: flex;
+  align-items: center;
+  height: 16px;
+}
+.product__chat-number {
+  margin-right: 4px;
+}
+
+.product__icon > span {
+  color: #8c8c8c;
+
+  /* 12 */
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px; /* 133.333% */
+}
+
 /*<!-- 하단바 -->*/
 .footer-bar {
   position: fixed;
   bottom: 0;
+  width: 100%;
 }
 .new-post {
   padding: 16px;
