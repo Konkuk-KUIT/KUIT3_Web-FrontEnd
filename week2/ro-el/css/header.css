@@ -1,0 +1,31 @@
+body {
+  position: relative;
+}
+
+.home-header {
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 12px 16px;
+  background-color: #fff;
+  border-bottom: 1px solid #D9D9D9;
+}
+
+.home-header .home-header__location-container,
+.home-header .home-header__icon-container {
+  display: flex;
+  align-items: center;
+}
+.home-header .home-header__location-container {
+  gap: 6px;
+}
+.home-header .home-header__icon-container {
+  gap: 16px;
+}
+
+.home-header__location-container .location--now {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 28px;
+}
