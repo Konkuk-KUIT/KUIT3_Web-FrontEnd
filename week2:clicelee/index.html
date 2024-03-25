@@ -1,29 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="reset.css" />
     <link rel="stylesheet" href="index.css" />
-    <title>당근마켓_2</title>
+    <title>당근마켓_1</title>
 </head>
 <body>
-    <!-- 상단 헤더 및 이미지 캐러셀 -->
+    <!-- 상단 헤더 -->
     <link rel="stylesheet" href="index.css" />
-    <section class="hero">
-        <header>
-        <div class="header__icons">
-            <button>서초동</button>
+    <header>
+        <div class="header_icons">
+            <select name="village" id="village">
+                <option value="0001">서초동</option>
+                <option value="0002">반포동</option>
+                <option value="0003">대치동</option>
+                <option value="0004">신림동</option>
+                <option value="0005">군자동</option>
+            </select>
         </div>
-        <div class="header__icons">
+        <div class="header_icons">
             <button><img src="./assets/header-icon-search.svg" /></button>
-            <button><img src="./assets/header-icon-search.svg" /></button>
+            <button><img src="./assets/header-icon-list.svg" /></button>
             <button><img src="./assets/header-icon-alarm.svg" /></button>
         </div>
-        </header>
-        <div class="hero__carousel">
-        <img src="http://www.placehold.co/1280" />
+    </header>
+    <!--메인 아티클-->
+    <!-- article = preview + detail + preference -->
+    <main>
+        <article>
+            <!--detail-->
+            <div class="item_detail">
+                <img src="https://i.etsystatic.com/25493277/r/il/48d03e/3428576902/il_570xN.3428576902_gouo.jpg" alt="image">
+                <span class="title">황금 주사위 팔아요</span>
+                <span class="location_date">군자동·3일전</span>
+                <span class="price">10,000원</span>
+            </div>
+            <!--preference-->
+            <div class="item_preference">
+                <span class="chats">
+                    <img src="./assets/item-icon-chats.svg">
+                </span>
+                <span class="liked">
+                    <img src="./assets/item-icon-liked.svg">
+                </span>
+            </div>
+        </article>
+        <article>
+            <!--detail-->
+            <div class="item_detail">
+                <img src="https://i.etsystatic.com/25493277/r/il/48d03e/3428576902/il_570xN.3428576902_gouo.jpg" alt="image">
+                <span class="title">황금 주사위 팔아요</span>
+                <span class="location_date">군자동·3일전</span>
+                <span class="price">10,000원</span>
+            </div>
+            <!--preference-->
+            <div class="item_preference">
+                <span class="chats">
+                    <img src="./assets/item-icon-chats.svg">
+                </span>
+                <span class="liked">
+                    <img src="./assets/item-icon-liked.svg">
+                </span>
+            </div>
+        </article>
+
+
+    </main>
+    <nav class="bar">
+        <div class="nav_icons">
+            <button><img src="./assets/nav-icon-home.svg" /></button>
+            <button><img src="./assets/nav-icon-villageLife.svg" /></button>
+            <button><img src="./assets/nav-icon-aroundMe.svg" /></button>
+            <button><img src="./assets/nav-icon-chats.svg" /></button>
+            <button><img src="./assets/nav-icon-profile.svg" /></button>
         </div>
-    </section>
+    </nav>
 </body>
 </html>
