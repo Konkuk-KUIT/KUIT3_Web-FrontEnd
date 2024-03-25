@@ -53,15 +53,15 @@
   border-radius: 8px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 12px;
 }
 .profile__daangn-pay h3 {
   font-weight: 700;
   font-size: 14px;
-  line-height: 18px;
   color: #FF7E36;
 }
-.profile__daangn-pay span{
+.profile__daangn-pay span {
   color: #5E5E5E;
 }
 .profile__daangn-pay span,
