@@ -35,7 +35,7 @@ body::-webkit-scrollbar {
 }
 
 .posts {
-  padding: 52px 16px 0 16px;
+  padding: 52px 16px 58px 16px;
 }
 .posts article {
   padding: 16px 0;
