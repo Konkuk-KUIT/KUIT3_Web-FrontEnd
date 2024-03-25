@@ -2,7 +2,7 @@ body {
   position: relative;
 }
 
-.home-header {
+header {
   position: fixed;
   display: flex;
   justify-content: space-between;
@@ -12,19 +12,19 @@ body {
   border-bottom: 1px solid #D9D9D9;
 }
 
-.home-header .home-header__location-container,
-.home-header .home-header__icon-container {
+header .header__title-container,
+header .header__icon-container {
   display: flex;
   align-items: center;
 }
-.home-header .home-header__location-container {
+header .header__title-container {
   gap: 6px;
 }
-.home-header .home-header__icon-container {
+header .header__icon-container {
   gap: 16px;
 }
 
-.home-header__location-container .location--now {
+.header__title-container .header__title {
   font-weight: 700;
   font-size: 18px;
   line-height: 28px;
