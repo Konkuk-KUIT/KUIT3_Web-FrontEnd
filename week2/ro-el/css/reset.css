@@ -11,6 +11,9 @@ button, section {
   cursor: pointer;
   outline: inherit;
 }
+body::-webkit-scrollbar {
+  display: none;
+}
 
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
