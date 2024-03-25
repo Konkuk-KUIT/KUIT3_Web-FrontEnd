@@ -55,10 +55,11 @@ body::-webkit-scrollbar {
 .post-container .post__image {
   width: 110px;
   height: 110px;
+  object-fit: cover;
   border-radius: 4px;
 }
 .post-container .post__info {
-  width: 100%;
+  width: calc(100% - 110px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
