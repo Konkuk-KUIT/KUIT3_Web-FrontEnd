@@ -1,8 +1,21 @@
+/* Global Styles */
+* {
+  box-sizing: border-box;
+  font-family: 'Inter';
+  font-style: normal;
+  padding: 0;
+}
+button, section {
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: inherit;
+}
+
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
 */
-
 html,
 body,
 div,
