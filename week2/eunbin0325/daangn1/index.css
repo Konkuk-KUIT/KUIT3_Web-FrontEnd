@@ -1,0 +1,170 @@
+.post-header {
+  width: 390px;
+  height: 778px;
+
+  position: relative;
+  top: 47px;
+
+  background-color: #D9D9D9;
+}
+
+header {
+  width: 390px;
+  height: 52px;
+  padding: 12px 16px 12px 16px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #FFFFFF;
+  flex-direction: row;
+  box-sizing: border-box;
+}
+
+.title {
+  width: 70px;
+  height: 100%;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  justify-content: flex-start;
+}
+
+.title h3 {
+  margin-right: 6px;
+}
+
+.expanderrow {
+  width: 14px;
+  height: 14px;
+  background-color: #FFFFFF;
+  border: none;
+  position: relative; /* 아이콘 위치를 조정하기 위해 부모 요소를 relative로 설정합니다. */
+}
+
+.expanderrow i {
+  position: absolute; /* 아이콘을 절대 위치로 설정합니다. */
+  top: 50%; /* 버튼 세로 중앙에 위치하도록 합니다. */
+  left: 50%; /* 버튼 가로 중앙에 위치하도록 합니다. */
+  transform: translate(-50%, -50%); /* 아이콘을 가운데 정렬합니다. */
+  color: #000000; /* 아이콘의 색상을 조정합니다. */
+} 
+
+.buttonbar {
+  width: 104px; /* 버튼바의 너비를 설정합니다. */
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-direction: row;
+  gap: 16px; /* 버튼을 가로로 나타내도록 설정합니다. */
+}
+
+.search-button,
+.menu-btn,
+.notification {
+  height: 100%;
+  flex: 1; /* 동일한 너비로 설정하기 위해 flex 속성 사용 */
+  
+  display: flex;
+  justify-content: center; /* 버튼 내부 요소 가운데 정렬 */
+  align-items: center;
+  
+  border: none; /* 버튼의 기본 테두리 제거 */
+  background-color: transparent; /* 배경색 없애기 */
+}
+
+article {
+  width: 390px;
+  height: 726px;
+  gap: 16px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  padding: 16px 16px 16px 16px;
+  background: #FFFFFF;
+  margin-top: 1px;
+}
+
+article section {
+  width: 358px;
+  height: 110px;
+  margin: 16px 16px 16px 16px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  /* margin-top: 1px; */
+}
+
+article section img {
+  width: 110px;
+  height: 110px;
+}
+
+article section .info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+footer {
+  width: 390px;
+  height: 172px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  position: fixed;
+}
+
+.plusmath {
+  position: absolute;
+  top: 0; /* 하단에 고정 */
+  right: 0; /* 오른쪽에 고정 */
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 16px 16px 0 0;
+}
+
+.plusbtn {
+  width: 48px;
+  height: 48px;
+  gap: 10px;
+  border-radius: 100%;
+  background: #FF7E36;
+  margin-left: auto;
+}
+
+.plusbtn img {
+  width: 100%;
+  height: 100%;
+}
+
+
+.icon-container {
+  width: 100%;
+  height: 50%;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  align-items: flex-end;
+
+}
+
+.icon-container button {
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  text-align: center;
+
+  border: none; /* 버튼의 기본 테두리 제거 */
+  background-color: transparent; /* 배경색 없애기 */
+}
