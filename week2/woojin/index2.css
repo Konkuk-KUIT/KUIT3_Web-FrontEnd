@@ -99,13 +99,12 @@ body{
     display: flex;
     justify-content: end;
     align-items: flex-end;
-    float: right;
+    /*float: right;*/
 }
 .imply{
     display: flex;
-    width: 700px;
+    width: 100%;
     flex-direction: column;
-
 }
 
 
