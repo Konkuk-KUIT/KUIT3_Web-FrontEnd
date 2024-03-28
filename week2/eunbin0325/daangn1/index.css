@@ -1,39 +1,45 @@
 .post-header {
   width: 390px;
   height: 778px;
-
   position: relative;
   top: 47px;
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: #D9D9D9;
 }
 
 header {
-  width: 390px;
+  width: 100%;
   height: 52px;
-  padding: 12px 16px 12px 16px;
-
+  padding: 12px 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #FFFFFF;
-  flex-direction: row;
   box-sizing: border-box;
+  margin-bottom: 1px;
 }
 
 .title {
-  width: 70px;
+  width: 100%;
   height: 100%;
 
   display: flex;
-  flex-direction: row;
   align-items: center;
-
-  justify-content: flex-start;
 }
 
-.title h3 {
-  margin-right: 6px;
+.title p {
+  font-size: 18px;
+  margin-right: 0;
+  font-weight: bold;
+}
+
+.buttonbar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end; 
+  margin-left: auto;
 }
 
 .expanderrow {
@@ -41,40 +47,15 @@ header {
   height: 14px;
   background-color: #FFFFFF;
   border: none;
-  position: relative; /* 아이콘 위치를 조정하기 위해 부모 요소를 relative로 설정합니다. */
-}
-
-.expanderrow i {
-  position: absolute; /* 아이콘을 절대 위치로 설정합니다. */
-  top: 50%; /* 버튼 세로 중앙에 위치하도록 합니다. */
-  left: 50%; /* 버튼 가로 중앙에 위치하도록 합니다. */
-  transform: translate(-50%, -50%); /* 아이콘을 가운데 정렬합니다. */
-  color: #000000; /* 아이콘의 색상을 조정합니다. */
-} 
-
-.buttonbar {
-  width: 104px; /* 버튼바의 너비를 설정합니다. */
-  height: 100%;
-
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  flex-direction: row;
-  gap: 16px; /* 버튼을 가로로 나타내도록 설정합니다. */
 }
 
 .search-button,
 .menu-btn,
 .notification {
-  height: 100%;
-  flex: 1; /* 동일한 너비로 설정하기 위해 flex 속성 사용 */
-  
-  display: flex;
-  justify-content: center; /* 버튼 내부 요소 가운데 정렬 */
-  align-items: center;
-  
-  border: none; /* 버튼의 기본 테두리 제거 */
-  background-color: transparent; /* 배경색 없애기 */
+  width: 24px; /* 수정된 부분 */
+  height: 24px; /* 수정된 부분 */
+  border: none;
+  background-color: transparent;
 }
 
 article {
@@ -87,9 +68,9 @@ article {
   justify-content: space-between;
   align-items: flex-start;
 
-  padding: 16px 16px 16px 16px;
+  padding: 15px 16px 15px 16px;
   background: #FFFFFF;
-  margin-top: 1px;
+  border-top: 1px solid #EEEEEE;
 }
 
 article section {
@@ -98,9 +79,10 @@ article section {
   margin: 16px 16px 16px 16px;
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
-  /* margin-top: 1px; */
+  gap: 16px;
+
 }
 
 article section img {
@@ -108,19 +90,56 @@ article section img {
   height: 110px;
 }
 
-article section .info {
+article section .content {
+  width: 232px;
+  height: 110px;
+  margin-left: 16px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  gap: 4px;
+}
+
+article section .info  {
+  width: 100%;
+  height: 90px;
+
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  justify-content: flex-start;
+  gap: 4px;
+}
+
+
+article section .comment {
+  width: auto;
+  height: 16px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end; /* comment를 우측으로 정렬 */
+  align-items: flex-end;
+  margin-right: 16px;
+}
+
+.border {
+  width: auto;
+  height: 1px;
+  background-color: #EEEEEE;
+  z-index: 1;
 }
 
 footer {
   width: 390px;
   height: 172px;
   position: absolute;
-  bottom: 0;
+  bottom: 34px;
   left: 0;
   position: fixed;
+  
 }
 
 .plusmath {
@@ -156,6 +175,10 @@ footer {
   right: 0;
   display: flex;
   align-items: flex-end;
+  background-color: #FFFFFF;
+  border-top: 1px solid #EEEEEE;
+  z-index: 1000;
+  overflow: auto;
 
 }
 
