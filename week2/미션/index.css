@@ -29,7 +29,7 @@ button{
 }
 
 .post-header__icon .local {
-    font-family: pretendard;
+    font-family: Inter;
     font-size: 18px;
     font-weight: 700;
     line-height: 28px;
@@ -108,7 +108,7 @@ button{
 .list__product .reaction {
     display: flex;
     justify-content: end;
-    align-items: baseline;
+    align-items: end;
     gap: 4px;
 }
 
