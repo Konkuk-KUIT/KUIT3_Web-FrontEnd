@@ -9,6 +9,10 @@ button {
   outline: inherit;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 /*<!-- 상단 헤더 -->*/
 .header-bar {
   display: flex;
@@ -149,7 +153,7 @@ button {
   justify-content: space-evenly;
   align-items: center;
   padding: 8px 0 8px 0;
-  height: 42px;
+  height: 58px;
   background-color: #fff;
   border-top: 1px solid #d9d9d9;
 }
