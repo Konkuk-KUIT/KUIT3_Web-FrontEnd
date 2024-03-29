@@ -7,6 +7,11 @@ button{
     outline: inherit;
 }
 
+article{
+    padding: 20px 0;
+    width: 100%;
+}
+
 .header__seperator{
     border-bottom: 1px solid #d9d9d9;
 }
@@ -16,11 +21,6 @@ button{
     width: 90%;
     margin: 18px auto;
     border-bottom: 1px solid #d9d9d9;
-}
-
-article{
-    padding: 20px 0;
-    width: 100%;
 }
 
 .post-header header{
