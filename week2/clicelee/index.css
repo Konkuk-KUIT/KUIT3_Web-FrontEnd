@@ -13,7 +13,7 @@ button {
 .header_bar{
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
     position: fixed; /*상단에 고정*/
     top: 0px;
     left: 0px;
@@ -21,19 +21,26 @@ button {
     padding: 12px 16px;
     background-color: #ffffff;
     border-bottom: 1px solid #d9d9d9;
+    z-index: 1;
 }
 
+.header_icon{
+    align-items: center;
+    display: flex;
+}
 
 .select{
+    font-family: Inter;
     font-size: 18px;
     font-weight: 700;
     line-height: 28px;
     text-align: left;
-    
+    border-color: transparent; /*적용 안 됨 */
 }
 
 
 body {
+    padding-top: 54px;
     padding-bottom: 54px;
 }
 
@@ -48,6 +55,7 @@ body {
     margin-bottom: 20px;
     border-bottom: 1px solid #d9d9d9;
     display: flex;
+
 }
 .item_image img{
     width: 110px;
@@ -67,7 +75,6 @@ body {
     line-height: 20px;
     text-align: left;
     margin-left: 16px;
-    
 }
 .location_date{
 
@@ -89,16 +96,25 @@ body {
     margin-left: 16px;
 
 }
-.item_preference .chats .liked{
-    margin-right:16px; /*왜 이게 적용 안 될까?*/
+
+.item_info{
+    position: relative;
+    width: 100%;
+}
+.item_preference{
+    
+    position:absolute;
+    bottom: 0;
+    right: 16px;
+}
+
+ .chats .liked{
     font-family: Inter;
     font-size: 12px;
     font-weight: 400;
     line-height: 16px;
-    text-align: left;
+    /* text-align: left; */
     color: #8C8C8C;
-    ;
-
 }
 
 .floating_button{
