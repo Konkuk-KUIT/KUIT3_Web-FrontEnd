@@ -1,0 +1,25 @@
+.container {
+  width: 500px;
+  height: 500px;
+  padding: 10px;
+  background-color: #9a5db5;
+  border-radius: 8px;
+}
+
+.item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f6941f;
+  border: 1.5px solid #000000;
+  width: 300px;
+  height: 60px;
+  border-radius: 4px;
+}
+
+.item:nth-child(3) {
+  top: 10px;
+  position: sticky;
+  background-color: #594934;
+  border: 1.5px solid #ff0000;
+}
