@@ -64,7 +64,7 @@ button{
 
 .list__product .list__prd-disc {
     display: flex;
-    width: 100%;
+    width: calc(100% - 110px);
     flex-direction: column;
     justify-content: space-between;
 }
