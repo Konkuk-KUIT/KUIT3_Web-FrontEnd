@@ -9,23 +9,45 @@ fetch(API_URL)
 
 const updateTodo = (todoId, originalTitle) => {
   const todoItem = document.querySelector(`#todo-${todoId}`);
+
   // mission [implement update todo]
   const inputContent = document.createElement("input");
   inputContent.value = originalTitle;
-  inputContent.id = "updateInput";
+  inputContent.className = "updateInput";
 
   //add event listener
-  inputContent.addEventListener("keyup", (e) => {
+  const fetchUpdate = () => {
+    fetch(API_URL + "/" + todoId, {
+      method: "PATCH",
+      body: JSON.stringify({ title: inputContent.value }),
+    })
+      .then(() => fetch(API_URL))
+      .then((response) => response.json())
+      .then((data) => renderTodo(data));
+  };
+
+  const enterKeyEvent = (e) => {
     if (e.key === "Enter") {
-      fetch(API_URL + "/" + todoId, {
-        method: "PATCH",
-        body: JSON.stringify({ title: inputContent.value }),
-      })
-        .then(() => fetch(API_URL))
-        .then((response) => response.json())
-        .then((data) => renderTodo(data));
+      fetchUpdate();
     }
-  });
+  };
+  inputContent.addEventListener("keyup", enterKeyEvent);
+
+  const outsideClickEvent = (e) => {
+    if (inputContent.contains(e.target) || e.target.className === "updateBtn") {
+      console.log("clicked inside");
+    } else {
+      console.log("clicked outside");
+      fetchUpdate();
+      // document.body.removeEventListener("click", outsideClickEvent);
+    }
+  };
+
+  //event listener 중복 방지
+  // if (!document.body.classList.contains("click-event")) {
+  document.body.addEventListener("click", outsideClickEvent);
+  // document.body.classList.add("click-event");
+  // }
 
   //remove origin title & insert input
   todoItem.removeChild(todoItem.childNodes[0]);
