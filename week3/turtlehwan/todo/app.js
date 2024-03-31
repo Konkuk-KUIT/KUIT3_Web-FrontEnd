@@ -21,10 +21,12 @@ const renderTodo = (newTodos) => {
 
     const deleteEl = document.createElement("span");
     deleteEl.textContent = "🗑️";
+    deleteEl.className = "delete";
     deleteEl.onclick = () => deleteTodo(todo.id);
 
     const udpateEl = document.createElement("span");
     udpateEl.textContent = "✏️";
+    udpateEl.className = "update";
     udpateEl.onclick = () => updateTodo(todo.id, todo.title);
 
     listEl.append(deleteEl);
