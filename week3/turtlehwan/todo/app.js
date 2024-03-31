@@ -9,7 +9,27 @@ fetch(API_URL)
 
 const updateTodo = (todoId, originalTitle) => {
   const todoItem = document.querySelector(`#todo-${todoId}`);
-  // mission
+  // mission [implement update todo]
+  const inputContent = document.createElement("input");
+  inputContent.value = originalTitle;
+  inputContent.id = "updateInput";
+
+  //add event listener
+  inputContent.addEventListener("keyup", (e) => {
+    if (e.key === "Enter") {
+      fetch(API_URL + "/" + todoId, {
+        method: "PATCH",
+        body: JSON.stringify({ title: inputContent.value }),
+      })
+        .then(() => fetch(API_URL))
+        .then((response) => response.json())
+        .then((data) => renderTodo(data));
+    }
+  });
+
+  //remove origin title & insert input
+  todoItem.removeChild(todoItem.childNodes[0]);
+  todoItem.insertBefore(inputContent, todoItem.firstChild);
 };
 
 const renderTodo = (newTodos) => {
@@ -21,16 +41,16 @@ const renderTodo = (newTodos) => {
 
     const deleteEl = document.createElement("span");
     deleteEl.textContent = "🗑️";
-    deleteEl.className = "delete";
+    deleteEl.className = "deleteBtn";
     deleteEl.onclick = () => deleteTodo(todo.id);
 
-    const udpateEl = document.createElement("span");
-    udpateEl.textContent = "✏️";
-    udpateEl.className = "update";
-    udpateEl.onclick = () => updateTodo(todo.id, todo.title);
+    const updateEl = document.createElement("span");
+    updateEl.textContent = "✏️";
+    updateEl.className = "updateBtn";
+    updateEl.onclick = () => updateTodo(todo.id, todo.title);
 
     listEl.append(deleteEl);
-    listEl.append(udpateEl);
+    listEl.append(updateEl);
     todoListEl.append(listEl);
   });
 };

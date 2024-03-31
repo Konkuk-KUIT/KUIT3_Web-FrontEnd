@@ -58,3 +58,11 @@ li:last-child {
 .deleteBtn:hover {
   text-decoration: underline;
 }
+
+.updateBtn {
+  cursor: pointer;
+  color: #0000ff;
+}
+.updateBtn:hover {
+  text-decoration: underline;
+}
