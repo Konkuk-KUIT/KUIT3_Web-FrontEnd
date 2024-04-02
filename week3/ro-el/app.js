@@ -9,13 +9,13 @@ todoInputEl.addEventListener("keypress", function (event) {
 const API_URL = "http://localhost:8080/todos";
 //json-server --watch db.json --port 8080
 
-const fetchWithFiltering = () => fetch(API_URL)
+const fetchAndRenderingWithFiltering = () => fetch(API_URL)
 .then((response) => response.json())
 .then((data) => {
   const todos = data.filter(todo => !todo.completed);
   renderTodo(todos);
 });
-fetchWithFiltering();
+window.onload = fetchAndRenderingWithFiltering();
 
 const renderTodo = (newTodos) => {
   todoListEl.innerHTML = "";
@@ -78,7 +78,7 @@ const addTodo = () => {
     .then((response) => response.json())
     .then(() => {
       todoInputEl.value = "";
-      return fetchWithFiltering(); //local db의 내용이 변경되었기 때문에, 다시 fetch
+      return fetchAndRenderingWithFiltering(); //local db의 내용이 변경되었기 때문에, 다시 fetch
     })
     .then((response) => response.json())
     .then((data) => renderTodo(data));
@@ -88,9 +88,9 @@ const deleteTodo = (todoId) => {
   fetch(API_URL + "/" + todoId, {
     method: "DELETE",
   })
-    .then(() => fetchWithFiltering())
-    .then((response) => response.json())
-    .then((data) => renderTodo(data));
+    .then(() => fetchAndRenderingWithFiltering());
+    // .then((response) => response.json())
+    // .then((data) => renderTodo(data));
 };
 
 const updateTodo = (todoId, originalTitle) => {
@@ -137,10 +137,10 @@ const updateTodoTitle = (todoId, newTitle) => {
   .then((response) => response.json())
   .then(() => {
     todoInputEl.value = "";
-    return fetchWithFiltering();
-  })
-  .then((response) => response.json())
-  .then((data) => renderTodo(data));
+    return fetchAndRenderingWithFiltering();
+  });
+  // .then((response) => response.json())
+  // .then((data) => renderTodo(data));
 }
 
 const completeTodo = (todoId) => {
@@ -152,7 +152,7 @@ const completeTodo = (todoId) => {
     body: JSON.stringify({ completed: true }),
   })
   .then((response) => response.json())
-  .then(() => fetchWithFiltering())
-  .then((response) => response.json())
-  .then((data) => renderTodo(data));
+  .then(() => fetchAndRenderingWithFiltering());
+  // .then((response) => response.json())
+  // .then((data) => renderTodo(data));
 }
