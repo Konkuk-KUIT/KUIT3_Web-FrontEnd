@@ -10,6 +10,31 @@ fetch(API_URL)
 const updateTodo = (todoId, originalTitle) => {
   const todoItem = document.querySelector(`#todo-${todoId}`);
   // mission
+  const editEl = document.createElement("input");
+  editEl.value = todoItem.firstChild.textContent;
+  todoItem.firstChild.textContent = "";
+
+  editEl.addEventListener("keyup", (event) => {
+    if(event.key === 'Enter'){
+      const inputValue = editEl.value;
+      console.log(inputValue);
+      if(editEl.value == ""){
+        deleteTodo(todoId);
+      } else {
+        editEl.remove();
+        todoItem.firstChild.textContent = inputValue;
+      }
+
+    }
+  }
+  );
+
+
+  todoItem.prepend(editEl);
+  
+
+
+  console.log(todoItem);
 };
 
 const renderTodo = (newTodos) => {
@@ -63,6 +88,7 @@ const addTodo = () => {
 };
 
 const deleteTodo = (todoId) => {
+  console.log(API_URL + "/" + todoId);
   fetch(API_URL + "/" + todoId, {
     method: "DELETE",
   })
@@ -70,3 +96,4 @@ const deleteTodo = (todoId) => {
     .then((response) => response.json())
     .then((data) => renderTodo(data));
 };
+
