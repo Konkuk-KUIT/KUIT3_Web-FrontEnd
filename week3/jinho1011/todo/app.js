@@ -15,24 +15,30 @@ const updateTodo = (todoId, originalTitle) => {
   todoItem.firstChild.textContent = "";
 
   editEl.addEventListener("keyup", (event) => {
-    if(event.key === 'Enter'){
+    if (event.key === "Enter") {
       const inputValue = editEl.value;
       console.log(inputValue);
-      if(editEl.value == ""){
+      if (editEl.value == "") {
         deleteTodo(todoId);
       } else {
         editEl.remove();
         todoItem.firstChild.textContent = inputValue;
       }
 
+      //서버 데이터에 반영하는 부분 추가
+      fetch(API_URL + "/" + todoId, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title: inputValue
+        }),
+      }).then(response => response.json())
     }
-  }
-  );
-
+  });
 
   todoItem.prepend(editEl);
-  
-
 
   console.log(todoItem);
 };
@@ -96,4 +102,3 @@ const deleteTodo = (todoId) => {
     .then((response) => response.json())
     .then((data) => renderTodo(data));
 };
-
