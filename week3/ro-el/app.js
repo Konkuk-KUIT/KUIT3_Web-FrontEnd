@@ -144,12 +144,15 @@ const updateTodoTitle = (todoId, newTitle) => {
 }
 
 const completeTodo = (todoId) => {
+  const date = new Date();
+  const updatedAt = date.toLocaleString();
+
   fetch(API_URL + "/" + todoId, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify({ completed: true }),
+    body: JSON.stringify({ completed: true, updatedAt }),
   })
   .then((response) => response.json())
   .then(() => fetchAndRenderingWithFiltering());
