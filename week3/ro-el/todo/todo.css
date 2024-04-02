@@ -55,6 +55,29 @@ li:last-child {
   cursor: pointer;
   color: #ff0000;
 }
-.deleteBtn:hover {
+/* .deleteBtn:hover {
   text-decoration: underline;
+} */
+li > .icon-container {
+  display: flex;
+  gap: 10px;
+}
+li > .update-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+}
+.update-container > #todoInput {
+  padding: 5px;
+  border: none;
+  border-bottom: 1px solid #61d8e5;
+}
+.update-container > #todoInput:focus {
+  outline: none;
+}
+
+.editBtn, .deleteBtn, .updateBtn, .completeBtn {
+  cursor: pointer;
 }
