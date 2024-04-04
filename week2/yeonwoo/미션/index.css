@@ -153,7 +153,7 @@ button{
 .bottom__bar .bar__info{
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    justify-content: space-between;
     align-items: center;
 }
 
