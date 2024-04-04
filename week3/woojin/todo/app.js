@@ -13,7 +13,7 @@ fetch(API_URL)
 };*/
 
 const updateTodo = (todoId, originalTitle) => {
-  const newTitle = prompt("Update the todo:", originalTitle); //입력받기
+  const newTitle = prompt("수정사항을 입력하세요:", originalTitle); //입력받기
   if (!newTitle || newTitle === originalTitle) {
     return; // 취소 또는 변경사항이 없을 경우
   }
