@@ -31,6 +31,7 @@ const updateTodo = (todoId, originalTitle) => {
 };
 
 
+
 const renderTodo = (newTodos) => {
   todoListEl.innerHTML = "";
   newTodos.forEach((todo) => {
@@ -102,8 +103,15 @@ const addTodo = () => {
     })
     .then((response) => response.json())
     .then((data) => renderTodo(data));
-};
 
+    
+};
+//엔터키를 입력했을 때 할 일 추가하는 이벤트 리스너
+todoInputEl.addEventListener('keydown', function(event) {
+  if (event.key === "Enter") {
+    addTodo();
+    event.preventDefault(); // 폼 제출을 방지
+  }});
 
 const deleteTodo = (todoId) => {
   fetch(API_URL + "/" + todoId, {
