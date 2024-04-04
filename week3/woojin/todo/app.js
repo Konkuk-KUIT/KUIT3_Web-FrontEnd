@@ -13,9 +13,9 @@ fetch(API_URL)
 };*/
 
 const updateTodo = (todoId, originalTitle) => {
-  const newTitle = prompt("Update the todo:", originalTitle);
+  const newTitle = prompt("Update the todo:", originalTitle); //입력받기
   if (!newTitle || newTitle === originalTitle) {
-    return; 
+    return; // 취소 또는 변경사항이 없을 경우
   }
 
   fetch(`${API_URL}/${todoId}`, {
@@ -42,7 +42,7 @@ const renderTodo = (newTodos) => {
     const textSpan = document.createElement("span");
     textSpan.textContent = todo.title;
     textSpan.className = "text"; // 스타일을 위한 클래스 추가  
-    textSpan.onclick = (e) => {
+    textSpan.onclick = (e) => { //클릭 이벤트에 updateTodo 함수 연결
       e.stopPropagation(); 
       updateTodo(todo.id, todo.title);
     };
