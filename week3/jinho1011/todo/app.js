@@ -72,7 +72,7 @@ const addTodo = () => {
   if (!title) return;
 
   const newTodo = {
-    id: date.getTime(),
+    id: date.getTime().toString(),
     title,
     createdAt,
   };
