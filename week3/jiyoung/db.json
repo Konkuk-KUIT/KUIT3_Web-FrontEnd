@@ -1,0 +1,22 @@
+{
+    "todos": [
+        {
+            "id": "1",
+            "title": "3주차 강의 만들기",
+            "createdAt": "2023-09-25",
+            "completed": false
+        },
+        {
+            "id": "2",
+            "title": "클라우드웹서비스 과제",
+            "createdAt": "2023-09-23",
+            "completed": false
+        },
+        {
+            "id": "3",
+            "title": "산협프 팀플",
+            "createdAt": "2023-09-22",
+            "completed": true
+        }
+    ]
+}
