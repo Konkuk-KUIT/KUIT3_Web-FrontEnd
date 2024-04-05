@@ -10,13 +10,13 @@ fetch(API_URL)
 const updateTodo = (todoId, originalTitle) => {
   const todoItem = document.querySelector(`#todo-${todoId}`);
   // mission
-  const inputEl = document.createElement("input");
-  inputEl.type = "text";
-  inputEl.value = originalTitle;
+  const itemInputEl = document.createElement("input");
+  itemInputEl.type = "text";
+  itemInputEl.value = originalTitle;
 
-  inputEl.addEventListener("keyup", (event) => {
+  itemInputEl.addEventListener("keyup", (event) => {
     if (event.key === "Enter") {
-      const updatedTitle = inputEl.value.trim();
+      const updatedTitle = itemInputEl.value.trim();
       if (updatedTitle) {
         fetch(API_URL + "/" + todoId, {
           method: "PUT",
@@ -33,8 +33,8 @@ const updateTodo = (todoId, originalTitle) => {
   });
 
   todoItem.innerHTML = "";
-  todoItem.appendChild(inputEl);
-  inputEl.focus();
+  todoItem.appendChild(itemInputEl);
+  itemInputEl.focus();
 };
 
 const renderTodo = (newTodos) => {
@@ -48,12 +48,12 @@ const renderTodo = (newTodos) => {
     deleteEl.textContent = "🗑️";
     deleteEl.onclick = () => deleteTodo(todo.id);
 
-    const udpateEl = document.createElement("span");
-    udpateEl.textContent = "✏️";
-    udpateEl.onclick = () => updateTodo(todo.id, todo.title);
+    const updateEl = document.createElement("span");
+    updateEl.textContent = "✏️";
+    updateEl.onclick = () => updateTodo(todo.id, todo.title);
 
     listEl.append(deleteEl);
-    listEl.append(udpateEl);
+    listEl.append(updateEl);
     todoListEl.append(listEl);
   });
 };
@@ -66,7 +66,7 @@ const addTodo = () => {
   if (!title) return;
 
   const newTodo = {
-    id: date.getTime(),
+    id: date.getTime().toString(),
     title,
     createdAt,
   };
