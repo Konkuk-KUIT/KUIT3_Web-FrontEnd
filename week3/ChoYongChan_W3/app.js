@@ -1,27 +1,13 @@
-const express = require('express');
-const cors = require('cors');
-
-const app = express();
-
-app.use(cors());
-
-app.listen(8080, () => {
-  console.log('서버가 8080 포트에서 실행 중입니다.');
-});
-
 const todoListEl = document.getElementById("todoList");
 const todoInputEl = document.getElementById("todoInput");
 
-const API_URL = "http://localhost:8080/todos";
-
-
+const API_URL = "http://localhost:3000/todos";
 
 fetch(API_URL)
   .then((response) => response.json())
   .then((data) => renderTodo(data));
 
 const updateTodo = (todoId, todoTitle) => {
-  if(typeof window!=='object') return;
   const todoItem = document.querySelector(`#todo-${todoId}`);
 
   todoItem.innerHTML = "";
@@ -66,8 +52,6 @@ const updateTodo = (todoId, todoTitle) => {
 const renderTodo = (newTodos) => {
   todoListEl.innerHTML = "";
   newTodos.forEach((todo) => {
-    if(typeof window!=='object') return;
-
     const listEl = document.createElement("li");
     listEl.textContent = todo.title;
     listEl.id = `todo-${todo.id}`;
