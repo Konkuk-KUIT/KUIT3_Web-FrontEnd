@@ -9,23 +9,31 @@ fetch(API_URL)
 
 const updateTodo = (todoId, originalTitle) => {
     const todoItem = document.querySelector(`#todo-${todoId}`);
+    todoItem.innerHTML = "";
     // mission
-    const newTitle = document.createElement("new");
-    newTitle.value = originalTitle;
-    newTitle.className = "updateNew";
+    const inputTitle = document.createElement("input");
+    inputTitle.type = "text";
+    inputTitle.value = originalTitle;
+    inputTitle.className = "updateInput";
 
-    if (!newTitle || newTitle === originalTitle) return;
+    todoItem.appendChild(inputTitle);
 
-    fetch(API_URL + "/" + todoId, {
-        method: "PATCH",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ title: newTitle.value }), 
+    if (!inputTitle || inputTitle === originalTitle) return;
+
+    inputTitle.addEventListener("keypress", (event) => {
+        if(event.key == "Enter" && inputTitle.value.trim() !== "" && inputTitle.value !== originalTitle){
+            fetch(API_URL + "/" + todoId, {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ title: inputTitle.value }), 
+            })
+                .then(() => fetch(API_URL)) 
+                .then((response) => response.json())
+                .then((data) => renderTodo(data));
+        }
     })
-        .then(() => fetch(API_URL)) 
-        .then((response) => response.json())
-        .then((data) => renderTodo(data));
 };
 
 const renderTodo = (newTodos) => {
