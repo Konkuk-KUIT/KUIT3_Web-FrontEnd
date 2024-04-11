@@ -1,6 +1,8 @@
 const API_URL = "http://localhost:8080/todos"; //json-server --watch db.json --port 8080
 const todoListEl = document.getElementById("todoList") as HTMLElement;
 const todoInputEl = document.getElementById("todoInput") as HTMLInputElement;
+const completedTodoListEl = document.getElementById("completedTodoList") as HTMLElement;
+
 todoInputEl.addEventListener("keypress", function (event) {
   if (event.key === "Enter") {
     addTodo();
@@ -18,38 +20,39 @@ interface Todos {
   todos: Todo[];
 }
 
-// const fetchWitFiltering = async (complete: boolean = false): Promise<Todos> => {
-//   const response = await fetch(API_URL);
-//   const data = await response.json();
+const buildPage = async () => {
+  //완료된 Todo
+  const completedTodos = await fetchWithFilter(true);
+  //완료되지 않은 Todo
+  const uncompletedTodos = await fetchWithFilter(false);
 
-//   //완료 여부 기준 필터링 - default: uncompleted
-//   let filteredTodos = data.filter((todo: Todo) => !todo.completed);
-//   if (complete) {
-//     const filteredTodos = data.filter((todo: Todo) => todo.completed);
-//   }
+  renderTodo(uncompletedTodos.todos);
+  renderTodo(completedTodos.todos, true);
+}
+window.onload = buildPage;
 
-//   return filteredTodos;
-// }
-
-const fetchAndRenderingWithFilter = async (complete: boolean = false) => {
+const fetchWithFilter = async (complete: boolean = false): Promise<Todos> => {
   // async로 감싸면 Promise를 반환
   const response = await fetch(API_URL); //fetch(API_URL)이 Response를 감싼 Promise를 반환
   const data = await response.json();
 
   //완료 여부 기준 필터링 - default: uncompleted
-  let filteredTodos = data.filter((todo: Todo) => !todo.completed);
-  if (complete) {
-    const filteredTodos = data.filter((todo: Todo) => todo.completed);
+  if (!complete) {
+    return {todos: data.filter((todo: Todo) => !todo.completed)};
   }
-
-  renderTodo(filteredTodos);
+  else {
+    return {todos: data.filter((todo: Todo) => todo.completed)};
+  }
 };
 
-window.onload = async() => await fetchAndRenderingWithFilter(true);
-
-const renderTodo = (newTodos: Todo[]) => {
-  todoListEl.innerHTML = "";
-  newTodos.forEach((todo) => {
+const renderTodo = (todos: Todo[], complete: boolean = false) => {
+  console.log(todos, complete);
+  // let listContainerEl = !complete ? todoListEl : completedTodoListEl;
+  let listContainerEl = todoListEl;
+  if (complete) listContainerEl = completedTodoListEl;
+  
+  listContainerEl.innerHTML = "";
+  todos.forEach((todo) => {
     const listEl = document.createElement("li");
     listEl.textContent = todo.title;
     listEl.id = `todo-${todo.id}`;
@@ -81,7 +84,7 @@ const renderTodo = (newTodos: Todo[]) => {
 
     listEl.append(iconContainerEl);
 
-    todoListEl.append(listEl);
+    listContainerEl.append(listEl);
   });
 };
 
@@ -105,7 +108,7 @@ const addTodo = async () => {
     },
     body: JSON.stringify({ ...newTodo, completed: false }),
   });
-  await fetchAndRenderingWithFilter();
+  await buildPage();
 };
 
 const deleteTodo = async (todoId: number) => {
@@ -113,7 +116,7 @@ const deleteTodo = async (todoId: number) => {
     method: "DELETE",
   });
 
-  await fetchAndRenderingWithFilter();
+  await buildPage();
 };
 
 const updateTodo = (todoId: number, originalTitle: string) => {
@@ -159,7 +162,7 @@ const updateTodoTitle = async (todoId: number, newTitle: string) => {
     body: JSON.stringify({ title: newTitle, updatedAt }),
   });
 
-  await fetchAndRenderingWithFilter();
+  await buildPage();
 };
 
 const completeTodo = async (todoId: number) => {
@@ -174,5 +177,5 @@ const completeTodo = async (todoId: number) => {
     body: JSON.stringify({ completed: true, updatedAt }),
   })
 
-  await fetchAndRenderingWithFilter();
+  await buildPage();
 };

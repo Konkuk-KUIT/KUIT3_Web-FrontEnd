@@ -10,36 +10,41 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 const API_URL = "http://localhost:8080/todos"; //json-server --watch db.json --port 8080
 const todoListEl = document.getElementById("todoList");
 const todoInputEl = document.getElementById("todoInput");
+const completedTodoListEl = document.getElementById("completedTodoList");
 todoInputEl.addEventListener("keypress", function (event) {
     if (event.key === "Enter") {
         addTodo();
     }
 });
-// const fetchWitFiltering = async (complete: boolean = false): Promise<Todos> => {
-//   const response = await fetch(API_URL);
-//   const data = await response.json();
-//   //완료 여부 기준 필터링 - default: uncompleted
-//   let filteredTodos = data.filter((todo: Todo) => !todo.completed);
-//   if (complete) {
-//     const filteredTodos = data.filter((todo: Todo) => todo.completed);
-//   }
-//   return filteredTodos;
-// }
-const fetchAndRenderingWithFilter = (complete = false) => __awaiter(this, void 0, void 0, function* () {
+const buildPage = () => __awaiter(this, void 0, void 0, function* () {
+    //완료된 Todo
+    const completedTodos = yield fetchWithFilter(true);
+    //완료되지 않은 Todo
+    const uncompletedTodos = yield fetchWithFilter(false);
+    renderTodo(uncompletedTodos.todos);
+    renderTodo(completedTodos.todos, true);
+});
+window.onload = buildPage;
+const fetchWithFilter = (complete = false) => __awaiter(this, void 0, void 0, function* () {
     // async로 감싸면 Promise를 반환
     const response = yield fetch(API_URL); //fetch(API_URL)이 Response를 감싼 Promise를 반환
     const data = yield response.json();
     //완료 여부 기준 필터링 - default: uncompleted
-    let filteredTodos = data.filter((todo) => !todo.completed);
-    if (complete) {
-        const filteredTodos = data.filter((todo) => todo.completed);
+    if (!complete) {
+        return { todos: data.filter((todo) => !todo.completed) };
     }
-    renderTodo(filteredTodos);
+    else {
+        return { todos: data.filter((todo) => todo.completed) };
+    }
 });
-window.onload = () => __awaiter(this, void 0, void 0, function* () { return yield fetchAndRenderingWithFilter(true); });
-const renderTodo = (newTodos) => {
-    todoListEl.innerHTML = "";
-    newTodos.forEach((todo) => {
+const renderTodo = (todos, complete = false) => {
+    console.log(todos, complete);
+    // let listContainerEl = !complete ? todoListEl : completedTodoListEl;
+    let listContainerEl = todoListEl;
+    if (complete)
+        listContainerEl = completedTodoListEl;
+    listContainerEl.innerHTML = "";
+    todos.forEach((todo) => {
         const listEl = document.createElement("li");
         listEl.textContent = todo.title;
         listEl.id = `todo-${todo.id}`;
@@ -64,7 +69,7 @@ const renderTodo = (newTodos) => {
         iconContainerEl.append(completeEl);
         iconContainerEl.append(deleteEl);
         listEl.append(iconContainerEl);
-        todoListEl.append(listEl);
+        listContainerEl.append(listEl);
     });
 };
 const addTodo = () => __awaiter(this, void 0, void 0, function* () {
@@ -85,13 +90,13 @@ const addTodo = () => __awaiter(this, void 0, void 0, function* () {
         },
         body: JSON.stringify(Object.assign(Object.assign({}, newTodo), { completed: false })),
     });
-    yield fetchAndRenderingWithFilter();
+    yield buildPage();
 });
 const deleteTodo = (todoId) => __awaiter(this, void 0, void 0, function* () {
     yield fetch(API_URL + "/" + todoId, {
         method: "DELETE",
     });
-    yield fetchAndRenderingWithFilter();
+    yield buildPage();
 });
 const updateTodo = (todoId, originalTitle) => {
     const todoItem = document.querySelector(`#todo-${todoId}`);
@@ -129,7 +134,7 @@ const updateTodoTitle = (todoId, newTitle) => __awaiter(this, void 0, void 0, fu
         },
         body: JSON.stringify({ title: newTitle, updatedAt }),
     });
-    yield fetchAndRenderingWithFilter();
+    yield buildPage();
 });
 const completeTodo = (todoId) => __awaiter(this, void 0, void 0, function* () {
     const date = new Date();
@@ -141,5 +146,5 @@ const completeTodo = (todoId) => __awaiter(this, void 0, void 0, function* () {
         },
         body: JSON.stringify({ completed: true, updatedAt }),
     });
-    yield fetchAndRenderingWithFilter();
+    yield buildPage();
 });
