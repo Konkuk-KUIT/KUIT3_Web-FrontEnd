@@ -81,3 +81,19 @@ li > .update-container {
 .editBtn, .deleteBtn, .updateBtn, .completeBtn {
   cursor: pointer;
 }
+
+.sort-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .btn-container {
+    display: flex;
+    gap: 20px;
+  }
+}
+.sort-box button {
+  background-color: #61d8e5;
+  color: black;
+  border: 1px solid black;
+}

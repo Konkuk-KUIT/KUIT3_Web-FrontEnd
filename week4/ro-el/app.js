@@ -16,15 +16,50 @@ todoInputEl.addEventListener("keypress", function (event) {
         addTodo();
     }
 });
-const buildPage = () => __awaiter(this, void 0, void 0, function* () {
+const sortStrategy = {
+    기본: "none",
+    사전순: "dictionary",
+    날짜순: "date",
+};
+const buildPage = (sort = sortStrategy.기본) => __awaiter(this, void 0, void 0, function* () {
     //완료된 Todo
-    const completedTodos = yield fetchWithFilter(true);
+    let completedTodos = yield fetchWithFilter(true);
     //완료되지 않은 Todo
-    const uncompletedTodos = yield fetchWithFilter(false);
+    let uncompletedTodos = yield fetchWithFilter(false);
+    if (sort != sortStrategy.기본) {
+        completedTodos = yield sortTodos(completedTodos.todos, sort);
+        uncompletedTodos = yield sortTodos(uncompletedTodos.todos, sort);
+    }
     renderTodo(uncompletedTodos.todos);
     renderTodo(completedTodos.todos, true);
 });
-window.onload = buildPage;
+const sortTodos = (todos, sort) => __awaiter(this, void 0, void 0, function* () {
+    if (sort == sortStrategy.사전순) {
+        return {
+            todos: todos.sort((a, b) => {
+                if (a.title < b.title) {
+                    return -1;
+                }
+                if (a.title > b.title) {
+                    return 1;
+                }
+                return 0;
+            }),
+        };
+    }
+    else {
+        //sort == sortStrategy.날짜순
+        // updatedAt 기준이되, 없는 경우(데이터가 수정된 적이 없는 경우) createdAt으로 비교
+        return {
+            todos: todos.sort((a, b) => {
+                const aDate = new Date(a.updatedAt == undefined ? a.createdAt : a.updatedAt);
+                const bDate = new Date(b.updatedAt == undefined ? b.createdAt : b.updatedAt);
+                return bDate.getTime() - aDate.getTime();
+            }),
+        };
+    }
+});
+window.onload = () => buildPage();
 const fetchWithFilter = (complete = false) => __awaiter(this, void 0, void 0, function* () {
     // async로 감싸면 Promise를 반환
     const response = yield fetch(API_URL); //fetch(API_URL)이 Response를 감싼 Promise를 반환
@@ -39,10 +74,7 @@ const fetchWithFilter = (complete = false) => __awaiter(this, void 0, void 0, fu
 });
 const renderTodo = (todos, complete = false) => {
     console.log(todos, complete);
-    // let listContainerEl = !complete ? todoListEl : completedTodoListEl;
-    let listContainerEl = todoListEl;
-    if (complete)
-        listContainerEl = completedTodoListEl;
+    let listContainerEl = !complete ? todoListEl : completedTodoListEl;
     listContainerEl.innerHTML = "";
     todos.forEach((todo) => {
         const listEl = document.createElement("li");
@@ -75,7 +107,7 @@ const renderTodo = (todos, complete = false) => {
 const addTodo = () => __awaiter(this, void 0, void 0, function* () {
     const title = todoInputEl.value;
     const date = new Date();
-    const createdAt = date.toLocaleString();
+    const createdAt = date.toISOString();
     if (!title)
         return;
     const newTodo = {
@@ -126,7 +158,7 @@ const updateTodo = (todoId, originalTitle) => {
 };
 const updateTodoTitle = (todoId, newTitle) => __awaiter(this, void 0, void 0, function* () {
     const date = new Date();
-    const updatedAt = date.toLocaleString();
+    const updatedAt = date.toISOString();
     yield fetch(API_URL + "/" + todoId, {
         method: "PATCH",
         headers: {

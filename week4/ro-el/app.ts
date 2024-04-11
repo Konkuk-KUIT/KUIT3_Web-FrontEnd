@@ -1,7 +1,9 @@
 const API_URL = "http://localhost:8080/todos"; //json-server --watch db.json --port 8080
 const todoListEl = document.getElementById("todoList") as HTMLElement;
 const todoInputEl = document.getElementById("todoInput") as HTMLInputElement;
-const completedTodoListEl = document.getElementById("completedTodoList") as HTMLElement;
+const completedTodoListEl = document.getElementById(
+  "completedTodoList"
+) as HTMLElement;
 
 todoInputEl.addEventListener("keypress", function (event) {
   if (event.key === "Enter") {
@@ -20,16 +22,54 @@ interface Todos {
   todos: Todo[];
 }
 
-const buildPage = async () => {
+//enum 대신 as const 방식을 선호한다고 함..
+const sortStrategy = {
+  기본: "none",
+  사전순: "dictionary",
+  날짜순: "date",
+} as const;
+type SortStrategy = (typeof sortStrategy)[keyof typeof sortStrategy];
+
+const buildPage = async (sort: SortStrategy = sortStrategy.기본) => {
   //완료된 Todo
-  const completedTodos = await fetchWithFilter(true);
+  let completedTodos = await fetchWithFilter(true);
   //완료되지 않은 Todo
-  const uncompletedTodos = await fetchWithFilter(false);
+  let uncompletedTodos = await fetchWithFilter(false);
+
+  if (sort != sortStrategy.기본) {
+    completedTodos = await sortTodos(completedTodos.todos, sort);
+    uncompletedTodos = await sortTodos(uncompletedTodos.todos, sort);
+  }
 
   renderTodo(uncompletedTodos.todos);
   renderTodo(completedTodos.todos, true);
-}
-window.onload = buildPage;
+};
+const sortTodos = async (todos: Todo[], sort: SortStrategy): Promise<Todos> => {
+  if (sort == sortStrategy.사전순) {
+    return {
+      todos: todos.sort((a: Todo, b: Todo): number => {
+        if (a.title < b.title) {
+          return -1;
+        }
+        if (a.title > b.title) {
+          return 1;
+        }
+        return 0;
+      }),
+    };
+  } else {
+    //sort == sortStrategy.날짜순
+    // updatedAt 기준이되, 없는 경우(데이터가 수정된 적이 없는 경우) createdAt으로 비교
+    return {
+      todos: todos.sort((a: Todo, b: Todo) => {
+        const aDate = new Date(a.updatedAt == undefined ? a.createdAt : a.updatedAt);
+        const bDate = new Date(b.updatedAt == undefined ? b.createdAt : b.updatedAt);
+        return bDate.getTime() - aDate.getTime();
+      }),
+    };
+  }
+};
+window.onload = () => buildPage();
 
 const fetchWithFilter = async (complete: boolean = false): Promise<Todos> => {
   // async로 감싸면 Promise를 반환
@@ -38,19 +78,16 @@ const fetchWithFilter = async (complete: boolean = false): Promise<Todos> => {
 
   //완료 여부 기준 필터링 - default: uncompleted
   if (!complete) {
-    return {todos: data.filter((todo: Todo) => !todo.completed)};
-  }
-  else {
-    return {todos: data.filter((todo: Todo) => todo.completed)};
+    return { todos: data.filter((todo: Todo) => !todo.completed) };
+  } else {
+    return { todos: data.filter((todo: Todo) => todo.completed) };
   }
 };
 
 const renderTodo = (todos: Todo[], complete: boolean = false) => {
   console.log(todos, complete);
-  // let listContainerEl = !complete ? todoListEl : completedTodoListEl;
-  let listContainerEl = todoListEl;
-  if (complete) listContainerEl = completedTodoListEl;
-  
+  let listContainerEl = !complete ? todoListEl : completedTodoListEl;
+
   listContainerEl.innerHTML = "";
   todos.forEach((todo) => {
     const listEl = document.createElement("li");
@@ -91,7 +128,7 @@ const renderTodo = (todos: Todo[], complete: boolean = false) => {
 const addTodo = async () => {
   const title = todoInputEl.value;
   const date = new Date();
-  const createdAt = date.toLocaleString();
+  const createdAt = date.toISOString();
 
   if (!title) return;
 
@@ -152,7 +189,7 @@ const updateTodo = (todoId: number, originalTitle: string) => {
 
 const updateTodoTitle = async (todoId: number, newTitle: string) => {
   const date = new Date();
-  const updatedAt = date.toLocaleString();
+  const updatedAt = date.toISOString();
 
   await fetch(API_URL + "/" + todoId, {
     method: "PATCH",
@@ -175,7 +212,7 @@ const completeTodo = async (todoId: number) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ completed: true, updatedAt }),
-  })
+  });
 
   await buildPage();
 };

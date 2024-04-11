@@ -1,88 +1,57 @@
 {
   "todos": [
     {
-      "id": 1,
-      "title": "Web 3주차 강의 듣기",
-      "completed": true,
-      "createdAt": "2023-09-27"
-    },
-    {
-      "id": 2,
-      "title": "Web 3주차 미션하기",
-      "completed": true,
-      "createdAt": "2023-09-27"
-    },
-    {
-      "id": 3,
-      "title": "Web 3주차 스터디",
+      "id": 1712856768086,
+      "title": "날짜가 어떻게 들어오지? 잘 됨",
+      "createdAt": "2024-04-11T17:32:48.086Z",
       "completed": false,
-      "createdAt": "2023-09-27"
+      "updatedAt": "2024-04-11T17:34:37.663Z"
     },
     {
-      "id": 1695920561926,
-      "title": "수정한 이름",
-      "createdAt": "Fri Sep 29 2023",
+      "id": 1712856828114,
+      "title": "Web 4주차 워크북",
+      "createdAt": "2024-04-11T17:33:48.114Z",
+      "completed": true,
+      "updatedAt": "2024. 4. 12. 오전 2:34:31"
+    },
+    {
+      "id": 1712856836088,
+      "title": "Web 4주차 강의",
+      "createdAt": "2024-04-11T17:33:56.088Z",
+      "completed": true,
+      "updatedAt": "2024. 4. 12. 오전 2:34:32"
+    },
+    {
+      "id": 1712856840761,
+      "title": "Web 4주차 미션",
+      "createdAt": "2024-04-11T17:34:00.761Z",
       "completed": false
     },
     {
-      "id": 1712047415760,
-      "title": "해치웠나? updatedAt 다시",
-      "createdAt": "Tue Apr 02 2024",
-      "completed": false,
-      "updatedAt": "2024. 4. 2. 오후 8:41:15"
+      "id": 1712856854635,
+      "title": "Web 4주차 스터디",
+      "createdAt": "2024-04-11T17:34:14.635Z",
+      "completed": true,
+      "updatedAt": "2024. 4. 12. 오전 2:34:33"
     },
     {
-      "id": 1712059876452,
-      "title": "3주차 미션 그 외",
-      "createdAt": "2024. 4. 2. 오후 9:11:16",
+      "id": 1712856858136,
+      "title": "웹프 과제 - 개발",
+      "createdAt": "2024-04-11T17:34:18.136Z",
+      "completed": false,
+      "updatedAt": "2024-04-11T17:34:23.404Z"
+    },
+    {
+      "id": 1712856867898,
+      "title": "웹프 과제 - 보고서 작성",
+      "createdAt": "2024-04-11T17:34:27.898Z",
       "completed": false
     },
     {
-      "id": 1712060191850,
-      "title": "추가가 됩니다",
-      "createdAt": "2024. 4. 2. 오후 9:16:31",
+      "id": 1712856882922,
+      "title": "ts 으악",
+      "createdAt": "2024-04-11T17:34:42.922Z",
       "completed": false
-    },
-    {
-      "id": 1712060200775,
-      "title": "수정도 됩니다 수정을 했어요33",
-      "createdAt": "2024. 4. 2. 오후 9:16:40",
-      "completed": false,
-      "updatedAt": "2024. 4. 2. 오후 9:18:15"
-    },
-    {
-      "id": 1712060213713,
-      "title": "완료 처리도 돼요!",
-      "createdAt": "2024. 4. 2. 오후 9:16:53",
-      "completed": true,
-      "updatedAt": "2024. 4. 2. 오후 9:20:16"
-    },
-    {
-      "id": 1712060457001,
-      "title": "완료 처리",
-      "createdAt": "2024. 4. 2. 오후 9:20:57",
-      "completed": true,
-      "updatedAt": "2024. 4. 2. 오후 10:25:21"
-    },
-    {
-      "id": 1712846108036,
-      "title": "ts 잘 되나요?",
-      "createdAt": "2024. 4. 11. 오후 11:35:08",
-      "completed": false
-    },
-    {
-      "id": 1712846113490,
-      "title": "ts 수정도 되나요? 네! 수정이 돼요!",
-      "createdAt": "2024. 4. 11. 오후 11:35:13",
-      "completed": false,
-      "updatedAt": "2024. 4. 11. 오후 11:35:21"
-    },
-    {
-      "id": 1712846144818,
-      "title": "ts 완료도 되나요?",
-      "createdAt": "2024. 4. 11. 오후 11:35:44",
-      "completed": true,
-      "updatedAt": "2024. 4. 11. 오후 11:35:46"
     }
   ]
 }
