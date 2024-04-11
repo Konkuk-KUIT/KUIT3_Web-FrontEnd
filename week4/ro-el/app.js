@@ -16,6 +16,7 @@ todoInputEl.addEventListener("keypress", function (event) {
         addTodo();
     }
 });
+//enum 대신 as const 방식을 선호한다고 함..
 const sortStrategy = {
     기본: "none",
     사전순: "dictionary",
@@ -27,7 +28,6 @@ const buildPage = (sort = sortStrategy.기본) => __awaiter(this, void 0, void 0
     //완료되지 않은 Todo
     let uncompletedTodos = yield fetchWithFilter(false);
     if (sort != sortStrategy.기본) {
-        completedTodos = yield sortTodos(completedTodos.todos, sort);
         uncompletedTodos = yield sortTodos(uncompletedTodos.todos, sort);
     }
     renderTodo(uncompletedTodos.todos);

@@ -84,16 +84,24 @@ li > .update-container {
 
 .sort-box {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  gap: 20px;
+  padding-bottom: 30px;
 
+  span {
+    font-weight: 00;
+  }
   .btn-container {
     display: flex;
-    gap: 20px;
+    gap: 10px;
   }
 }
 .sort-box button {
-  background-color: #61d8e5;
+  padding: 5px;
+  background-color: #90ecf6;
   color: black;
-  border: 1px solid black;
+  border: 0.5px solid rgb(77, 77, 77);
+  border-radius: 3px;
+  font-size: 0.8rem;
 }

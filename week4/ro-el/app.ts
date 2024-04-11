@@ -37,7 +37,6 @@ const buildPage = async (sort: SortStrategy = sortStrategy.기본) => {
   let uncompletedTodos = await fetchWithFilter(false);
 
   if (sort != sortStrategy.기본) {
-    completedTodos = await sortTodos(completedTodos.todos, sort);
     uncompletedTodos = await sortTodos(uncompletedTodos.todos, sort);
   }
 

@@ -8,15 +8,15 @@
   </head>
 
   <body>
-    <div class="app sort-box">
-      <div class="header">Sort By</div>
-      <div class="btn-container">
-        <button onclick="buildPage();">기본 정렬</button>
-        <button onclick="buildPage(sortStrategy.사전순);">사전순</button>
-        <button onclick="buildPage(sortStrategy.날짜순);">날짜순</button>
-      </div>
-    </div>
     <div class="app">
+      <div class="sort-box">
+        <span>Sort By</span>
+        <div class="btn-container">
+          <button onclick="buildPage();">기본 정렬</button>
+          <button onclick="buildPage(sortStrategy.사전순);">사전순</button>
+          <button onclick="buildPage(sortStrategy.날짜순);">날짜순</button>
+        </div>
+      </div>
       <div class="header">My Todos</div>
       <div class="inputContainer">
         <input id="todoInput" placeholder="What needs to be done?" />
