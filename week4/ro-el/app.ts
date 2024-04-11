@@ -1,3 +1,4 @@
+const API_URL = "http://localhost:8080/todos"; //json-server --watch db.json --port 8080
 const todoListEl = document.getElementById("todoList") as HTMLElement;
 const todoInputEl = document.getElementById("todoInput") as HTMLInputElement;
 todoInputEl.addEventListener("keypress", function (event) {
@@ -17,10 +18,25 @@ interface Todos {
   todos: Todo[];
 }
 
-const fetchAndRenderingWithFiltering = async (complete: boolean = false) => {
-  const response = await fetch(API_URL);
+// const fetchWitFiltering = async (complete: boolean = false): Promise<Todos> => {
+//   const response = await fetch(API_URL);
+//   const data = await response.json();
+
+//   //완료 여부 기준 필터링 - default: uncompleted
+//   let filteredTodos = data.filter((todo: Todo) => !todo.completed);
+//   if (complete) {
+//     const filteredTodos = data.filter((todo: Todo) => todo.completed);
+//   }
+
+//   return filteredTodos;
+// }
+
+const fetchAndRenderingWithFilter = async (complete: boolean = false) => {
+  // async로 감싸면 Promise를 반환
+  const response = await fetch(API_URL); //fetch(API_URL)이 Response를 감싼 Promise를 반환
   const data = await response.json();
 
+  //완료 여부 기준 필터링 - default: uncompleted
   let filteredTodos = data.filter((todo: Todo) => !todo.completed);
   if (complete) {
     const filteredTodos = data.filter((todo: Todo) => todo.completed);
@@ -28,15 +44,10 @@ const fetchAndRenderingWithFiltering = async (complete: boolean = false) => {
 
   renderTodo(filteredTodos);
 };
-window.onload = () => {
-  fetchAndRenderingWithFiltering(true);
-};
 
-const API_URL = "http://localhost:8080/todos";
-//json-server --watch db.json --port 8080
+window.onload = async() => await fetchAndRenderingWithFilter(true);
 
 const renderTodo = (newTodos: Todo[]) => {
-  // if (!newTodos) return;
   todoListEl.innerHTML = "";
   newTodos.forEach((todo) => {
     const listEl = document.createElement("li");
@@ -74,7 +85,7 @@ const renderTodo = (newTodos: Todo[]) => {
   });
 };
 
-const addTodo = () => {
+const addTodo = async () => {
   const title = todoInputEl.value;
   const date = new Date();
   const createdAt = date.toLocaleString();
@@ -87,32 +98,27 @@ const addTodo = () => {
     createdAt,
   };
 
-  fetch(API_URL, {
+  await fetch(API_URL, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ ...newTodo, completed: false }),
-  })
-    .then((response) => response.json())
-    .then(() => {
-      todoInputEl.value = "";
-      return fetchAndRenderingWithFiltering(); //local db의 내용이 변경되었기 때문에, 다시 fetch
-    })
-    .then((response) => response.json())
-    .then((data) => renderTodo(data));
+  });
+  await fetchAndRenderingWithFilter();
 };
 
-const deleteTodo = (todoId) => {
-  fetch(API_URL + "/" + todoId, {
+const deleteTodo = async (todoId: number) => {
+  await fetch(API_URL + "/" + todoId, {
     method: "DELETE",
-  }).then(() => fetchAndRenderingWithFiltering());
-  // .then((response) => response.json())
-  // .then((data) => renderTodo(data));
+  });
+
+  await fetchAndRenderingWithFilter();
 };
 
-const updateTodo = (todoId, originalTitle) => {
+const updateTodo = (todoId: number, originalTitle: string) => {
   const todoItem = document.querySelector(`#todo-${todoId}`);
+  if (!todoItem) return;
   todoItem.innerHTML = "";
 
   const updateContainer = document.createElement("div");
@@ -141,39 +147,32 @@ const updateTodo = (todoId, originalTitle) => {
   updateInputEl.focus();
 };
 
-const updateTodoTitle = (todoId, newTitle) => {
+const updateTodoTitle = async (todoId: number, newTitle: string) => {
   const date = new Date();
   const updatedAt = date.toLocaleString();
 
-  fetch(API_URL + "/" + todoId, {
+  await fetch(API_URL + "/" + todoId, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ title: newTitle, updatedAt }),
-  })
-    .then((response) => response.json())
-    .then(() => {
-      todoInputEl.value = "";
-      return fetchAndRenderingWithFiltering();
-    });
-  // .then((response) => response.json())
-  // .then((data) => renderTodo(data));
+  });
+
+  await fetchAndRenderingWithFilter();
 };
 
-const completeTodo = (todoId) => {
+const completeTodo = async (todoId: number) => {
   const date = new Date();
   const updatedAt = date.toLocaleString();
 
-  fetch(API_URL + "/" + todoId, {
+  await fetch(API_URL + "/" + todoId, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ completed: true, updatedAt }),
   })
-    .then((response) => response.json())
-    .then(() => fetchAndRenderingWithFiltering());
-  // .then((response) => response.json())
-  // .then((data) => renderTodo(data));
+
+  await fetchAndRenderingWithFilter();
 };
