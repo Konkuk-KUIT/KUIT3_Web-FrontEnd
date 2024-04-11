@@ -15,13 +15,18 @@ todoInputEl.addEventListener("keypress", function (event) {
         addTodo();
     }
 });
-const fetchTodosAndRendering = () => __awaiter(void 0, void 0, void 0, function* () {
+const fetchAndRenderingWithFiltering = (complete = false) => __awaiter(void 0, void 0, void 0, function* () {
     const response = yield fetch(API_URL);
     const data = yield response.json();
-    const uncompletedTodos = data.filter((todo) => !todo.completed);
-    renderTodo(uncompletedTodos);
+    let filteredTodos = data.filter((todo) => !todo.completed);
+    if (complete) {
+        const filteredTodos = data.filter((todo) => todo.completed);
+    }
+    renderTodo(filteredTodos);
 });
-window.onload = fetchTodosAndRendering;
+window.onload = () => {
+    fetchAndRenderingWithFiltering(true);
+};
 const API_URL = "http://localhost:8080/todos";
 //json-server --watch db.json --port 8080
 const renderTodo = (newTodos) => {
@@ -76,7 +81,7 @@ const addTodo = () => {
         .then((response) => response.json())
         .then(() => {
         todoInputEl.value = "";
-        return fetchTodosAndRendering(); //local db의 내용이 변경되었기 때문에, 다시 fetch
+        return fetchAndRenderingWithFiltering(); //local db의 내용이 변경되었기 때문에, 다시 fetch
     })
         .then((response) => response.json())
         .then((data) => renderTodo(data));
@@ -84,8 +89,7 @@ const addTodo = () => {
 const deleteTodo = (todoId) => {
     fetch(API_URL + "/" + todoId, {
         method: "DELETE",
-    })
-        .then(() => fetchTodosAndRendering());
+    }).then(() => fetchAndRenderingWithFiltering());
     // .then((response) => response.json())
     // .then((data) => renderTodo(data));
 };
@@ -119,14 +123,14 @@ const updateTodoTitle = (todoId, newTitle) => {
     fetch(API_URL + "/" + todoId, {
         method: "PATCH",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
         },
         body: JSON.stringify({ title: newTitle, updatedAt }),
     })
         .then((response) => response.json())
         .then(() => {
         todoInputEl.value = "";
-        return fetchTodosAndRendering();
+        return fetchAndRenderingWithFiltering();
     });
     // .then((response) => response.json())
     // .then((data) => renderTodo(data));
@@ -137,12 +141,12 @@ const completeTodo = (todoId) => {
     fetch(API_URL + "/" + todoId, {
         method: "PATCH",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
         },
         body: JSON.stringify({ completed: true, updatedAt }),
     })
         .then((response) => response.json())
-        .then(() => fetchTodosAndRendering());
+        .then(() => fetchAndRenderingWithFiltering());
     // .then((response) => response.json())
     // .then((data) => renderTodo(data));
 };
