@@ -1,0 +1,6 @@
+{
+    "compilerOptions": {
+        "target": "ES6",
+        "strict": true // TypeScript의 엄격한 타입 검사 설정을 활성화함
+    }
+}
