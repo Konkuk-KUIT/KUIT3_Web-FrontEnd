@@ -5,7 +5,7 @@ const API_URL = "http://localhost:8080/todos";
 
 interface Todo {
   id: number;
-  titls: string;
+  title: string;
   createdAt: string;
   completed: boolean;
 }
@@ -26,58 +26,105 @@ fetch(API_URL)
 // document onLoad eventListener
 
 const updateTodo = (todoId: number, originalTitle: string) => {
-  const todoItem = document.querySelector(`#todo-${todoId}`);
+  const todoItem: Element | null = document.querySelector(`#todo-${todoId}`);
   // mission
+  if (todoItem !== null) {
+    const editEl: HTMLInputElement = document.createElement("input");
+    const firstChild: ChildNode | null = todoItem.firstChild;
+
+    // firstChild가 Text 노드인 경우에만 처리
+    if (firstChild instanceof Text) {
+      editEl.value = (firstChild.textContent ?? "") as string; // 널 병합 연산자
+      firstChild.textContent = "";
+
+      // 이벤트 리스너 추가
+      editEl.addEventListener("keyup", async (event) => {
+        if (event.key === "Enter") {
+          const inputValue = editEl.value;
+          console.log(inputValue);
+          if (editEl.value == "") {
+            deleteTodo(todoId);
+          } else {
+            editEl.remove();
+            if (todoItem.firstChild !== null)
+              todoItem.firstChild.textContent = inputValue;
+          }
+
+          //서버 데이터에 반영하는 부분 추가
+          await fetch(API_URL + "/" + todoId, {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              title: inputValue,
+            }),
+          });
+
+          //.then(response => response.json())
+        }
+      });
+
+      todoItem.prepend(editEl);
+
+      console.log(todoItem);
+    }
+  } else {
+    console.error(`Could not find element with ID todo-${todoId}`);
+  }
 };
 
-const renderTodo = (newTodos) => {
+const renderTodo = (newTodos: Todo[]) => {
   todoListEl.innerHTML = "";
   newTodos.forEach((todo) => {
-    const listEl = document.createElement("li");
+    const listEl: HTMLLIElement = document.createElement("li");
     listEl.textContent = todo.title;
     listEl.id = `todo-${todo.id}`;
 
-    const deleteEl = document.createElement("span");
+    const deleteEl: HTMLSpanElement = document.createElement("span");
     deleteEl.textContent = "🗑️";
     deleteEl.onclick = () => deleteTodo(todo.id);
 
-    const udpateEl = document.createElement("span");
-    udpateEl.textContent = "✏️";
-    udpateEl.onclick = () => updateTodo(todo.id, todo.title);
+    const updateEl: HTMLSpanElement = document.createElement("span");
+    updateEl.textContent = "✏️";
+    updateEl.onclick = () => updateTodo(todo.id, todo.title);
 
     listEl.append(deleteEl);
-    listEl.append(udpateEl);
+    listEl.append(updateEl);
     todoListEl.append(listEl);
   });
 };
 
-const addTodo = () => {
-  const title = todoInputEl.value;
-  const date = new Date();
-  const createdAt = date.toDateString();
+const addTodo = async () => {
+  const title: string = todoInputEl.value;
+  const date: Date = new Date();
+  const createdAt: string = date.toDateString();
 
   if (!title) return;
 
   const newTodo = {
     id: date.getTime(),
-    title,
+    title, // 이름이랑 변수에 넣어주는 값이 같다면 생략 가능하다
     createdAt,
   };
 
-  fetch(API_URL, {
+  await fetch(API_URL, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ ...newTodo, completed: false }),
-  })
-    .then((response) => response.json())
-    .then(() => {
-      todoInputEl.value = "";
-      return fetch(API_URL);
-    })
-    .then((response) => response.json())
-    .then((data) => renderTodo(data));
+  });
+  const newTodos = await fetchTodos();
+  renderTodo(newTodos.todos);
+
+  // .then((response) => response.json())
+  // .then(() => {
+  //   todoInputEl.value = "";
+  //   return fetch(API_URL);
+  // })
+  // .then((response) => response.json())
+  // .then((data) => renderTodo(data));
 };
 
 const deleteTodo = async (todoId: number) => {

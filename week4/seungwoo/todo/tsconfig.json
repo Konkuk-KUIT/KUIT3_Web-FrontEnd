@@ -4,3 +4,4 @@
     "strict": true
   }
 }
+// strict 켜면 모든 파일 검사를 빡세게 해준다. 
