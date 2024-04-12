@@ -1,4 +1,4 @@
-const todoListEl = document.getElementById("todoList");
+const todoListEl = document.getElementById("todoList") as HTMLElement;
 const todoInputEl = document.getElementById("todoInput");
 
 const API_URL = "http://localhost:8080/todos";
