@@ -11,6 +11,9 @@ todoInputEl.addEventListener("keypress", function (event) {
   }
 });
 
+//페이지 로드시
+window.onload = () => buildPage();
+
 interface Todo {
   id: number;
   title: string;
@@ -43,6 +46,7 @@ const buildPage = async (sort: SortStrategy = sortStrategy.기본) => {
   renderTodo(uncompletedTodos.todos);
   renderTodo(completedTodos.todos, true);
 };
+
 const sortTodos = async (todos: Todo[], sort: SortStrategy): Promise<Todos> => {
   if (sort == sortStrategy.사전순) {
     return {
@@ -57,8 +61,8 @@ const sortTodos = async (todos: Todo[], sort: SortStrategy): Promise<Todos> => {
       }),
     };
   } else {
-    //sort == sortStrategy.날짜순
-    // updatedAt 기준이되, 없는 경우(데이터가 수정된 적이 없는 경우) createdAt으로 비교
+    //sort == sortStrategy.날짜순; 최근 수정순
+    //updatedAt 기준이되, 없는 경우(데이터가 수정된 적이 없는 경우) createdAt으로 비교
     return {
       todos: todos.sort((a: Todo, b: Todo) => {
         const aDate = new Date(a.updatedAt == undefined ? a.createdAt : a.updatedAt);
@@ -68,7 +72,6 @@ const sortTodos = async (todos: Todo[], sort: SortStrategy): Promise<Todos> => {
     };
   }
 };
-window.onload = () => buildPage();
 
 const fetchWithFilter = async (complete: boolean = false): Promise<Todos> => {
   // async로 감싸면 Promise를 반환
