@@ -1,22 +1,16 @@
 {
-    "todos": [
-        {
-            "id": "1",
-            "title": "3주차 강의 만들기",
-            "createdAt": "2023-09-25",
-            "completed": false
-        },
-        {
-            "id": "2",
-            "title": "클라우드웹서비스 과제",
-            "createdAt": "2023-09-23",
-            "completed": false
-        },
-        {
-            "id": "3",
-            "title": "산협프 팀플",
-            "createdAt": "2023-09-22",
-            "completed": true
-        }
-    ]
+  "todos": [
+    {
+      "id": "1712899518625",
+      "title": "테스트1",
+      "createdAt": "Fri Apr 12 2024",
+      "completed": false
+    },
+    {
+      "id": "1712899953860",
+      "title": "테스트2",
+      "createdAt": "Fri Apr 12 2024",
+      "completed": false
+    }
+  ]
 }

@@ -62,6 +62,15 @@ li:last-child {
     border-bottom: none;
 }
 
+/* .btns span {
+    margin-left: 10px;
+} */
+
+.updateBtn {
+    cursor: pointer;
+    color: #ff0000;
+}
+
 .deleteBtn {
     cursor: pointer;
     color: #ff0000;
