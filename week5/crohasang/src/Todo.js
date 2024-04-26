@@ -7,7 +7,7 @@ const Todo = ({ id, task, completed, priority }) => {
       <div>task : {task}</div>
       <div>completed : {completed.toString()}</div>
       <div>priority : {priority}</div>
-      <div>------------------</div>
+      <div>-------------------</div>
     </div>
   );
 };
