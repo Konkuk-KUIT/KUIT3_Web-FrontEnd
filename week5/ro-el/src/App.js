@@ -22,7 +22,7 @@ const App = () => {
       <ul className="todo-list">
         {todoData.todos.map((value, index) => (
           <Todo
-            key={value.id} //or key={index}
+            key={value.id} //key 값으로 index를 넣으면 안 됨
             id={value.id}
             task={value.task}
             completed={value.completed}
@@ -37,7 +37,7 @@ const App = () => {
         {todoData.todos.map((value, index) =>
           value.completed ? ( //삼항 연산자
             <Todo
-              key={value.id} //or key={index}
+              key={value.id}
               id={value.id}
               task={value.task}
               completed={value.completed}
@@ -54,7 +54,7 @@ const App = () => {
           (value, index) =>
             value.priority >= 5 && ( //단축 평가 논리 계산법
               <Todo
-                key={value.id} //or key={index}
+                key={value.id}
                 id={value.id}
                 task={value.task}
                 completed={value.completed}
