@@ -1,9 +1,4 @@
 {
-<<<<<<< HEAD
-  "dependencies": {
-    "typescript": "^5.4.4"
-  }
-=======
   "name": "kuit3_web-frontend",
   "version": "1.0.0",
   "description": "",
@@ -14,5 +9,4 @@
   "keywords": [],
   "author": "",
   "license": "ISC"
->>>>>>> d77a30ab3acd917e9ac0896711b66496f85393b9
 }
