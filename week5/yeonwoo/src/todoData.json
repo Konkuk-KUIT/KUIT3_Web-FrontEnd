@@ -29,12 +29,6 @@
             "task": "요리하기",
             "completed": true,
             "priority": 8
-        },
-        {
-            "id": 6,
-            "task": "쿠잇하기",
-            "completed": false,
-            "priority": 25
         }
     ]
 }
