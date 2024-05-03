@@ -31,8 +31,28 @@ const App = () => {
             ))}
 
             <div>미션1: completed가 true인 값만 map으로 출력하기</div>
+            {todoData.todos.map((value, index) => (
+                value.completed ?
+                    <Todo
+                        key={value.id}
+                        id={value.id}
+                        task={value.task}
+                        completed={value.completed}
+                        priority={value.priority}
+                    /> : null
+            ))}
 
             <div>미션2: priority 5 이상인 값만 map으로 출력하기</div>
+            {todoData.todos.map((value, index) => (
+                value.priority >= 5 ?
+                    <Todo
+                        key={value.id}
+                        id={value.id}
+                        task={value.task}
+                        completed={value.completed}
+                        priority={value.priority}
+                    /> : null
+            ))}
 
         </>
     );
