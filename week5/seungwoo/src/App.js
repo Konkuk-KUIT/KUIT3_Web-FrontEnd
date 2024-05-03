@@ -30,8 +30,9 @@ const App = () => {
       ))}
 
       <h3>미션1: completed가 true인 값만 map으로 출력하기</h3>
+
       {todoData.todos
-        .filter((item) => item.completed === "true")
+        .filter((item) => item.completed && true)
         .map((value, index) => (
           <Todo
             key={value.id}
