@@ -67,7 +67,7 @@ const InputBar: React.FC<Props> = ({ addProduct }) => {
         placeholder="name..."
       />
       <button onClick={handleClickProductBtn} type="button">
-        'Add new product'
+        Add new product
       </button>
     </form>
   );
