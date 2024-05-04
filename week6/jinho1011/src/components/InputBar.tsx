@@ -1,21 +1,34 @@
 import React, { ChangeEvent, useState } from "react";
 import { Products } from "../App";
+import uuid from "react-uuid";
 
 interface Props {
-  product: Products;
   addProduct: (product: Products) => void;
 }
 
-const InputBar: React.FC<Props> = ({ product, addProduct }) => {
-  const [newProduct, setNewProduct] = useState<Products>({ ...product });
+const InputBar: React.FC<Props> = ({ addProduct }) => {
+  const [newProduct, setNewProduct] = useState<Omit<Products, "id">>({
+    category: "",
+    price: "",
+    stocked: true,
+    name: "",
+  });
 
-  const handleChange = (value: string | boolean, label: keyof Products) => {
+  const handleChange = (
+    value: string | boolean,
+    label: keyof Omit<Products, "id">
+  ) => {
     setNewProduct({ ...newProduct, [label]: value });
   };
 
   const handleClickProductBtn = () => {
-    addProduct(newProduct);
-    setNewProduct({ category: "", price: "", stocked: true, name: "" });
+    addProduct({ ...newProduct, id: uuid() });
+    setNewProduct({
+      category: "",
+      price: "",
+      stocked: true,
+      name: "",
+    });
   };
 
   return (

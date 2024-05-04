@@ -13,13 +13,6 @@ const FilterableProductTable: React.FC<Props> = ({ products, setProducts }) => {
   const [filterText, setFilterText] = useState<string>("");
   const [inStockOnly, setInStockOnly] = useState<boolean>(false);
 
-  const emptyProduct: Products = {
-    category: "",
-    price: "",
-    stocked: true,
-    name: "",
-  };
-
   const addProduct = (newProduct: Products) => {
     setProducts((previousData: Products[]) => [...previousData, newProduct]);
   };
@@ -37,7 +30,7 @@ const FilterableProductTable: React.FC<Props> = ({ products, setProducts }) => {
         filterText={filterText}
         inStockOnly={inStockOnly}
       />
-      <InputBar product={emptyProduct} addProduct={addProduct} />
+      <InputBar addProduct={addProduct} />
     </div>
   );
 };
