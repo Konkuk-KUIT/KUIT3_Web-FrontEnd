@@ -1,7 +1,12 @@
-import React, { ReactElement } from "react";
+import React, { Fragment } from "react";
 import { Products } from "../App";
 import ProductCategoryRow from "./ProductCategoryRow";
 import ProductRow from "./ProductRow";
+
+interface GroupedProducts {
+  category: string;
+  products: Products[];
+}
 
 interface Props {
   products: Products[];
@@ -14,35 +19,20 @@ const ProductTable: React.FC<Props> = ({
   filterText,
   inStockOnly,
 }) => {
-  const rows: ReactElement[] = [];
-  let lastCategory: string | null = null;
+  const filteredProducts = products.filter(
+    (product) =>
+      (!inStockOnly || product.stocked) &&
+      product.name.toLowerCase().includes(filterText.toLowerCase())
+  );
 
-  const productsCopy = [...products];
-
-  const filteredProducts = productsCopy
-    .sort((a, b) => (a.category > b.category ? 1 : -1))
-    .filter((product) => {
-      const filterTextMatch = product.name
-        .toLowerCase()
-        .includes(filterText.toLowerCase());
-
-      const inStockCheck = !inStockOnly || product.stocked;
-
-      return filterTextMatch && inStockCheck;
-    });
-
-  filteredProducts.map((product, index) => {
-    if (product.category !== lastCategory) {
-      rows.push(
-        <ProductCategoryRow
-          category={product.category}
-          key={product.category + index}
-        />
-      );
-    }
-    rows.push(<ProductRow product={product} key={product.name} />);
-    lastCategory = product.category;
-  });
+  const groupedProductsByCategory = Object.values(
+    filteredProducts.reduce((acc, product) => {
+      const { category } = product;
+      acc[category] = acc[category] || { category, products: [] };
+      acc[category].products.push(product);
+      return acc;
+    }, {} as { [category: string]: GroupedProducts })
+  );
 
   return (
     <table>
@@ -52,7 +42,18 @@ const ProductTable: React.FC<Props> = ({
           <th>Price</th>
         </tr>
       </thead>
-      <tbody>{rows}</tbody>
+      <tbody>
+        {groupedProductsByCategory.map((productCategory) => {
+          return (
+            <Fragment key={productCategory.category}>
+              <ProductCategoryRow category={productCategory.category} />
+              {productCategory.products.map((product) => (
+                <ProductRow key={product.id} product={product} />
+              ))}
+            </Fragment>
+          );
+        })}
+      </tbody>
     </table>
   );
 };

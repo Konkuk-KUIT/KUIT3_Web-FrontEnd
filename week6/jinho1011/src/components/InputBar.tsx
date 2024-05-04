@@ -9,13 +9,13 @@ interface Props {
 const InputBar: React.FC<Props> = ({ addProduct }) => {
   const [newProduct, setNewProduct] = useState<Omit<Products, "id">>({
     category: "",
-    price: "",
+    price: 0,
     stocked: true,
     name: "",
   });
 
   const handleChange = (
-    value: string | boolean,
+    value: (typeof newProduct)[keyof Omit<Products, "id">],
     label: keyof Omit<Products, "id">
   ) => {
     setNewProduct({ ...newProduct, [label]: value });
@@ -25,7 +25,7 @@ const InputBar: React.FC<Props> = ({ addProduct }) => {
     addProduct({ ...newProduct, id: uuid() });
     setNewProduct({
       category: "",
-      price: "",
+      price: 0,
       stocked: true,
       name: "",
     });
@@ -45,12 +45,13 @@ const InputBar: React.FC<Props> = ({ addProduct }) => {
         type="text"
         value={newProduct.price}
         onChange={(e: ChangeEvent<HTMLInputElement>) => {
-          handleChange(e.target.value, "price");
+          handleChange(Number(e.target.value), "price");
         }}
         placeholder="price..."
       />
-      <label>Is Stocked</label>
+      <label htmlFor="stocked">Is Stocked</label>
       <input
+        id="stocked"
         type="checkbox"
         checked={newProduct.stocked}
         onChange={(e: ChangeEvent<HTMLInputElement>) => {
