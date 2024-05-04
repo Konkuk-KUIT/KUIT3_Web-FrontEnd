@@ -24,7 +24,7 @@ const updateTodo = (todoId, originalTitle) => {
   })
     .then((response) => response.json())
     .then((data) => renderTodo(data))
-    .catch((err) => console.err(err));
+    .catch((err) => console.error(err));
 };
 
 //@desc redering todo
