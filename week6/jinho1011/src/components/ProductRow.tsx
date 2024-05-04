@@ -1,5 +1,5 @@
-import React from 'react';
-import { Products } from '../App';
+import React from "react";
+import { Products } from "../App";
 
 interface Props {
   product: Products;
@@ -8,10 +8,10 @@ interface Props {
 const ProductRow: React.FC<Props> = ({ product }) => {
   return (
     <tr>
-      <td style={{ color: product.stocked ? 'color' : 'red' }}>
+      <td style={{ color: product.stocked ? "color" : "red" }}>
         {product.name}
       </td>
-      <td>{product.price}</td>
+      <td>{product.price}$</td>
     </tr>
   );
 };
