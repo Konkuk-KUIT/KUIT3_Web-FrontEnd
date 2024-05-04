@@ -31,10 +31,33 @@ const App = () => {
 
       <h3>미션1: completed가 true인 값만 map으로 출력하기</h3>
 
+      {todoData.todos
+        .filter((item) => item.completed && true)
+        .map((value, index) => (
+          <Todo
+            key={value.id}
+            id={value.id}
+            task={value.task}
+            completed={value.completed}
+            priority={value.priority}
+          />
+        ))}
+
       <div>------------------</div>
 
       <h3>미션2: priority가 5 이상인 값만 map으로 출력하기</h3>
 
+      {todoData.todos
+        .filter((item) => item.priority >= 5)
+        .map((value, index) => (
+          <Todo
+            key={value.id}
+            id={value.id}
+            task={value.task}
+            completed={value.completed}
+            priority={value.priority}
+          />
+        ))}
     </>
   );
 };
