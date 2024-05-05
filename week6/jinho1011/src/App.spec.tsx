@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, within } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import App from "./App";
 
@@ -54,5 +54,32 @@ describe("App component", () => {
     });
 
     expect(checkboxInput).toBeChecked();
+  });
+
+  it("should delete a product when the delete button is clicked", () => {
+    render(<App />);
+
+    fireEvent.change(screen.getByPlaceholderText("category..."), {
+      target: { value: "Meat" },
+    });
+    fireEvent.change(screen.getByPlaceholderText("price..."), {
+      target: { value: "10" },
+    });
+    fireEvent.change(screen.getByPlaceholderText("name..."), {
+      target: { value: "steak" },
+    });
+    fireEvent.click(screen.getByText("Add new product"));
+
+    const productList = screen.getAllByRole("row");
+    const productRow = productList.find((row) =>
+      row.textContent?.includes("steak")
+    );
+    const deleteButton = within(productRow!).getByRole("button", {
+      name: "삭제",
+    });
+
+    fireEvent.click(deleteButton);
+
+    expect(screen.queryByText("steak")).toBeNull();
   });
 });
