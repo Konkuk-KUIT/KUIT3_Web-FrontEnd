@@ -14,10 +14,13 @@ const ProductRow: React.FC<Props> = ({ product, deleteProduct }) => {
       <td style={{ color: product.stocked ? "color" : "red" }}>
         {product.name}
       </td>
-      <td>{product.price}$</td>
       <td>
+        {product.price}$
         <button onClick={() => handleClickDelBtn(product)}>삭제</button>
       </td>
+      {/* <td>
+        <button onClick={() => handleClickDelBtn(product)}>삭제</button>
+      </td> */}
     </tr>
   );
 };
