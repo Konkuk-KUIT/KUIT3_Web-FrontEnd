@@ -12,12 +12,14 @@ interface Props {
   products: Products[];
   filterText: string;
   inStockOnly: boolean;
+  deleteProduct: (product: Products) => void;
 }
 
 const ProductTable: React.FC<Props> = ({
   products,
   filterText,
   inStockOnly,
+  deleteProduct,
 }) => {
   const filteredProducts = products.filter(
     (product) =>
@@ -48,7 +50,11 @@ const ProductTable: React.FC<Props> = ({
             <Fragment key={productCategory.category}>
               <ProductCategoryRow category={productCategory.category} />
               {productCategory.products.map((product) => (
-                <ProductRow key={product.id} product={product} />
+                <ProductRow
+                  key={product.id}
+                  product={product}
+                  deleteProduct={deleteProduct}
+                />
               ))}
             </Fragment>
           );
