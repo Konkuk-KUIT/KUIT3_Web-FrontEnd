@@ -11,12 +11,12 @@ const ProductTable: React.FC<Props> = ({ products }) => {
   const rows: ReactElement[] = [];
   let lastCategory: string | null = null;
 
-  products.map((product) => {
+  products.map((product, index) => {
     if (product.category !== lastCategory) {
       rows.push(
         <ProductCategoryRow
           category={product.category}
-          key={product.category}
+          key={product.category + index}
         />
       );
       lastCategory = product.category;
@@ -32,9 +32,7 @@ const ProductTable: React.FC<Props> = ({ products }) => {
           <th>Price</th>
         </tr>
       </thead>
-      <tbody>
-        {rows}
-      </tbody>
+      <tbody>{rows}</tbody>
     </table>
   );
 };
