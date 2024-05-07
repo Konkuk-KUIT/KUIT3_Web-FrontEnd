@@ -5,13 +5,33 @@ import ProductRow from "./ProductRow";
 
 interface Props {
   products: Products[];
+  filterText: string;
+  inStockOnly: boolean;
 }
 
-const ProductTable: React.FC<Props> = ({ products }) => {
+const ProductTable: React.FC<Props> = ({
+  products,
+  filterText,
+  inStockOnly,
+}) => {
   const rows: ReactElement[] = [];
   let lastCategory: string | null = null;
 
-  products.map((product, index) => {
+  const productsCopy = [...products];
+
+  const filteredProducts = productsCopy
+    .sort((a, b) => (a.category > b.category ? 1 : -1))
+    .filter((product) => {
+      const filterTextMatch = product.name
+        .toLowerCase()
+        .includes(filterText.toLowerCase());
+
+      const inStockCheck = !inStockOnly || product.stocked; //체크박스가 체크되어 있지 않거나, stock애 있거나
+
+      return filterTextMatch && inStockCheck;
+    });
+
+  filteredProducts.map((product, index) => {
     if (product.category !== lastCategory) {
       rows.push(
         <ProductCategoryRow
