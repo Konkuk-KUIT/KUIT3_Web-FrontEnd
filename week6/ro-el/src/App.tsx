@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import FilterableProductTable from "./components/FilterableProductTable";
 
 export interface Products {
@@ -43,9 +43,11 @@ function App() {
     },
   ];
 
+  const [products, setProducts] = useState<Products[]>(initialProducts);
+
   return (
     <div className="App">
-      <FilterableProductTable products={initialProducts} />
+      <FilterableProductTable products={products} setProducts={setProducts}/>
     </div>
   );
 }
