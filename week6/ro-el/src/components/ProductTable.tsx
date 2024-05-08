@@ -7,6 +7,7 @@ interface Props {
   products: Products[];
   filterText: string;
   inStockOnly: boolean;
+  addProduct: (product: Products) => void;
   editProduct: (removeProduct: Products, newProduct: Products) => void;
   deleteProduct: (product: Products) => void;
 }
@@ -15,6 +16,7 @@ const ProductTable: React.FC<Props> = ({
   products,
   filterText,
   inStockOnly,
+  addProduct,
   editProduct,
   deleteProduct,
 }) => {
@@ -48,6 +50,7 @@ const ProductTable: React.FC<Props> = ({
     rows.push(
       <ProductRow
         product={product}
+        addProduct={addProduct}
         editProduct={editProduct}
         deleteProduct={deleteProduct}
         key={product.name}

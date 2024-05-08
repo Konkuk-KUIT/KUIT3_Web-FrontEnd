@@ -5,9 +5,16 @@ import uuid from "react-uuid";
 interface Props {
   product: Products;
   addProduct: (product: Products) => void;
+  setIsEditBtnClicked?: React.Dispatch<React.SetStateAction<boolean>>;
+  editProduct?: (removeProduct: Products, newProduct: Products) => void;
 }
 
-const InputBar: React.FC<Props> = ({ product, addProduct }) => {
+const InputBar: React.FC<Props> = ({
+  product,
+  addProduct,
+  setIsEditBtnClicked,
+  editProduct,
+}) => {
   const [newProduct, setNewProduct] = useState<Products>({
     ...product,
     id: uuid(),
@@ -18,7 +25,11 @@ const InputBar: React.FC<Props> = ({ product, addProduct }) => {
   };
 
   const handleClickProductBtn = () => {
-    addProduct({ ...newProduct });
+    editProduct !== undefined
+      ? product.id !== newProduct.id &&
+        editProduct(product, { ...newProduct, id: uuid() })
+      : addProduct({ ...newProduct });
+
     setNewProduct({
       category: "",
       price: "",
@@ -26,10 +37,11 @@ const InputBar: React.FC<Props> = ({ product, addProduct }) => {
       name: "",
       id: uuid(),
     });
+    setIsEditBtnClicked !== undefined && setIsEditBtnClicked(false);
   };
 
   return (
-    <form>
+    <>
       <input
         type="text"
         value={newProduct.category}
@@ -65,7 +77,7 @@ const InputBar: React.FC<Props> = ({ product, addProduct }) => {
       <button onClick={handleClickProductBtn} type="button">
         Add new product
       </button>
-    </form>
+    </>
   );
 };
 

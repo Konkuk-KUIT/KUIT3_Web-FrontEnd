@@ -51,6 +51,7 @@ const FilterableProductTable: React.FC<Props> = ({ products, setProducts }) => {
         products={products}
         filterText={filterText}
         inStockOnly={inStockOnly}
+        addProduct={addProduct}
         editProduct={editProduct}
         deleteProduct={deleteProduct}
       />
