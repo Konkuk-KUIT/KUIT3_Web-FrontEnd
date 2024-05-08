@@ -1,5 +1,6 @@
 import React, { ChangeEvent, useState } from "react";
 import { Products } from "../App";
+import uuid from "react-uuid";
 
 interface Props {
   product: Products;
@@ -7,15 +8,24 @@ interface Props {
 }
 
 const InputBar: React.FC<Props> = ({ product, addProduct }) => {
-  const [newProduct, setNewProduct] = useState<Products>({ ...product });
+  const [newProduct, setNewProduct] = useState<Products>({
+    ...product,
+    id: uuid(),
+  });
 
   const handleChange = (value: string | boolean, label: keyof Products) => {
     setNewProduct({ ...newProduct, [label]: value });
   };
 
   const handleClickProductBtn = () => {
-    addProduct(newProduct);
-    setNewProduct({ category: "", price: "", stocked: true, name: "" });
+    addProduct({ ...newProduct });
+    setNewProduct({
+      category: "",
+      price: "",
+      stocked: true,
+      name: "",
+      id: uuid(),
+    });
   };
 
   return (
