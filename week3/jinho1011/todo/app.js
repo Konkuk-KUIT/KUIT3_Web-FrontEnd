@@ -10,24 +10,6 @@ fetch(API_URL)
 const updateTodo = (todoId, originalTitle) => {
   const todoItem = document.querySelector(`#todo-${todoId}`);
   // mission
-  const newTitle = prompt("새로운 할 일을 입력하세요:", originalTitle);
-
-  if (newTitle === null || newTitle === "") { 
-    return;
-  }
-
-  fetch(API_URL + `/${todoId}`, {
-    method: "PUT",
-    headers: {
-        "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ title: newTitle }),
-  })
-  .then(() => {
-    fetch(API_URL)
-    .then((response) => response.json())
-    .then((data) => renderTodo(data));
-  })
 };
 
 const renderTodo = (newTodos) => {
