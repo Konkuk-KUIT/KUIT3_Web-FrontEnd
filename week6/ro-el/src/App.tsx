@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import FilterableProductTable from "./components/FilterableProductTable";
 
-export interface Products {
+export interface Product {
   id: string;
   category: string;
   price: number;
@@ -10,7 +10,7 @@ export interface Products {
 }
 
 function App() {
-  const initialProducts: Products[] = [
+  const initialProducts: Product[] = [
     { id: "1", category: "Fruits", price: 1, stocked: true, name: "Apple" },
     {
       id: "2",
@@ -49,7 +49,7 @@ function App() {
     },
   ];
 
-  const [products, setProducts] = useState<Products[]>(initialProducts);
+  const [products, setProducts] = useState<Product[]>(initialProducts);
 
   return (
     <div className="App">

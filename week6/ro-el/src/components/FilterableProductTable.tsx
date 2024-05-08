@@ -1,20 +1,20 @@
 import React, { useState } from "react";
-import { Products } from "../App";
+import { Product } from "../App";
 import ProductTable from "./ProductTable";
 import SearchBar from "./SearchBar";
 import InputBar from "./InputBar";
 import uuid from "react-uuid";
 
 interface Props {
-  products: Products[];
-  setProducts: React.Dispatch<React.SetStateAction<Products[]>>;
+  products: Product[];
+  setProducts: React.Dispatch<React.SetStateAction<Product[]>>;
 }
 
 const FilterableProductTable: React.FC<Props> = ({ products, setProducts }) => {
   const [filterText, setFilterText] = useState<string>(""); //SearchBar로부터 전달 받은 문자열
   const [inStockOnly, setInStockOnly] = useState<boolean>(false);
 
-  const emptyProduct: Products = {
+  const emptyProduct: Product = {
     id: uuid(),
     category: "",
     price: 0,
@@ -22,18 +22,18 @@ const FilterableProductTable: React.FC<Props> = ({ products, setProducts }) => {
     name: "",
   };
 
-  const addProduct = (newProduct: Products) => {
-    setProducts((previousData: Products[]) => [...previousData, newProduct]);
+  const addProduct = (newProduct: Product) => {
+    setProducts((previousData: Product[]) => [...previousData, newProduct]);
   };
 
-  const deleteProduct = (removeProduct: Products) => {
-    setProducts((previousData: Products[]) =>
+  const deleteProduct = (removeProduct: Product) => {
+    setProducts((previousData: Product[]) =>
       [...previousData.filter((product) => product.id !== removeProduct.id)]
     );
   };
 
-  const editProduct = (removeProduct: Products, newProduct: Products) => {
-    setProducts((previousData: Products[]) => [
+  const editProduct = (removeProduct: Product, newProduct: Product) => {
+    setProducts((previousData: Product[]) => [
       ...previousData.filter((product) => product.id !== removeProduct.id),
       newProduct,
     ]);

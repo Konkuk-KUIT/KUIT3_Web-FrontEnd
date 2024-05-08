@@ -1,12 +1,12 @@
 import React, { ChangeEvent, useState } from "react";
-import { Products } from "../App";
+import { Product } from "../App";
 import uuid from "react-uuid";
 
 interface Props {
-  product: Products;
-  addProduct: (product: Products) => void;
+  product: Product;
+  addProduct: (product: Product) => void;
   setIsEditBtnClicked?: React.Dispatch<React.SetStateAction<boolean>>;
-  editProduct?: (removeProduct: Products, newProduct: Products) => void;
+  editProduct?: (removeProduct: Product, newProduct: Product) => void;
 }
 
 const InputBar: React.FC<Props> = ({
@@ -15,12 +15,12 @@ const InputBar: React.FC<Props> = ({
   setIsEditBtnClicked,
   editProduct,
 }) => {
-  const [newProduct, setNewProduct] = useState<Products>({
+  const [newProduct, setNewProduct] = useState<Product>({
     ...product,
     id: uuid(),
   });
 
-  const handleChange = (value: string | boolean, label: keyof Products) => {
+  const handleChange = (value: string | boolean, label: keyof Product) => {
     setNewProduct({ ...newProduct, [label]: value });
   };
 

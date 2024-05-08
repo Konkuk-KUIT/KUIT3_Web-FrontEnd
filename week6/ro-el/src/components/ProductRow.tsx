@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { Products } from "../App";
+import { Product } from "../App";
 import InputBar from "./InputBar";
 
 interface Props {
-  product: Products;
-  addProduct: (product: Products) => void;
-  editProduct: (removeProduct: Products, newProduct: Products) => void;
-  deleteProduct: (product: Products) => void;
+  product: Product;
+  addProduct: (product: Product) => void;
+  editProduct: (removeProduct: Product, newProduct: Product) => void;
+  deleteProduct: (product: Product) => void;
 }
 
 const ProductRow: React.FC<Props> = ({

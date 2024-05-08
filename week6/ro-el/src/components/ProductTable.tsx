@@ -1,15 +1,15 @@
 import React, { ReactElement } from "react";
-import { Products } from "../App";
+import { Product } from "../App";
 import ProductCategoryRow from "./ProductCategoryRow";
 import ProductRow from "./ProductRow";
 
 interface Props {
-  products: Products[];
+  products: Product[];
   filterText: string;
   inStockOnly: boolean;
-  addProduct: (product: Products) => void;
-  editProduct: (removeProduct: Products, newProduct: Products) => void;
-  deleteProduct: (product: Products) => void;
+  addProduct: (product: Product) => void;
+  editProduct: (removeProduct: Product, newProduct: Product) => void;
+  deleteProduct: (product: Product) => void;
 }
 
 const ProductTable: React.FC<Props> = ({
