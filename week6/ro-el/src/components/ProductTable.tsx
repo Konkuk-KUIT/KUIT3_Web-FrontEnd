@@ -7,12 +7,14 @@ interface Props {
   products: Products[];
   filterText: string;
   inStockOnly: boolean;
+  deleteProduct: (product: Products) => void;
 }
 
 const ProductTable: React.FC<Props> = ({
   products,
   filterText,
   inStockOnly,
+  deleteProduct
 }) => {
   const rows: ReactElement[] = [];
   let lastCategory: string | null = null;
@@ -41,7 +43,7 @@ const ProductTable: React.FC<Props> = ({
       );
       lastCategory = product.category;
     }
-    rows.push(<ProductRow product={product} key={product.name} />);
+    rows.push(<ProductRow product={product} deleteProduct={deleteProduct} key={product.name} />);
   });
 
   return (

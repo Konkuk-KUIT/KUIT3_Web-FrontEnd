@@ -24,6 +24,10 @@ const FilterableProductTable: React.FC<Props> = ({ products, setProducts }) => {
     setProducts((previousData: Products[]) => [...previousData, newProduct]);
   };
 
+  const deleteProduct = (removeProduct: Products) => {
+    setProducts((previousData: Products[]) => [...previousData].filter((product) => product !== removeProduct));
+  };
+
   return (
     <div>
       <SearchBar
@@ -36,6 +40,7 @@ const FilterableProductTable: React.FC<Props> = ({ products, setProducts }) => {
         products={products}
         filterText={filterText}
         inStockOnly={inStockOnly}
+        deleteProduct={deleteProduct}
       />
       <InputBar product={emptyProduct} addProduct={addProduct}/>
     </div>
