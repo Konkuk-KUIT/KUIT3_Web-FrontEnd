@@ -28,11 +28,11 @@ const InputBar: React.FC<Props> = ({
     editProduct !== undefined
       ? product.id !== newProduct.id &&
         editProduct(product, { ...newProduct, id: uuid() })
-      : addProduct({ ...newProduct });
+      : addProduct({ ...newProduct, id: uuid() });
 
     setNewProduct({
       category: "",
-      price: "",
+      price: 0,
       stocked: true,
       name: "",
       id: uuid(),

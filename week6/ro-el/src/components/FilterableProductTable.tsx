@@ -17,7 +17,7 @@ const FilterableProductTable: React.FC<Props> = ({ products, setProducts }) => {
   const emptyProduct: Products = {
     id: uuid(),
     category: "",
-    price: "",
+    price: 0,
     stocked: true,
     name: "",
   };

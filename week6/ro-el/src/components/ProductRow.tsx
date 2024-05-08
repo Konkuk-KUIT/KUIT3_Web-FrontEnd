@@ -32,9 +32,9 @@ const ProductRow: React.FC<Props> = ({
           <td style={{ color: product.stocked ? "color" : "red" }}>
             {product.name}
           </td>
-          <td>{product.price}</td>
-          <button onClick={handleClickEditBtn}>🖋️</button>
-          <button onClick={handleClickDeleteBtn}>🗑️</button>
+          <td>{product.price}$</td>
+          <button onClick={handleClickEditBtn}>수정</button>
+          <button onClick={handleClickDeleteBtn}>삭제</button>
         </tr>
       ) : (
         <InputBar
