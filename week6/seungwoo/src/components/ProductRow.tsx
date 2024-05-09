@@ -17,7 +17,8 @@ const ProductRow: React.FC<Props> = ({ product, deleteProduct }) => {
       <td>{product.price}$</td>
       <button onClick={() => {
           deleteProduct(product.id);
-        }}>🗑️</button>
+        }}
+        aria-label="삭제">🗑️</button>
     </tr>
   );
 };
