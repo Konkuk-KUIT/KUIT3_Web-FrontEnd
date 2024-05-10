@@ -1,6 +1,0 @@
-{
-  "compilerOptions": {
-    "target" : "ES6",
-    "strict" : true  //app.ts 파일에서 경고를 해주는 역할 (false면 안해줌)
-  }
-}
