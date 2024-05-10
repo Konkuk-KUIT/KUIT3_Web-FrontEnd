@@ -1,0 +1,161 @@
+/*버튼 공통 */
+button {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+}
+
+/* 헤더 바 */
+.header_bar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed; /*상단에 고정*/
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    padding: 12px 16px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #d9d9d9;
+    z-index: 1;
+}
+
+.header_icon{
+    align-items: center;
+    display: flex;
+}
+
+.select{
+    font-family: Inter;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 28px;
+    text-align: left;
+    border-color: transparent; /*적용 안 됨 */
+}
+
+
+body {
+    padding-top: 54px;
+    padding-bottom: 54px;
+}
+
+
+.main{
+    display: flex;
+    flex-direction: row;
+}
+
+.item{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #d9d9d9;
+    display: flex;
+
+}
+.item_image img{
+    width: 110px;
+    height: 110px;
+    gap: 0px;
+    border-radius: 4px;
+    opacity: 0px;
+}
+/* .item_info{
+    margin-left: 16px;
+} */
+
+.title{
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: left;
+    margin-left: 16px;
+}
+.location_date{
+
+    font-family: Inter;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+    text-align: left;
+    color:#8C8C8C;
+    margin-left: 16px;
+}
+
+.price{
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 22px;
+    text-align: left;
+    color: #FF7E36;
+    margin-left: 16px;
+
+}
+
+.item_info{
+    position: relative;
+    width: 100%;
+}
+.item_preference{
+    
+    position:absolute;
+    bottom: 0;
+    right: 16px;
+}
+
+ .chats .liked{
+    font-family: Inter;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+    /* text-align: left; */
+    color: #8C8C8C;
+}
+
+.floating_button{
+    position: fixed;
+    bottom: 30px;
+    right: 18px;
+}
+
+
+  
+.nav_bar {
+    border-top: 1px solid #d9d9d9;
+    width: 100%; /*이걸로 때문에 자꾸 좌측 정렬 되었던 문제 해결! */
+    position: fixed;
+    bottom: 0px;
+    align-items: center;
+    box-sizing: border-box;
+    background-color: #ffffff;
+
+}
+
+.nav_icons{
+    display: flex;
+    justify-content: space-around;
+    width: auto;
+    /*폰트 설정*/
+    font-family: Inter;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 14px;
+    text-align: left;
+}
+
+/* 아이콘 사이의 간격 조절 */
+/* .nav_icons > * {
+    justify-content: space; 
+}
+*/
+
+/* 마지막 아이콘의 오른쪽 마진 제거 */
+/* .nav_icons > *:last-child {
+    margin-right: 0; 
+}
+*/
