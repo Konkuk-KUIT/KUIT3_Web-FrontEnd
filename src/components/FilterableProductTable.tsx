@@ -15,9 +15,14 @@ const FilterableProductTable: React.FC<Props> = ({ products, setProducts }) => {
 
   // emptyProduct 생성x
 
+  // 배열을 추가하는 함수
   const addProduct = (newProduct: Products) => {
     setProducts((previousData: Products[]) => [...previousData, newProduct]);
   };
+
+  // [미션-필수] deleteProduct
+
+  // [미션-선택] editProduct
 
   return (
     <div>
