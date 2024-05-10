@@ -13,7 +13,7 @@ const ProductRow : React.FC<Props> = ( {product, onDelete, onEdit} ) => {
   return (
     <tr>
       <td style={{color: product.stocked ? 'color' : 'red'}}>{product.name}</td>
-      <td>{product.price}</td>
+      <td>{product.price}$</td>
       <td>
         <button onClick = {() => onEdit(product)}>
         <FontAwesomeIcon icon={faEdit} />
