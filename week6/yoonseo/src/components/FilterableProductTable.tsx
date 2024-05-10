@@ -17,6 +17,11 @@ const FilterableProductTable: React.FC<Props> = ({ products, setProducts }) => {
     setProducts((previousData: Products[]) => [...previousData, newProduct]);
   };
 
+  const deleteProduct = (productDeleted: Products) => {
+    setProducts((previousData: Products[]) => 
+    previousData.filter((product)=>(product !== productDeleted)));
+  };
+
   return (
     <div>
       <SearchBar
