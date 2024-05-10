@@ -13,7 +13,9 @@ const ProductRow: React.FC<Props> = ({ product, setProducts, deleteProduct }) =>
       <td style={{ color: product.stocked ? "color" : "red" }}>
         {product.name}
       </td>
-      <td>{product.price}$<button onClick = {() => deleteProduct(product)}>삭제</button></td>
+      <td>
+        {product.price}$<button onClick = {() => deleteProduct(product)}>삭제</button>
+      </td>
     </tr>
   );
 };
