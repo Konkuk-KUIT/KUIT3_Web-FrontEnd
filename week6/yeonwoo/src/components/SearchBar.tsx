@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent } from "react";
 
 interface Props {
   filterText: string;

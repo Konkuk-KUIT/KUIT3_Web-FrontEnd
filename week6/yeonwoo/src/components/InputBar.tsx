@@ -1,21 +1,34 @@
-import React, { ChangeEvent, useState } from 'react';
-import { Products } from '../App';
+import React, { ChangeEvent, useState } from "react";
+import { Products } from "../App";
+import uuid from "react-uuid";
 
 interface Props {
-  product: Products;
   addProduct: (product: Products) => void;
 }
 
-const InputBar: React.FC<Props> = ({ product, addProduct }) => {
-  const [newProduct, setNewProduct] = useState<Products>({ ...product });
+const InputBar: React.FC<Props> = ({ addProduct }) => {
+  const [newProduct, setNewProduct] = useState<Omit<Products, "id">>({
+    category: "",
+    price: 0,
+    stocked: true,
+    name: "",
+  });
 
-  const handleChange = (value: string | boolean, label: keyof Products) => {
+  const handleChange = (
+    value: (typeof newProduct)[keyof Omit<Products, "id">],
+    label: keyof Omit<Products, "id">
+  ) => {
     setNewProduct({ ...newProduct, [label]: value });
   };
 
   const handleClickProductBtn = () => {
-    addProduct(newProduct);
-    setNewProduct({ category: '', price: '', stocked: true, name: '' });
+    addProduct({ ...newProduct, id: uuid() });
+    setNewProduct({
+      category: "",
+      price: 0,
+      stocked: true,
+      name: "",
+    });
   };
 
   return (
@@ -24,7 +37,7 @@ const InputBar: React.FC<Props> = ({ product, addProduct }) => {
         type="text"
         value={newProduct.category}
         onChange={(e: ChangeEvent<HTMLInputElement>) => {
-          handleChange(e.target.value, 'category');
+          handleChange(e.target.value, "category");
         }}
         placeholder="category..."
       />
@@ -32,28 +45,29 @@ const InputBar: React.FC<Props> = ({ product, addProduct }) => {
         type="text"
         value={newProduct.price}
         onChange={(e: ChangeEvent<HTMLInputElement>) => {
-          handleChange(e.target.value, 'price');
+          handleChange(Number(e.target.value), "price");
         }}
         placeholder="price..."
       />
-      <label>Is Stocked</label>
+      <label htmlFor="stocked">Is Stocked</label>
       <input
+        id="stocked"
         type="checkbox"
         checked={newProduct.stocked}
         onChange={(e: ChangeEvent<HTMLInputElement>) => {
-          handleChange(e.target.checked, 'stocked');
+          handleChange(e.target.checked, "stocked");
         }}
       />
       <input
         type="text"
         value={newProduct.name}
         onChange={(e: ChangeEvent<HTMLInputElement>) => {
-          handleChange(e.target.value, 'name');
+          handleChange(e.target.value, "name");
         }}
         placeholder="name..."
       />
       <button onClick={handleClickProductBtn} type="button">
-        'Add new product'
+        Add new product
       </button>
     </form>
   );

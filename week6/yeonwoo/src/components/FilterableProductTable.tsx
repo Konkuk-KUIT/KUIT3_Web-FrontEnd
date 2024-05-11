@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { Products } from '../App';
-import SearchBar from './SearchBar';
-import ProductTable from './ProductTable';
-import InputBar from './InputBar';
+import React, { useState } from "react";
+import { Products } from "../App";
+import SearchBar from "./SearchBar";
+import ProductTable from "./ProductTable";
+import InputBar from "./InputBar";
 
 interface Props {
   products: Products[];
@@ -10,18 +10,15 @@ interface Props {
 }
 
 const FilterableProductTable: React.FC<Props> = ({ products, setProducts }) => {
-  const [filterText, setFilterText] = useState<string>('');
+  const [filterText, setFilterText] = useState<string>("");
   const [inStockOnly, setInStockOnly] = useState<boolean>(false);
-
-  const emptyProduct: Products = {
-    category: '',
-    price: '',
-    stocked: true,
-    name: '',
-  };
 
   const addProduct = (newProduct: Products) => {
     setProducts((previousData: Products[]) => [...previousData, newProduct]);
+  };
+
+  const deleteProduct = (productId: string) => {
+    setProducts((previousProducts) => previousProducts.filter(product => product.id !== productId));
   };
 
   return (
@@ -36,8 +33,9 @@ const FilterableProductTable: React.FC<Props> = ({ products, setProducts }) => {
         products={products}
         filterText={filterText}
         inStockOnly={inStockOnly}
+        deleteProduct={deleteProduct}
       />
-      <InputBar product={emptyProduct} addProduct={addProduct} />
+      <InputBar addProduct={addProduct} />
     </div>
   );
 };
