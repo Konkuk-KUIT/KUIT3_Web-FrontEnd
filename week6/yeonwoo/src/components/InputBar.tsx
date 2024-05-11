@@ -64,7 +64,7 @@ const InputBar: React.FC<Props> = ({ addProduct }) => {
         onChange={(e: ChangeEvent<HTMLInputElement>) => {
           handleChange(e.target.value, "name");
         }}
-        placeholder="name...."
+        placeholder="name..."
       />
       <button onClick={handleClickProductBtn} type="button">
         Add new product
