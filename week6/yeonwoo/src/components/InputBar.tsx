@@ -11,7 +11,7 @@ const InputBar: React.FC<Props> = ({ addProduct }) => {
     category: "",
     price: 0,
     stocked: true,
-    name: "",
+    name: '',
   });
 
   const handleChange = (
