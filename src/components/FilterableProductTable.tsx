@@ -21,6 +21,9 @@ const FilterableProductTable: React.FC<Props> = ({ products, setProducts }) => {
   };
 
   // [미션-필수] deleteProduct
+  const deleteProduct = (delProduct: Products) => {
+    setProducts((previousData: Products[]) => previousData.filter((product) => (product !== delProduct)));
+  }
 
   // [미션-선택] editProduct
 
@@ -36,6 +39,7 @@ const FilterableProductTable: React.FC<Props> = ({ products, setProducts }) => {
         products={products}
         filterText={filterText}
         inStockOnly={inStockOnly}
+        deleteProduct={deleteProduct}
       />
 
       {/* props로 addProduct만을 넘겨줌(emptyProduct는 넘겨주지 않음) */}

@@ -13,12 +13,14 @@ interface Props {
   products: Products[];
   filterText: string;
   inStockOnly: boolean;
+  deleteProduct: (delProduct: Products) => void;
 }
 
 const ProductTable: React.FC<Props> = ({
   products,
   filterText,
   inStockOnly,
+  deleteProduct
 }) => {
   // rows와 lastCategory는 사용하지 않으므로 선언x
 
@@ -78,7 +80,11 @@ const ProductTable: React.FC<Props> = ({
             <Fragment key={productCategory.category}>
               <ProductCategoryRow category={productCategory.category} />
               {productCategory.products.map((product) => (
-                <ProductRow key={product.id} product={product} />
+                <ProductRow
+                  key={product.id}
+                  product={product}
+                  deleteProduct={deleteProduct}
+                />
               ))}
             </Fragment>
           );
