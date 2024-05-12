@@ -26,7 +26,7 @@ const SearchBar: React.FC<Props> = ({
       <input
         type="text"
         value={filterText}
-        placeholder="Search...."
+        placeholder="Search..."
         onChange={handleTextChange}
       />
       <label>
