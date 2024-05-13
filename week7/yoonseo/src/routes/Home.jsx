@@ -8,7 +8,7 @@ const StyledH1 = styled.h1`
 `
 
 const Home = () => {
-  const bgColor = "skyblue";
+  const bgColor = "green";
   return (
     <>
       <Header />
