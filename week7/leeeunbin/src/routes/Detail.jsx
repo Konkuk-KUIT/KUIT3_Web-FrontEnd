@@ -51,7 +51,6 @@ const Detail = () => {
                   <FontAwesomeIcon icon={faUser} size="3x" />
                 </IconContainer>
                 <h2>{item.name}</h2>
-                <p>{item.description}</p>
               </StyledLink>
             </Card>
           ))}

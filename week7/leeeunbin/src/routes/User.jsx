@@ -2,6 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { data } from "../db";
+import Header from "../components/Header"
 
 const UserContainer = styled.div`
   max-width: 600px;
@@ -57,6 +58,8 @@ const User = () => {
   }
 
   return (
+    <>
+    <Header />
     <UserContainer>
       <UserContent>
         <UserImage src={user.image} alt={user.name} />
@@ -67,6 +70,7 @@ const User = () => {
       </UserContent>
       <UserDescription>{user.description}</UserDescription>
     </UserContainer>
+    </>
   );
 };
 

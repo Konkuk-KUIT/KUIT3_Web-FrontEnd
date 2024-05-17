@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faInfoCircle,faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 
 const StyledLink = styled(Link)`
   text-decoration: none;
@@ -36,6 +36,10 @@ const Header = () => {
       <StyledLink to="/detail">
         <FontAwesomeIcon icon={faInfoCircle} />
         상세
+      </StyledLink>
+      <StyledLink to="/login">
+        <FontAwesomeIcon icon={faSignInAlt} />
+        로그인
       </StyledLink>
     </StyledDiv>
   );
