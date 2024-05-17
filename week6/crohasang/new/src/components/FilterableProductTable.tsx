@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
-import { Products } from '../App';
+import { Product } from '../App';
 import SearchBar from './SearchBar';
 import ProductTable from './ProductTable';
 import InputBar from './InputBar';
 
 interface Props {
-  products: Products[];
-  setProducts: React.Dispatch<React.SetStateAction<Products[]>>;
+  product: Product[];
+  setProduct: React.Dispatch<React.SetStateAction<Product[]>>;
 }
 
-const FilterableProductTable: React.FC<Props> = ({ products, setProducts }) => {
+const FilterableProductTable: React.FC<Props> = ({ product, setProduct }) => {
   const [filterText, setFilterText] = useState<string>('');
   const [inStockOnly, setInStockOnly] = useState<boolean>(false);
 
   // emptyProduct 생성x
 
-  const addProduct = (newProduct: Products) => {
-    setProducts((previousData: Products[]) => [...previousData, newProduct]);
+  const addProduct = (newProduct: Product) => {
+    setProduct((previousData: Product[]) => [...previousData, newProduct]);
   };
 
   return (
@@ -28,7 +28,7 @@ const FilterableProductTable: React.FC<Props> = ({ products, setProducts }) => {
         onInStockOnlyChange={setInStockOnly}
       />
       <ProductTable
-        products={products}
+        product={product}
         filterText={filterText}
         inStockOnly={inStockOnly}
       />

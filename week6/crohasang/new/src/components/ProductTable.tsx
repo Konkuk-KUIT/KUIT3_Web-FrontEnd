@@ -1,22 +1,22 @@
 import React, { Fragment } from 'react';
-import { Products } from '../App';
+import { Product } from '../App';
 import ProductCategoryRow from './ProductCategoryRow';
 import ProductRow from './ProductRow';
 
 // GroupedProducts interface 추가
-interface GroupedProducts {
+interface GroupedProduct {
   category: string;
-  products: Products[];
+  product: Product[];
 }
 
 interface Props {
-  products: Products[];
+  product: Product[];
   filterText: string;
   inStockOnly: boolean;
 }
 
 const ProductTable: React.FC<Props> = ({
-  products,
+  product,
   filterText,
   inStockOnly,
 }) => {
@@ -27,7 +27,7 @@ const ProductTable: React.FC<Props> = ({
 
   // filteredProducts는 필터링만 하는 함수
   // inStockOnly -> 재고 여부 | filterText -> 검색어
-  const filteredProducts = products.filter(
+  const filteredProduct = product.filter(
     (product) =>
       (!inStockOnly || product.stocked) &&
       product.name.toLowerCase().includes(filterText.toLowerCase())
@@ -37,17 +37,17 @@ const ProductTable: React.FC<Props> = ({
   // 카테고리를 기준으로 그룹화해주는 함수
 
   // Object.values -> 특정 객체를 대상으로 value값들만 뽑아서 배열로 반환하는 메서드
-  const groupedProductsByCategory = Object.values(
+  const groupedProductByCategory = Object.values(
     // acc: 누적값, product: 현재 처리 중인 상품
-    filteredProducts.reduce((acc, product) => {
+    filteredProduct.reduce((acc, product) => {
       const { category } = product;
 
       // acc 객체에 category 속성이 이미 있는지 확인
       // category 속성이 없다면, 새로운 { category, products: [] } 객체를 생성하여 acc[category]에 할당
-      acc[category] = acc[category] || { category, products: [] };
+      acc[category] = acc[category] || { category, product: [] };
 
       // 현재 처리 중인 상품 product를 해당 카테고리의 products 배열에 추가
-      acc[category].products.push(product);
+      acc[category].product.push(product);
 
       return acc;
 
@@ -55,7 +55,7 @@ const ProductTable: React.FC<Props> = ({
       // -> 빈 객체 {}를 acc의 초기값으로 설정하고
       // 이 객체의 타입을 { [category: string]: GroupedProducts }로 지정
       // 각 카테고리 이름을 키로 가지고, 그 값으로 GroupedProducts 타입의 객체를 가지는 객체를 의미
-    }, {} as { [category: string]: GroupedProducts })
+    }, {} as { [category: string]: GroupedProduct })
   );
 
   return (
@@ -73,11 +73,11 @@ const ProductTable: React.FC<Props> = ({
        각 렌더 함수(return문) 위에서는 컴포넌트에 전달해줄 데이터를 가공하고
        렌더 함수 안에서는 오로지 뷰와 관련된 코드를 작성하는 것으로 수정
        */}
-        {groupedProductsByCategory.map((productCategory) => {
+        {groupedProductByCategory.map((productCategory) => {
           return (
             <Fragment key={productCategory.category}>
               <ProductCategoryRow category={productCategory.category} />
-              {productCategory.products.map((product) => (
+              {productCategory.product.map((product) => (
                 <ProductRow key={product.id} product={product} />
               ))}
             </Fragment>
