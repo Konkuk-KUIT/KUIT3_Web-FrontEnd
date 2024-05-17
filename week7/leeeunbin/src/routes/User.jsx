@@ -64,7 +64,7 @@ const User = () => {
       <UserContent>
         <UserImage src={user.image} alt={user.name} />
         <UserInfoText>
-          <UserName>{user.name}</UserName>
+          <UserName>{user.name}({user.userId})</UserName>
           <UserAge>{user.age}</UserAge>
         </UserInfoText>
       </UserContent>
