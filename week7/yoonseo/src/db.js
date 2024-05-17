@@ -1,5 +1,5 @@
 export const data = [
-    {name: "김윤서0", age: "23살", description: "벌써 스물셋이라니...."},
-    {name: "김윤서1", age: "24살", description: "벌써 스물넷이라니...."},
-    {name: "김윤서2", age: "25살", description: "벌써 스물다섯이라니...."}
+    {date: "2024.05.21 (Tue)", sequence: "Day 1 Line Up", description: "키스오브라이프, 장기하, 데이식스"},
+    {date: "2024.05.22 (Wed)", sequence: "Day 2 Line Up", description: "창모, 제네더질라, 김효은, (여자)아이들"},
+    {date: "2024.05.23 (Thu)", sequence: "Day 3 Line Up", description: "하이라이트, QWER, 멜로망스"}
 ];
