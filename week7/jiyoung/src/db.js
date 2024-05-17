@@ -1,5 +1,13 @@
 export const data = [
-    { name: "문지영0", age: "23살0", description: "안녕하세요0" },
-    { name: "문지영1", age: "23살1", description: "안녕하세요1" },
-    { name: "문지영2", age: "23살2", description: "안녕하세요2" },
-]
+  {
+    name: "Paris in the Rain",
+    artist: "Lauv",
+    description: "2018.10.08",
+  },
+  {
+    name: "Love U Like That",
+    artist: "Lauv",
+    description: "2023.08.04",
+  },
+  { name: "Potential", artist: "Lauv", description: "2024.04.24" },
+];
