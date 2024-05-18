@@ -1,8 +1,8 @@
 import React from "react";
-import { Products } from "../App";
+import { Product } from "../App";
 
 interface Props {
-  product: Products;
+  product: Product;
 }
 
 const ProductRow: React.FC<Props> = ({ product }) => {

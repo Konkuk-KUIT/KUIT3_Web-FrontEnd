@@ -1,9 +1,9 @@
 import React, { ChangeEvent, useState } from 'react';
-import { Products } from '../App';
+import { Product } from '../App';
 import uuid from 'react-uuid';
 
 interface Props {
-  addProduct: (product: Products) => void;
+  addProduct: (product: Product) => void;
 }
 
 const InputBar: React.FC<Props> = ({ addProduct }) => {
@@ -14,8 +14,8 @@ const InputBar: React.FC<Props> = ({ addProduct }) => {
   // 응집도 측면에서 InputBar에서 생성하는 것이 맞음
   // (FilterableProductTable에서는 emptyProduct를 사용하지 않기 때문에)
 
-  // <Omit<Products>, 'id'>> -> Products 타입에서 "id" 속성을 제거한 새로운 타입을 생성
-  const [newProduct, setNewProduct] = useState<Omit<Products, 'id'>>({
+  // <Omit<Product>, 'id'>> -> Product 타입에서 "id" 속성을 제거한 새로운 타입을 생성
+  const [newProduct, setNewProduct] = useState<Omit<Product, 'id'>>({
     category: '',
     price: 0,
     stocked: true,
@@ -27,12 +27,12 @@ const InputBar: React.FC<Props> = ({ addProduct }) => {
     // string | boolean으로 제한하면 안됨
 
     // typeof newProduct: newProduct의 타입을 가져옴
-    // keyof Omit<Products, 'id'>: Products 타입에서 'id' 속성을 제외한 속성의 키
+    // keyof Omit<Product, 'id'>: Product 타입에서 'id' 속성을 제외한 속성의 키
 
     // value -> newProduct의 속성 값의 타입
     // label -> newProduct의 속성 키의 타입(category, price, stocked...)
-    value: (typeof newProduct)[keyof Omit<Products, 'id'>],
-    label: keyof Omit<Products, 'id'>
+    value: (typeof newProduct)[keyof Omit<Product, 'id'>],
+    label: keyof Omit<Product, 'id'>
   ) => {
     setNewProduct({ ...newProduct, [label]: value });
   };
