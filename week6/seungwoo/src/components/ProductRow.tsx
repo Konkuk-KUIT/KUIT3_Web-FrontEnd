@@ -1,6 +1,5 @@
 import React from "react";
 import { Products } from "../App";
-import ProductTable from "./ProductTable";
 
 interface Props {
   product: Products;
