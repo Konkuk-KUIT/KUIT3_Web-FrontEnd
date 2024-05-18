@@ -35,7 +35,7 @@ const SearchBar: React.FC<Props> = ({
           checked={inStockOnly}
           onChange={handleCheckboxChange}
         />
-        Only show products in stock
+        Only show product in stock
       </label>
     </form>
   );
