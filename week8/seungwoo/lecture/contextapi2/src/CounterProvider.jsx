@@ -21,7 +21,3 @@ function CounterProvider({ children }) {
   );
 }
 export default CounterProvider;
-
-// const increase = useCallback(() => {
-//   setCounter((prev) => prev + 1);
-// }, []);
