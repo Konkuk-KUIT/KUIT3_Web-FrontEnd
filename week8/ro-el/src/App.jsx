@@ -4,6 +4,7 @@ import { Normalize } from "styled-normalize";
 const App = () => {
   return (
     <>
+      <GlobalFontStyle />
       <Normalize />
       <Router />
     </>
