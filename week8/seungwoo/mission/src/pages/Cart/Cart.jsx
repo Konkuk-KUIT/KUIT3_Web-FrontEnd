@@ -1,7 +1,78 @@
 import React from "react";
+import useCartStore from "../../store/useCartStore";
+import { insertComma } from "../../store/insertComma";
 
 const Cart = () => {
-  return <div>Cart</div>;
+  const { store, menus } = useCartStore((state) => ({
+    store: state.store,
+    menus: state.menus,
+  }));
+
+  const sumOfPrice = menus.reduce((acc, cur) => acc + cur.price, 0);
+
+  return (
+    <>
+      <div>
+        <div>
+          <div>{store.name}</div>
+          <div>
+            {sumOfPrice >= store.minDeliveryPrice ? (
+              ""
+            ) : (
+              <div>
+                <span>최소금액 미달</span>
+                <img src="" alt="!" />
+              </div>
+            )}
+          </div>
+        </div>
+        {menus.map((menu) => {
+          return (
+            <>
+              <img></img>
+              <div>
+                <div>{menu.name}</div>
+                <div>추천소스, 채소볼, 베이컨추가, 시저드레싱 추가</div>
+                <div>{insertComma(menu.price)}원</div>
+              </div>
+              <div>
+                <div>{menu.count}개</div>
+                <button>ㅋ</button>
+              </div>
+            </>
+          );
+        })}
+        <div>
+          더 담기 <img src="" alt="" />
+        </div>
+      </div>
+      <div>
+        <div>
+          <div>
+            <div>주문금액</div>
+            <div>{insertComma(sumOfPrice)}원</div>
+          </div>
+          <div>
+            <div>배달요금</div>
+            <div>{insertComma(store.deliveryFee)}원</div>
+          </div>
+          <div>
+            <div>총 결제금액</div>
+            <div>{insertComma(sumOfPrice + store.deliveryFee)}원</div>
+          </div>
+        </div>
+
+        <div>
+          {sumOfPrice >= store.minDeliveryPrice ? (
+            <div>최소 주문금액 충족함</div>
+          ) : (
+            <div>최소 주문금액 {insertComma(store.minDeliveryPrice)}원</div>
+          )}
+          <button>{insertComma(sumOfPrice + store.deliveryFee)}원 결제하기</button>
+        </div>
+      </div>
+    </>
+  );
 };
 
 export default Cart;

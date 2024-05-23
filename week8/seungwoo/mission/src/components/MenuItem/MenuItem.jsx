@@ -1,5 +1,6 @@
 import React from "react";
 import useCartStore from "../../store/useCartStore";
+import { insertComma } from "../../store/insertComma";
 
 const MenuItem = ({ menu }) => {
   const addMenu = useCartStore((state) => state.addMenu);
@@ -9,8 +10,9 @@ const MenuItem = ({ menu }) => {
 
   return (
     <div>
-      <h3>{menu.name}</h3>
-      <span>{menu.price}</span>
+      <img src="http://via.placeholder.com/54x54" alt="" />
+      <div><span>{menu.name}</span><span>{menu.isBest ? "BEST" : ""}</span></div>
+      <span>{insertComma(menu.price)}원</span>
       <p>{menu.ingredients}</p>
       <button onClick={handleAddMenu} type="button">
         담기
