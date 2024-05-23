@@ -2,17 +2,19 @@ import { styled } from "styled-components";
 
 export const StoreBox = styled.div`
   box-sizing: border-box;
-  padding-top: 35px;
+  padding: 44px 0 70px;
 `;
 
 export const Header = styled.header`
+  width: 100%;
+  z-index: 1;
+  background: #fff;
   position: fixed;
   top: 0;
   display: flex;
   justify-content: left;
   align-items: center;
   padding: 10px;
-  height: 35px;
 `;
 
 export const BackBtn = styled.button`
@@ -20,6 +22,8 @@ export const BackBtn = styled.button`
   height: 24px;
   border: none;
   background: none;
+  display: flex;
+  align-items: center;
   img {
     width: 10px;
     height: 17.5px;
