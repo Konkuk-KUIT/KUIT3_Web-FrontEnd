@@ -1,5 +1,24 @@
 import { styled } from "styled-components";
 
+export const Header = styled.header`
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  padding: 10px;
+  height: 35px;
+`;
+
+export const BackBtn = styled.button`
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: none;
+  img {
+    width: 10px;
+    height: 17.5px;
+  }
+`;
+
 export const StoreBox = styled.div`
   box-sizing: border-box;
 `;

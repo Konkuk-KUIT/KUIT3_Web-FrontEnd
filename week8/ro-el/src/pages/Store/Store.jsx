@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import MenuItem from "../../components/MenuItem/MenuItem";
 import OrderBar from "../../components/OrderBar/OrderBar";
@@ -8,6 +8,7 @@ import stores from "../../models/stores";
 import useCartStore from "../../store/useCartStore";
 
 import YellowStar from "../../assets/star-yellow.svg";
+import LeftChevron from "../../assets/left-chevron.svg";
 import * as S from "./Store.styles.jsx";
 
 const Store = () => {
@@ -16,6 +17,11 @@ const Store = () => {
   const store = stores.find((s) => s.id.toString() === storeId);
 
   const setStore = useCartStore((state) => state.setStore);
+  
+  const navigate = useNavigate();
+  const navigateToStoreListPage = () => {
+    navigate("/store");
+  };
 
   useEffect(() => {
     //나머지가 모두 실행된 이후에 실행
@@ -30,6 +36,11 @@ const Store = () => {
 
   return (
     <S.StoreBox>
+      <S.Header>
+        <S.BackBtn onClick={navigateToStoreListPage}>
+          <img src={LeftChevron} alt="뒤로가기" />
+        </S.BackBtn>
+      </S.Header>
       <S.StoreInfoSection>
         <h1>{store.name}</h1>
 
