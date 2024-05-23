@@ -34,6 +34,7 @@ export const StoreMenuItem = styled.li`
 
 export const MenuInfoBox = styled.div`
   display: flex;
+  align-items: center;
   gap: 16px;
 `;
 
@@ -53,4 +54,6 @@ export const AddMenuBtn = styled.button`
   font-family: "PretendardMedium";
   font-size: 13px;
   color: #fff;
+  flex-shrink: 0;
+  flex-grow: 0;
 `;
