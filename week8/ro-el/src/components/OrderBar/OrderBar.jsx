@@ -3,16 +3,15 @@ import useCartStore from "../../store/useCartStore";
 import * as S from "./OrderBar.styles.jsx";
 
 const OrderBar = () => {
-  const menus = useCartStore((state) => state.menus);
+  const totalPrice = useCartStore((state) => state.totalPrice);
   const handleOrder = () => {};
-  const store = useCartStore((state) => state.store);
 
   return (
     <S.OrderBarBox>
       <S.OrderTotalPriceBox>
         <span>총 주문금액</span>
         <div>
-          <span>{menus.reduce((acc, cur) => acc + cur.price, 0)}</span>
+          <span>{totalPrice}</span>
           <span>원</span>
         </div>
       </S.OrderTotalPriceBox>
