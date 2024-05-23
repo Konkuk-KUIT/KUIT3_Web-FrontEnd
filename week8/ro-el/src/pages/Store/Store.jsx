@@ -10,11 +10,15 @@ import useCartStore from "../../store/useCartStore";
 
 import YellowStar from "../../assets/star-yellow.svg";
 
+const StoreBox = styled.div`
+  box-sizing: border-box;
+`;
+
 const StoreInfoSection = styled.section`
   display: flex;
   flex-direction: column;
   padding: 26px 24px 14px;
-  border-bottom: 1px solid #E5E8EB;
+  border-bottom: 1px solid #e5e8eb;
 
   h1 {
     font-family: "PretendardBold";
@@ -69,6 +73,25 @@ const StoreOrderDiv = styled.div`
   font-size: 16px;
 `;
 
+const StoreMenuSection = styled.section`
+  padding: 0 24px;
+`;
+
+const CategoryH3 = styled.h3`
+  font-family: "PretendardSemiBold";
+  font-size: 17px;
+  color: #6b7684;
+  margin: 0;
+  padding: 26px 0 11px;
+`;
+
+const StoreMenuList = styled.ul`
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+`;
+
 const Store = () => {
   const { storeId } = useParams();
 
@@ -88,7 +111,7 @@ const Store = () => {
   }
 
   return (
-    <div>
+    <StoreBox>
       <StoreInfoSection>
         <h1>{store.name}</h1>
 
@@ -97,7 +120,7 @@ const Store = () => {
             <img src={YellowStar} alt="별" />
             <span>{store.rate}</span>
           </StoreReviewRateDiv>
-          <StoreReviewCountDiv className="store__review-count">
+          <StoreReviewCountDiv>
             <span>리뷰{store.reviewCnt}</span>
           </StoreReviewCountDiv>
         </StoreReviewContainerDiv>
@@ -117,16 +140,20 @@ const Store = () => {
               약 {store.minDeliveryTime}-{store.maxDeliveryTime}분
             </span>
           </StoreOrderDiv>
-        </StoreOrderContainerDiv>
+        </StoreOrderContainerBox>
       </StoreInfoSection>
 
-      <div>
-        {store.menus.map((menu) => {
-          return <MenuItem key={menu.id} menu={menu} />;
-        })}
-      </div>
+      <StoreMenuSection>
+        <CategoryH3>샐러드</CategoryH3>
+        <StoreMenuList>
+          {store.menus.map((menu) => {
+            return <MenuItem key={menu.id} menu={menu} />;
+          })}
+        </StoreMenuList>
+      </StoreMenuSection>
+
       <OrderBar />
-    </div>
+    </StoreBox>
   );
 };
 
