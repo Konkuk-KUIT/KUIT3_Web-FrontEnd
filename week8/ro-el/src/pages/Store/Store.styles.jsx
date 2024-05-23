@@ -1,6 +1,13 @@
 import { styled } from "styled-components";
 
+export const StoreBox = styled.div`
+  box-sizing: border-box;
+  padding-top: 35px;
+`;
+
 export const Header = styled.header`
+  position: fixed;
+  top: 0;
   display: flex;
   justify-content: left;
   align-items: center;
@@ -19,10 +26,6 @@ export const BackBtn = styled.button`
   }
 `;
 
-export const StoreBox = styled.div`
-  box-sizing: border-box;
-`;
-
 export const StoreInfoSection = styled.section`
   display: flex;
   flex-direction: column;
@@ -35,6 +38,7 @@ export const StoreInfoSection = styled.section`
     line-height: 31.03px;
     text-align: left;
     margin: 0;
+    color: #191f28;
   }
 `;
 
