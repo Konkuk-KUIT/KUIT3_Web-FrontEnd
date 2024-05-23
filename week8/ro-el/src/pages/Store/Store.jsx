@@ -29,7 +29,7 @@ const StoreInfoSection = styled.section`
   }
 `;
 
-const StoreReviewContainerDiv = styled.div`
+const StoreReviewContainerBox = styled.div`
   display: flex;
   align-items: center;
   height: 38px;
@@ -37,7 +37,7 @@ const StoreReviewContainerDiv = styled.div`
   margin-bottom: 12px;
 `;
 
-const StoreReviewRateDiv = styled.div`
+const StoreReviewRateBox = styled.div`
   display: flex;
   align-items: center;
   gap: 5px;
@@ -53,18 +53,18 @@ const StoreReviewRateDiv = styled.div`
   }
 `;
 
-const StoreReviewCountDiv = styled.div`
+const StoreReviewCountBox = styled.div`
   font-family: "PretendardMedium";
   font-size: 16px;
   color: #4e5968;
 `;
 
-const StoreOrderContainerDiv = styled.div`
+const StoreOrderContainerBox = styled.div`
   display: flex;
   flex-direction: column;
 `;
 
-const StoreOrderDiv = styled.div`
+const StoreOrderBox = styled.div`
   display: flex;
   align-items: center;
   gap: 12px;
@@ -115,31 +115,31 @@ const Store = () => {
       <StoreInfoSection>
         <h1>{store.name}</h1>
 
-        <StoreReviewContainerDiv>
-          <StoreReviewRateDiv>
+        <StoreReviewContainerBox>
+          <StoreReviewRateBox>
             <img src={YellowStar} alt="별" />
             <span>{store.rate}</span>
-          </StoreReviewRateDiv>
-          <StoreReviewCountDiv>
+          </StoreReviewRateBox>
+          <StoreReviewCountBox>
             <span>리뷰{store.reviewCnt}</span>
-          </StoreReviewCountDiv>
-        </StoreReviewContainerDiv>
+          </StoreReviewCountBox>
+        </StoreReviewContainerBox>
 
-        <StoreOrderContainerDiv>
-          <StoreOrderDiv>
+        <StoreOrderContainerBox>
+          <StoreOrderBox>
             <span>결제 방법</span>
             <span>토스결제만. 현장결제 불가능</span>
-          </StoreOrderDiv>
-          <StoreOrderDiv>
+          </StoreOrderBox>
+          <StoreOrderBox>
             <span>최소 주문</span>
             <span>{store.minDeliveryPrice}</span>
-          </StoreOrderDiv>
-          <StoreOrderDiv>
+          </StoreOrderBox>
+          <StoreOrderBox>
             <span>배달 시간</span>
             <span>
               약 {store.minDeliveryTime}-{store.maxDeliveryTime}분
             </span>
-          </StoreOrderDiv>
+          </StoreOrderBox>
         </StoreOrderContainerBox>
       </StoreInfoSection>
 
