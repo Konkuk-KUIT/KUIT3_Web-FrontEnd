@@ -2,7 +2,6 @@ import { createGlobalStyle } from "styled-components";
 import PretendardMedium from "./Pretendard-Medium.woff";
 import PretendardSemiBold from "./Pretendard-SemiBold.woff";
 import PretendardBold from "./Pretendard-Bold.woff";
-import GlobalFontStyle from "./fonts/fonts";
 
 const GlobalFontStyle = createGlobalStyle`
   @font-face {
