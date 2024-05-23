@@ -1,8 +1,8 @@
 import Router from "./pages";
 import { Normalize } from "styled-normalize";
-import GlobalFontStyle from './fonts/fonts';
-import { createGlobalStyle } from 'styled-components';
-import { reset } from 'styled-reset';
+import GlobalFontStyle from "./fonts/fonts";
+import { createGlobalStyle } from "styled-components";
+import { reset } from "styled-reset";
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
