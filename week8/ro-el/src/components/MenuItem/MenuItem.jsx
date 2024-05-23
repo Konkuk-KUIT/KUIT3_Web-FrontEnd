@@ -1,11 +1,18 @@
 import React from "react";
 import useCartStore from "../../store/useCartStore";
-import MenuDefaultImg from "../../assets/menu-defualt-img.svg";
+import MenuDefaultImg from "../../assets/menu-default-img.svg";
 import * as S from "./MenuItem.styles.jsx";
 
-const MenuItem = ({ menu }) => {
+const MenuItem = ({ menu, store }) => {
+  const previousStore = useCartStore((state) => state.store);
   const addMenu = useCartStore((state) => state.addMenu);
+  const setStore = useCartStore((state) => state.setStore);
+
   const handleAddMenu = () => {
+    console.log(previousStore, store);
+    if (previousStore !== store) {
+      setStore(store);
+    }
     addMenu(menu);
   };
 

@@ -20,7 +20,12 @@ const useCartStore = create((set) => ({
     //state: store, menus, totalPrice, addMenu, setStore 모두 포함
   },
   setStore: (store) => {
-    set((state) => ({ ...state, store: store }));
+    set((state) => ({
+      ...state,
+      store: store,
+      totalPrice: initialState.totalPrice,
+    }));
+    console.log("reset price, set store");
   },
 }));
 
