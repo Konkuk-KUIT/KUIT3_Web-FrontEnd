@@ -2,6 +2,10 @@ import styled from "styled-components";
 
 // OrderBar 전체를 감싸는 <div>
 export const StyledOrderBox = styled.div`
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
   display: flex;
   justify-content: space-between;
   padding: 16px 24px;
