@@ -112,3 +112,5 @@ const Cart = () => {
 };
 
 export default Cart;
+
+//toLocaleString(): 숫자를 지역별 포맷으로 변경해 반환
