@@ -39,11 +39,6 @@ color: #333D4B;
 
 
   const StoreList = ({ store }) => {
-    // console.log("menu");
-    // const addMenu = useCartStore((state) => state.addMenu);
-    // const handleAddMenu = () => {
-    //   addMenu(menu);
-    // };
   
     return (
         <div>

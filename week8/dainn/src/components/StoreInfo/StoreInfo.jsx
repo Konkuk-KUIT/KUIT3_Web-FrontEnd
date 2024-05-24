@@ -76,6 +76,12 @@ color: #4E5968;
 
 const StoreInfo = () => {
     const store = useCartStore((state) => state.store);
+
+    if (store == null) {
+        return <></>
+    }
+    
+    console.log(store)
     return (
         <div>
             <StyledStoreName>{store.name}</StyledStoreName>

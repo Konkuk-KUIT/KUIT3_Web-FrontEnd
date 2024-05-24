@@ -39,7 +39,7 @@ const Store = () => {
   return (
     <div>
       <StyledStoreInfo>
-        <StoreInfo/>
+        <StoreInfo store={store}/>
       </StyledStoreInfo>
       {/* <h1>{store.name}</h1> */}
       <div>
