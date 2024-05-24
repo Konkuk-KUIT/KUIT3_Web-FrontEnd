@@ -1,5 +1,6 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 import Home from "./Home/Home";
 import Stores from "./Stores/Stores";
@@ -10,6 +11,7 @@ const Router = () => {
   const router = createBrowserRouter([
     {
       path: "/",
+      
       children: [
         {
           index: true,

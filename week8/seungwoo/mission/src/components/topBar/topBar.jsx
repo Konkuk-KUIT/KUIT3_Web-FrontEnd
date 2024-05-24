@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import backarrow from "../../assets/backarrow.svg"
+import { useNavigate } from 'react-router-dom';
 
 const StyledSection = styled.section`
     position:relative;
@@ -35,13 +36,19 @@ const StyledImg = styled.img`
 `;
 
 //무조건 대문자
-const topBar = () => {
+const TopBar = () => {
+
+  const navigate = useNavigate();
+  const goBack = () => {
+    navigate(-1);
+  }
+  
   return (
   <StyledSection>
     <StyledStatusBar></StyledStatusBar>
-    <BackButton><StyledImg src={backarrow} alt="" /></BackButton>
+    <BackButton onClick={goBack}><StyledImg src={backarrow} alt="" /></BackButton>
   </StyledSection>
   );
 }
 
-export default topBar;
+export default TopBar;
