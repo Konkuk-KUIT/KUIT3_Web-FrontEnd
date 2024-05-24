@@ -1,10 +1,16 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+
 import useCartStore from "../../store/useCartStore";
 import * as S from "./OrderBar.styles.jsx";
 
 const OrderBar = () => {
   const totalPrice = useCartStore((state) => state.totalPrice);
-  const handleOrder = () => {};
+
+  const navigate = useNavigate();
+  const handleOrder = () => {
+    navigate("/cart");
+  };
 
   return (
     <S.OrderBarBox>

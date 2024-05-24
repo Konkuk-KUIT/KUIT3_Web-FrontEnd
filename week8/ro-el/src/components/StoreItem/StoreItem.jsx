@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 import GrayStary from "../../assets/star-gray.svg";
-import MenuDefaultImg from "../../assets/store-default-img.svg";
+import RectangleDefaultImg from "../../assets/rectangle-default-img.svg";
 
 import * as S from "./StoreItem.styles.jsx";
 
@@ -14,7 +14,7 @@ const StoreItem = ({ store }) => {
 
   return (
     <S.StoreItem onClick={() => navigateToStoreDetailPage(store.id)}>
-      <img src={MenuDefaultImg} alt="메뉴 기본 빈 이미지" />
+      <img src={RectangleDefaultImg} alt="메뉴 기본 빈 이미지" />
       <S.StoreInfoContentBox>
         <h3>{store.name}</h3>
 

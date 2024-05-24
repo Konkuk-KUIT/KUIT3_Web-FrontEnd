@@ -1,6 +1,6 @@
 import React from "react";
 import useCartStore from "../../store/useCartStore";
-import MenuDefaultImg from "../../assets/menu-default-img.svg";
+import CircleDefaultImg from "../../assets/circle-default-img.svg";
 import * as S from "./MenuItem.styles.jsx";
 
 const MenuItem = ({ menu, store }) => {
@@ -19,7 +19,7 @@ const MenuItem = ({ menu, store }) => {
   return (
     <S.StoreMenuItem>
       <S.MenuInfoBox>
-        <img src={MenuDefaultImg} alt="메뉴 기본 빈 이미지" />
+        <img src={CircleDefaultImg} alt="메뉴 기본 빈 이미지" />
         <S.MenuInfoContentBox>
           <h3>{menu.name}</h3>
           <span>{menu.price}원</span>

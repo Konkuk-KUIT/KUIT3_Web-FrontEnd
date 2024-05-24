@@ -23,9 +23,10 @@ const useCartStore = create((set) => ({
     set((state) => ({
       ...state,
       store: store,
+      menus: initialState.menus,
       totalPrice: initialState.totalPrice,
     }));
-    console.log("reset price, set store");
+    console.log("set store, reset price and menus");
   },
 }));
 

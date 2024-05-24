@@ -5,7 +5,6 @@ import MenuItem from "../../components/MenuItem/MenuItem";
 import OrderBar from "../../components/OrderBar/OrderBar";
 
 import stores from "../../models/stores";
-import useCartStore from "../../store/useCartStore";
 
 import YellowStar from "../../assets/star-yellow.svg";
 import LeftChevron from "../../assets/left-chevron.svg";
@@ -15,7 +14,6 @@ const Store = () => {
   const { storeId } = useParams();
 
   const store = stores.find((s) => s.id.toString() === storeId);
-  const setStore = useCartStore((state) => state.setStore);
 
   const navigate = useNavigate();
   const navigateToStoreListPage = () => {
