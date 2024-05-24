@@ -79,28 +79,28 @@ const Cart = () => {
       <S.PriceInfoBox>
         <S.PriceBox>
           <span>주문 금액</span>
-          <span>{totalPrice}원</span>
+          <span>{totalPrice.toLocaleString('ko-KR')}원</span>
         </S.PriceBox>
         <S.PriceBox>
           <span>배달 요금</span>
-          <span>{store ? store.deliveryFee : 0}원</span>
+          <span>{store ? store.deliveryFee.toLocaleString('ko-KR') : 0}원</span>
         </S.PriceBox>
         <S.TotalPriceBox>
           <span>총 결제 금액</span>
-          <span>{store ? totalPrice + store.deliveryFee : totalPrice}원</span>
+          <span>{store ? (totalPrice + store.deliveryFee).toLocaleString('ko-KR') : totalPrice}원</span>
         </S.TotalPriceBox>
       </S.PriceInfoBox>
 
       <S.PaymentBox>
-        {store && <span>최소 주문 금액 {store.minDeliveryPrice}원</span>}
+        {store && <span>최소 주문 금액 {store.minDeliveryPrice.toLocaleString('ko-KR')}원</span>}
         {store ? (
           totalPrice > store.minDeliveryPrice ? (
             <S.AbledPaymentBtn>
-              {totalPrice + store.deliveryFee}원 결제하기
+              {(totalPrice + store.deliveryFee).toLocaleString('ko-KR')}원 결제하기
             </S.AbledPaymentBtn>
           ) : (
             <S.DisabledPaymentBtn>
-              {totalPrice + store.deliveryFee}원 결제하기
+              {(totalPrice + store.deliveryFee).toLocaleString('ko-KR')}원 결제하기
             </S.DisabledPaymentBtn>
           )
         ) : (

@@ -22,7 +22,7 @@ const MenuItem = ({ menu, store }) => {
         <img src={CircleDefaultImg} alt="메뉴 기본 빈 이미지" />
         <S.MenuInfoContentBox>
           <h3>{menu.name}</h3>
-          <span>{menu.price}원</span>
+          <span>{menu.price.toLocaleString('ko-KR')}원</span>
           <p>{menu.ingredients}</p>
         </S.MenuInfoContentBox>
       </S.MenuInfoBox>

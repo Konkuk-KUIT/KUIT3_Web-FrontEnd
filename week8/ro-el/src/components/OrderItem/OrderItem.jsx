@@ -14,7 +14,7 @@ const OrderItem = ({ menu }) => {
         <S.MenuInfoContentBox>
           <h6>{menu.name}</h6>
           <p>{menu.ingredients}</p>
-          <span>{menu.price}원</span>
+          <span>{menu.price.toLocaleString('ko-KR')}원</span>
         </S.MenuInfoContentBox>
       </S.MenuInfoBox>
       <S.MenuCountBox>

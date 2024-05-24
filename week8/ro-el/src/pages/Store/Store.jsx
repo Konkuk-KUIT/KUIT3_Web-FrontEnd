@@ -47,7 +47,7 @@ const Store = () => {
             <span>{store.rate}</span>
           </S.StoreReviewRateBox>
           <S.StoreReviewCountBox>
-            <span>리뷰{store.reviewCnt}</span>
+            <span>리뷰 {store.reviewCnt.toLocaleString('ko-KR')}</span>
           </S.StoreReviewCountBox>
         </S.StoreReviewContainerBox>
 
@@ -58,7 +58,7 @@ const Store = () => {
           </S.StoreOrderBox>
           <S.StoreOrderBox>
             <span>최소 주문</span>
-            <span>{store.minDeliveryPrice}</span>
+            <span>{store.minDeliveryPrice.toLocaleString('ko-KR')}</span>
           </S.StoreOrderBox>
           <S.StoreOrderBox>
             <span>배달 시간</span>

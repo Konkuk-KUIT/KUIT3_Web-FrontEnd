@@ -21,7 +21,7 @@ const StoreItem = ({ store }) => {
         <S.StoreReviewBox>
           <img src={GrayStary} alt="별" />
           <span>{store.rate}</span>
-          <span>({store.reviewCnt})</span>
+          <span>({store.reviewCnt.toLocaleString('ko-KR')})</span>
         </S.StoreReviewBox>
 
         <S.StoreDeliberyInfoBox>
@@ -29,7 +29,7 @@ const StoreItem = ({ store }) => {
             {store.minDeliveryTime}-{store.maxDeliveryTime}분
           </span>
           <span>∙</span>
-          <span>배달비 {store.deliveryFee}원</span>
+          <span>배달비 {store.deliveryFee.toLocaleString('ko-KR')}원</span>
         </S.StoreDeliberyInfoBox>
       </S.StoreInfoContentBox>
     </S.StoreItem>

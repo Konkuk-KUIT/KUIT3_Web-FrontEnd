@@ -17,7 +17,7 @@ const OrderBar = () => {
       <S.OrderTotalPriceBox>
         <span>총 주문금액</span>
         <div>
-          <span>{totalPrice}</span>
+          <span>{totalPrice.toLocaleString('ko-KR')}</span>
           <span>원</span>
         </div>
       </S.OrderTotalPriceBox>
