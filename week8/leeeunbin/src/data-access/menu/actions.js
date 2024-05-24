@@ -1,8 +1,8 @@
-export const SET_MENU = 'SET_MENU';
+export const SET_STORE = 'SET_STORE';
 export const ADD_MENU = 'ADD_MENU';
 
-export const setMenu = (menu) => ({
-  type : SET_MENU,
+export const setStore = (menu) => ({
+  type : SET_STORE,
   payload : menu,
 })
 

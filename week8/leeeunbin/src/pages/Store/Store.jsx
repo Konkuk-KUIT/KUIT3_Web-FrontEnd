@@ -1,27 +1,29 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 import MenuItem from "../../components/MenuItem/MenuItem";
 import OrderBar from "../../components/OrderBar/OrderBar";
 
 import stores from "../../models/stores";
-import useCartStore from "../../store/useCartStore";
+import { setStore } from "../../data-access/menu/actions"; // setStore 액션을 가져옴
 import Header from "../../components/header/Header";
 
 import './Store.scss';
 
 const Store = () => {
+  const dispatch = useDispatch(); // useDispatch 훅을 사용하여 디스패치 함수를 가져옴
   const { storeId } = useParams();
 
   const store = stores.find((s) => s.id.toString() === storeId);
 
-  const setStore = useCartStore((state) => state.setStore);
-
   useEffect(() => {
     if (store) {
-      setStore(store);
+      dispatch(setStore(store)); 
     }
-  }, [store]);
+  }, [dispatch, store]); 
 
   if (!store) {
     return <div>가게를 찾을 수 없어요 🥺</div>;
@@ -32,7 +34,8 @@ const Store = () => {
       <Header />
       <div className="storeInfo">
         <div className="Name">{store.name}</div>
-        <div className="review">★{store.rate} 리뷰{store.reviewCnt}</div>
+        <div className="review">
+          <FontAwesomeIcon icon={faStar} color="#FFD158" /> {store.rate} 리뷰{store.reviewCnt}</div>
         <div className="payMethod">결제방법 {store.payMethod}</div>
         <div className="minDeliveryPrice">최소주문 {store.minDeliveryPrice}원</div>
         <div className="deliveryTime">배달시간 {store.deliveryTime}</div>

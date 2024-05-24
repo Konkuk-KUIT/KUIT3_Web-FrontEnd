@@ -1,7 +1,7 @@
-import { SET_MENU, ADD_MENU } from './actions';
+import { SET_STORE, ADD_MENU } from './actions';
 
 const initialState = {
-  store: "",
+  store: [],
   menu: [
     {
       id : 0,
@@ -15,7 +15,7 @@ const initialState = {
 
 const menuReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_MENU:
+    case SET_STORE:
       return {
         ...state,
         store: action.payload,
