@@ -38,4 +38,5 @@ export const StyledOrderBtn = styled.button`
   border-radius: 8px;
   background-color: #3182f6;
   color: white;
+  font-size: 15px;
 `;
