@@ -259,13 +259,12 @@ const StyledPayButton = styled.button`
   height:56px;
   border-radius:16px;
 
-  background-color:#3182F6;
   color:white;
   font-size: 16px;
   font-weight: 600;
   line-height: 19.09px;
   text-align: center;
-
+background-color: ${(props) => (props.disabled ? 'gray' : '#3182F6')};
 `;
 
 
@@ -276,6 +275,8 @@ export const Cart = () => {
   }));
 
   const sumOfPrice = menus.reduce((acc, cur) => acc + cur.price*cur.count, 0);
+
+  const isMinOrderMet = sumOfPrice >= store.minDeliveryPrice;
 
   return (
     <>
@@ -337,12 +338,12 @@ export const Cart = () => {
 
       </StyledSection>
       <StyledFooter>
-        {sumOfPrice >= store.minDeliveryPrice ? (
+        {isMinOrderMet ? (
           <StyledMinDeliveryPrice>최소 주문금액 충족함</StyledMinDeliveryPrice>
         ) : (
           <StyledMinDeliveryPrice>최소 주문금액 {insertComma(store.minDeliveryPrice)}원</StyledMinDeliveryPrice>
         )}
-        <StyledPayButton>
+        <StyledPayButton disabled={!isMinOrderMet}>
           {insertComma(sumOfPrice + store.deliveryFee)}원 결제하기
         </StyledPayButton>
       </StyledFooter>

@@ -23,6 +23,10 @@ const BackButton = styled.button`
   opacity: 0px;
   background:none;
   border:none;
+
+  &:hover {
+    cursor:pointer;
+  }
 `;
 
 const StyledImg = styled.img`

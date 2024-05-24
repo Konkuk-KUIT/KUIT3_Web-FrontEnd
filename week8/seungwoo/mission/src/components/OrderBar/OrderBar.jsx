@@ -8,7 +8,7 @@ const Stylednav = styled.nav`
   position: fixed;
   bottom: 0px;
 
-  width: 1000px;
+  width: 390px;
   height: 111px;
   border-radius: 16px 16px 0px 16px;
   box-shadow: 0px -8px 16px 0px #0000001a;
