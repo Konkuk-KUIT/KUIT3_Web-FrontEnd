@@ -4,7 +4,7 @@ import stores from "../../models/stores";
 import { insertComma } from "../../store/insertComma";
 import OrderBar from "../../components/OrderBar/OrderBar";
 import styled from "styled-components";
-import starSVG from "../../assets/star.svg"
+import starSVG from "../../assets/grayStar.svg"
 
 const StyledSection = styled.section`
 

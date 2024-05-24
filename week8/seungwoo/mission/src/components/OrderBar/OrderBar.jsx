@@ -5,13 +5,15 @@ import styled from "styled-components";
 import { insertComma } from "../../store/insertComma";
 
 const Stylednav = styled.nav`
-  position: absolute;
+  position: fixed;
   bottom: 0px;
 
   width: 1000px;
   height: 111px;
   border-radius: 16px 16px 0px 16px;
   box-shadow: 0px -8px 16px 0px #0000001a;
+  background-color: #FFFFFF;
+  z-index: 1000;
 `;
 
 const StyledTotalOrder = styled.span`
