@@ -16,14 +16,17 @@ const Router = () => {
           element: <Home />,
         },
         {
+          // 가게 리스트
           path: "/store",
           element: <Stores />,
         },
         {
+          // 가게 메뉴 리스트
           path: "/store/:storeId",
           element: <Store />,
         },
         {
+          // 주문서
           path: "/cart",
           element: <Cart />,
         },
