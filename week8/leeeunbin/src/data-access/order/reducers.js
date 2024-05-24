@@ -1,7 +1,7 @@
 import { ADD_ORDER } from './actions';
 
 const initialState = {
-  address : "",
+  address : "한남중앙로 40길 (한남 빌리지)",
   orders: [
     {
       id : 0,

@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 
 const Home = () => {
-  const dispatch = useDispatch();
+
   const customerData = useSelector((state) => state.order.address)
   return (
     <>
@@ -16,7 +16,7 @@ const Home = () => {
       <div className="container">
         <div className="Title">
           <p className="title">오늘은 무엇을 먹을까요?</p>
-          <p className="info">{customerData.address}(으)로 배달 {'>'} </p>
+          <p className="info">{customerData}(으)로 배달 {'>'} </p>
         </div>
       </div>
       
