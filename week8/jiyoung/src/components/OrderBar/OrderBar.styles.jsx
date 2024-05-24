@@ -8,6 +8,7 @@ export const StyledOrderBox = styled.div`
   border-radius: 16px 16px 0 0;
   background-color: white;
   box-shadow: 0px -8px 16px 0px #0000001a;
+  font-family: "Pretendard", sans-serif;
 `;
 
 // '총 주문금액', '{}원'을 감싸는 <div>
@@ -15,7 +16,6 @@ export const StyledOrderLeftDiv = styled.div`
   gap: 5px;
   display: flex;
   flex-direction: column;
-  font-family: "Pretendard", sans-serif;
 `;
 
 // '총 주문금액' <div>
