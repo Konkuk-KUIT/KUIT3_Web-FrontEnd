@@ -1,7 +1,12 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-import { StyledStoreName } from "./Store.styles";
+import {
+  StoreInfo,
+  StoreName,
+  StoreInfoTvBox,
+  StoreInfoTv,
+} from "./Store.styles";
 
 import MenuItem from "../../components/MenuItem/MenuItem";
 import OrderBar from "../../components/OrderBar/OrderBar";
@@ -28,12 +33,31 @@ const Store = () => {
 
   return (
     <div>
-      <StyledStoreName>{store.name}</StyledStoreName>
+      <StoreInfo>
+        <StoreName>{store.name}</StoreName>
+
+        <StoreInfoTvBox>
+          <StoreInfoTv>결제방법</StoreInfoTv>
+          <StoreInfoTv>{store.paymentMethod}</StoreInfoTv>
+        </StoreInfoTvBox>
+        <StoreInfoTvBox>
+          <StoreInfoTv>최소주문</StoreInfoTv>
+          <StoreInfoTv>{store.minDeliveryPrice}원</StoreInfoTv>
+        </StoreInfoTvBox>
+        <StoreInfoTvBox>
+          <StoreInfoTv>배달시간</StoreInfoTv>
+          <StoreInfoTv>
+            약 {store.minDeliveryTime}-{store.maxDeliveryTime}분
+          </StoreInfoTv>
+        </StoreInfoTvBox>
+      </StoreInfo>
+
       <div>
         {store.menus.map((menu) => {
           return <MenuItem key={menu.id} menu={menu} />;
         })}
       </div>
+
       <OrderBar />
     </div>
   );
