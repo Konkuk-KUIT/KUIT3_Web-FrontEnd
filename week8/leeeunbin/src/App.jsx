@@ -1,12 +1,10 @@
-import Router from "./pages";
-import { Normalize } from "styled-normalize";
+import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+import AppRouter from "./pages/AppRouter";
 
 const App = () => {
   return (
-    <>
-      <Normalize />
-      <Router />
-    </>
+    <AppRouter />
   );
 };
 
