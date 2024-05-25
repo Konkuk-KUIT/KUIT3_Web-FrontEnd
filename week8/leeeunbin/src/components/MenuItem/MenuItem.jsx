@@ -1,11 +1,13 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart } from "../../data-access/cart/actions";
+import { addToCart, resetCart } from "../../data-access/cart/actions";
 import { Link } from "react-router-dom";
 import "./MenuItem.scss"
 
 
 const MenuItem = ({ menu, storeName }) => { 
+  const cartItems = useSelector((state) => state.cart.items);
+
   const dispatch = useDispatch();
 
   const handleAddMenu = () => {
@@ -22,7 +24,17 @@ const MenuItem = ({ menu, storeName }) => {
       ],
     };
 
-    dispatch(addToCart(newMenu));
+    const isDifferentStore = cartItems.some(item => item.store !== null && item.store !== storeName);
+
+    if (isDifferentStore) {
+      const confirmAdd = window.confirm("주문서에는 같은 가게만 담기 가능합니다. 초기화 후 진행할까요?");
+      if (confirmAdd) {
+        dispatch(resetCart());
+        dispatch(addToCart(newMenu));
+      }
+    } else {
+      dispatch(addToCart(newMenu));
+    }
   };
 
   return (

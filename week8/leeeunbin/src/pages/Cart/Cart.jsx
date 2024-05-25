@@ -8,12 +8,15 @@ import { faPlus, faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
 import "./Cart.scss"
 
 const Cart = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.items);
-  const storeInfo = useSelector((state) => state.menu.store);
+  const firstStoreInfo = useSelector((state) => state.menu.store);
+
   const orderpay = cartItems.length > 0 ?
   cartItems.reduce((acc, cur) => acc + cur.items.reduce((total, item) => total + item.price, 0), 0) :
   0;
+
+
 
   const handlePayment = () => {
     alert("기능 구현 중입니다.");
@@ -24,8 +27,8 @@ const Cart = () => {
       <Header />
       <div className="orderInfo">
         <div className="storeinfo">
-          <div className="storeName">{storeInfo.name}</div>
-          {orderpay < storeInfo.minDeliveryPrice && (
+          <div className="storeName">{firstStoreInfo.name}</div>
+          {orderpay < firstStoreInfo.minDeliveryPrice && (
             <div className="deliveryBoolean">
               최소 주문 금액 미달 <FontAwesomeIcon icon={faExclamationCircle} color="#F04452"/>
             </div>
@@ -63,22 +66,22 @@ const Cart = () => {
           <div className="orderPayDefault">주문금액</div>
           <div className="orderPay">{orderpay}원</div>
           <div className="deliveryPayDefault">배달요금</div>
-          <div className="deliveryPay">{storeInfo.deliveryFee}원</div>
+          <div className="deliveryPay">{firstStoreInfo.deliveryFee}원</div>
           <div className="totalPayDefault">총 결제금액</div>
-          <div className="totalPay">{orderpay + storeInfo.deliveryFee}원</div>
+          <div className="totalPay">{orderpay + firstStoreInfo.deliveryFee}원</div>
         </div>
       </div>
 
       <footer>
-        {orderpay < storeInfo.minDeliveryPrice && (
+        {orderpay < firstStoreInfo.minDeliveryPrice && (
           <div className="minDelivery">
-            최소 주문 금액 {storeInfo.minDeliveryPrice}
+            최소 주문 금액 {firstStoreInfo.minDeliveryPrice}
           </div>
         )}
 
         <div className="orderButton">
-          <button disabled={orderpay < storeInfo.minDeliveryPrice} onClick={handlePayment}>
-            {orderpay + storeInfo.deliveryFee}원 결제하기
+          <button disabled={orderpay < firstStoreInfo.minDeliveryPrice} onClick={handlePayment}>
+            {orderpay + firstStoreInfo.deliveryFee}원 결제하기
           </button>
         </div>
       </footer>

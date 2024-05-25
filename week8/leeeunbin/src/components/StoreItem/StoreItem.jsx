@@ -7,7 +7,7 @@ const StoreItem = ({ categoryId }) => {
   return (
     <>
       {stores.map((store, index) => (
-        <Link to={`/store/${categoryId}/${store.id}`} key={store.id}>
+        <Link to={`/${categoryId}/${store.id}`} key={store.id}>
           <div className="StoreInfo">
             <div className="storeImg">
               <img src={`http://via.placeholder.com/54x54`} alt="placeholder" />
