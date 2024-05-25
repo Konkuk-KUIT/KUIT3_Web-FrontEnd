@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
+import { StyledStoreName } from "./Store.styles";
+
 import MenuItem from "../../components/MenuItem/MenuItem";
 import OrderBar from "../../components/OrderBar/OrderBar";
 
@@ -26,7 +28,7 @@ const Store = () => {
 
   return (
     <div>
-      <h1>{store.name}</h1>
+      <StyledStoreName>{store.name}</StyledStoreName>
       <div>
         {store.menus.map((menu) => {
           return <MenuItem key={menu.id} menu={menu} />;
