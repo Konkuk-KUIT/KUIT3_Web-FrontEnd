@@ -18,9 +18,12 @@ const useCartStore = create((set) => ({
   addMenu: (menu) => {
     set((state) => {
       if (state.isStoreChanged) {
-        alert('원래 담은 메뉴 초기화')
-        state.menus = [];
-        state.isStoreChanged = false;
+        if(window.confirm('주문서에는 같은 가게만 담을 수 있어요. 새로 담고 이전에 담은 메뉴는 삭제할까요?')){
+          state.menus = [];
+          state.isStoreChanged = false;
+        } else {
+          return {state};
+        }
       }
       const existingMenu = state.menus.find((m) => m.id === menu.id);
       if (existingMenu) {
