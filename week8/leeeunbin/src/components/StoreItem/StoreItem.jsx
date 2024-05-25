@@ -14,7 +14,7 @@ const StoreItem = ({ categoryId }) => {
             </div>
             <div className="Info">
               <div className="ranking">{index + 1}위</div>
-              <div className="Name">{store.name}</div>
+              <div className="Name">{store.name}</div> 
               <div className="Star">★{store.rate} ({store.reviewCnt})</div>
               <div className="etc">
                 {store.minDeliveryTime}분~{store.maxDeliveryTime}분 ∙ 배달비 {store.deliveryFee}원

@@ -2,11 +2,14 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, resetCart } from "../../data-access/cart/actions";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 import "./MenuItem.scss"
 
 
 const MenuItem = ({ menu, storeName }) => { 
   const cartItems = useSelector((state) => state.cart.items);
+  const thumbsUpIcon = menu.isBest ? <FontAwesomeIcon icon={faThumbsUp} /> : null;
 
   const dispatch = useDispatch();
 
@@ -47,7 +50,7 @@ const MenuItem = ({ menu, storeName }) => {
           </div>
 
           <div className="menuInfo">
-            <div className="Name">{menu.name}</div>
+            <div className="Name">{menu.name} {thumbsUpIcon} </div>
             <div className="Price">{menu.price}원</div>
             <div className="Ingredients">{menu.ingredients}</div>
           </div>
