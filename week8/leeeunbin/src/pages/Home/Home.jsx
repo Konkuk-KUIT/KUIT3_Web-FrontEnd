@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import './Home.scss';
 import Header from "../../components/header/Header.jsx";
 import OrderBar from "../../components/OrderBar/OrderBar.jsx"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from "react-redux";
+import {  useSelector } from "react-redux";
 
 const Home = () => {
 

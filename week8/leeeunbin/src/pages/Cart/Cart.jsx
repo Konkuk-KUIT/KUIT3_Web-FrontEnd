@@ -1,8 +1,7 @@
 import React from "react";
 import Header from "../../components/header/Header";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
-import { addToCart } from "../../data-access/cart/actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
 import "./Cart.scss"
@@ -45,7 +44,7 @@ const Cart = () => {
             <div className="orderMenu" key={index}>
               <div>
                 <div className="menuName">{item.name}</div>
-                <div className="menuPrice">{item.price}</div>
+                <div className="menuPrice">{item.price}원</div>
               </div>
             </div>
             ))}

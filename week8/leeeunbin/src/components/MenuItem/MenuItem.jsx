@@ -48,7 +48,7 @@ const MenuItem = ({ menu, storeName }) => {
 
           <div className="menuInfo">
             <div className="Name">{menu.name}</div>
-            <div className="Price">{menu.price}</div>
+            <div className="Price">{menu.price}원</div>
             <div className="Ingredients">{menu.ingredients}</div>
           </div>
 
