@@ -83,6 +83,15 @@ export const ListItem = styled.div`
     font-weight: 500;
     line-height: normal;
   }
+
+  .count {
+    color: #6b7684;
+    font-family: Pretendard;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
 `;
 
 export const ItemGetBtn = styled.div`

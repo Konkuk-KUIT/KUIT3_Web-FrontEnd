@@ -2,6 +2,7 @@ import React from "react";
 import useCartStore from "../../store/useCartStore";
 import HIImg from "../../asset/home-indicator.svg";
 import * as S from "../../pages/Stores/Stores.styles";
+import { Link } from "react-router-dom";
 
 const OrderBar = () => {
   const menus = useCartStore((state) => state.menus);
@@ -17,9 +18,11 @@ const OrderBar = () => {
             {menus.reduce((acc, cur) => acc + cur.price, 0)}원
           </S.BottomOrderPrice>
         </section>
-        <S.BottomOrderBtn onClick={handleOrder}>
-          {store?.name}에서 주문하기
-        </S.BottomOrderBtn>
+        <Link to="/cart">
+          <S.BottomOrderBtn onClick={handleOrder}>
+            {store?.name}에서 주문하기
+          </S.BottomOrderBtn>
+        </Link>
       </S.BottomOrder>
       <S.HomeIndicator>
         <img src={HIImg} />
