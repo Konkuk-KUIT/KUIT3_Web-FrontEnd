@@ -119,14 +119,20 @@ const Store = () => {
       <Title2>샐러드</Title2>
 
       <div>
-        {store.menus.map((menu) => (
-          <Food>
-            <Circle />
-            <div>
-              <MenuItem key={menu.id} menu={menu} />
-            </div>
-          </Food>
-        ))}
+        {store.menus.map((menu) => {
+          const storeMenu = {
+            ...menu,
+            storeId: store.id
+          }
+          return (
+            <Food>
+              <Circle />
+              <div>
+                <MenuItem key={menu.id} menu={storeMenu} />
+              </div>
+            </Food>
+          )
+        })}
       </div>
       <OrderBar />
     </div>

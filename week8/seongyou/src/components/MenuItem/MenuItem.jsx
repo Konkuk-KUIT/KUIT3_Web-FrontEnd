@@ -78,3 +78,97 @@ const MenuItem = ({ menu }) => {
 };
 
 export default MenuItem;
+
+/**
+ * 
+ * AS-IS
+*     {
+        id: 1,
+        name: "쿼리노아 비트 샐러드",
+        isBest: true,
+        price: 9200,
+        ingredients: "비트, 쿼리노아, 아몬드, 양배추, 사과 사이더 드레싱",
+      },
+
+  TO-BE
+      {
+        storeId: 1,
+        id: 1,
+        name: "쿼리노아 비트 샐러드",
+        isBest: true,
+        price: 9200,
+        ingredients: "비트, 쿼리노아, 아몬드, 양배추, 사과 사이더 드레싱",
+      },
+
+interface Menu {
+  storeId: number,
+  id: number,
+  name: string,
+  isBest: boolean,
+  price: number,
+  ingredients: string
+}
+
+const menuGroup = menus.reduce((acc, prev) => {
+  return {
+    ...prev,
+    [acc.storeId]: [
+      ...prev[acc.storeId],
+      acc
+    ]
+  }
+}, {})
+
+const menuGroup = {
+  1: [
+      {
+        storeId: 1,
+        id: 1,
+        name: "쿼리노아 비트 샐러드",
+        isBest: true,
+        price: 9200,
+        ingredients: "비트, 쿼리노아, 아몬드, 양배추, 사과 사이더 드레싱",
+      },
+      {
+        storeId: 1,
+        id: 2,
+        name: "펌프킨 넛 샐러드",
+        isBest: false,
+        price: 8700,
+        ingredients: "호박, 피칸, 크랜베리, 아루굴라, 발사믹 드레싱",
+      },
+  ],
+  2: [
+      {
+        storeId: 2,
+        id: 1,
+        name: "쿼리노아 비트 샐러드",
+        isBest: true,
+        price: 9200,
+        ingredients: "비트, 쿼리노아, 아몬드, 양배추, 사과 사이더 드레싱",
+      },
+      {
+        storeId: 2,
+        id: 2,
+        name: "펌프킨 넛 샐러드",
+        isBest: false,
+        price: 8700,
+        ingredients: "호박, 피칸, 크랜베리, 아루굴라, 발사믹 드레싱",
+      },
+  ]
+}
+
+const dict = { foo: 'a', bar: 'b' }
+Object.keys(dict) // ['foo', 'bar']
+
+const storeIds = Object.keys(menuGroup) // [1, 2]
+
+...
+
+{storeIds.map((storeId) => {
+  return (
+    <CartItem storeId={storeId} menus={menuGroup[storeId]} />
+  )
+})}
+
+ */
