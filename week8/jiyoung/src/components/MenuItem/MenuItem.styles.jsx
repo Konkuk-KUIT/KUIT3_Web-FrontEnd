@@ -20,7 +20,7 @@ export const StyledMenuLeftDiv = styled.div`
 export const StyledMenuImg = styled.div`
   width: 54px;
   height: 54px;
-  border-radius: 27px;
+  border-radius: 8px;
   background-color: #ececec;
 `;
 
