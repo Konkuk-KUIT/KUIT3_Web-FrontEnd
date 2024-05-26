@@ -4,9 +4,11 @@ import "./StoreItem.scss";
 import stores from "../../models/stores";
 
 const StoreItem = ({ categoryId }) => {
+  const filteredStores = stores.filter ( store => store.menus.some(menu => menu.category === categoryId));
+
   return (
     <>
-      {stores.map((store, index) => (
+      {filteredStores.map((store, index) => (
         <Link to={`/${categoryId}/${store.id}`} key={store.id}>
           <div className="StoreInfo">
             <div className="storeImg">

@@ -9,7 +9,7 @@ import "./MenuItem.scss"
 
 const MenuItem = ({ menu, storeName }) => { 
   const cartItems = useSelector((state) => state.cart.items);
-  const thumbsUpIcon = menu.isBest ? <FontAwesomeIcon icon={faThumbsUp} /> : null;
+  const thumbsUpIcon = menu.isBest ? <FontAwesomeIcon icon={faThumbsUp} color="#3182f6"/> : null;
 
   const dispatch = useDispatch();
 
