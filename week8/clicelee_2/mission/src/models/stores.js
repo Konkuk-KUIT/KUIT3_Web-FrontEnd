@@ -1,4 +1,3 @@
-//가게 배열
 const stores = [
   {
     id: 1,
