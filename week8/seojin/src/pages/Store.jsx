@@ -61,7 +61,7 @@ const Store = () => {
       <div className={styles.sub_title}>샐러드</div>
       <div>
         {store.menus.map((menu, store) => {
-          return <MenuItem key={menu.id} menu={menu} />;
+          return <MenuItem key={menu.id} menu={menu} store={store} />;
         })}
       </div>
       <OrderBar />

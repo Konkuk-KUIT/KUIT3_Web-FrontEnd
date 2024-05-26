@@ -6,6 +6,7 @@ const initialState = {
   totalPrice: 0,
 };
 
+
 //상태관리 훅 생성
 //create 함수는 zustand에서 제공함
 //store와 menus 값음 위에 초기화 한 값으로 초기화 함
@@ -20,6 +21,7 @@ const useCartStore = create((set) => ({
   setStore: (store) => {
     set((state) => ({ ...state, store: store }));
   },
+
 
   //menu라는 매개변수를 받아 set 함수를 통해 상태 업데이트
   //현재 state를 펼치고 새로운 menu를 menus 배열에 추가

@@ -16,7 +16,7 @@ const Cart = () => {
     (acc, cur) => acc + cur.price * cur.quantity,
     0
   );
-  const deliveryFee = store ? store.deliveryFee : 0;
+  const deliveryFee = store?.deliveryFee ?? 0;
   const totalPrice = orderPrice + deliveryFee;
   const leastPrice = 13000;
   const isDisabled = totalPrice >= leastPrice ? false : true;
