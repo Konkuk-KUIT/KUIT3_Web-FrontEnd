@@ -18,7 +18,7 @@ const menuReducer = (state = initialState, action) => {
     case SET_STORE:
       return {
         ...state,
-        store: action.payload,
+        store: Array.isArray(action.payload) ? action.payload : [],
       };
     case ADD_MENU:
       return {

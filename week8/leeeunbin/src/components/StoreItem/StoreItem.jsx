@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./StoreItem.scss";
-import stores from "../../models/stores";
+import storesData from "../../models/stores";
+import { useDispatch, useSelector } from "react-redux";
+import { setStore} from "../../data-access/menu/actions";
 
 const StoreItem = ({ categoryId }) => {
-  const filteredStores = stores.filter ( store => store.menus.some(menu => menu.category === categoryId));
+  const dispatch = useDispatch();
+  const store = useSelector((state) => state.menu.store);
+
+  useEffect(() => {
+    dispatch(setStore(storesData));
+  }, [dispatch]);
+
+  const filteredStores = store.filter ( store => store.menus.some(menu => menu.category === categoryId));
 
   return (
     <>
