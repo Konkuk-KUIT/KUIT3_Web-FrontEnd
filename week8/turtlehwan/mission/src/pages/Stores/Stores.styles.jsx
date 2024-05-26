@@ -31,7 +31,7 @@ export const BackArrowImg = styled.img`
 `;
 
 export const Title = styled.div`
-  padding: 26px 298px 2px 24px;
+  padding: 26px 0 2px 24px;
   align-items: center;
   color: #191f28;
   font-family: "Pretendard";
@@ -75,7 +75,7 @@ export const BottomContainer = styled.div`
   border-radius: 16px 16px 0px 0px;
   background: #fff;
   box-shadow: 0px -8px 16px 0px rgba(0, 0, 0, 0.1);
-  position: absolute;
+  position: fixed;
   width: 100%;
   bottom: 0px;
 `;

@@ -1,5 +1,7 @@
 import React from "react";
 import useCartStore from "../../store/useCartStore";
+import HIImg from "../../asset/home-indicator.svg";
+import * as S from "../../pages/Stores/Stores.styles";
 
 const OrderBar = () => {
   const menus = useCartStore((state) => state.menus);
@@ -7,13 +9,22 @@ const OrderBar = () => {
   const store = useCartStore((state) => state.store);
 
   return (
-    <div>
-      <div>총 주문금액</div>
-      <div>{menus.reduce((acc, cur) => acc + cur.price, 0)}원</div>
-      <button onClick={handleOrder} type="button">
-        {store?.name}에서 주문하기
-      </button>
-    </div>
+    <S.BottomContainer>
+      <S.BottomOrder>
+        <section>
+          <S.BottomOrderText>총 주문금액</S.BottomOrderText>
+          <S.BottomOrderPrice>
+            {menus.reduce((acc, cur) => acc + cur.price, 0)}원
+          </S.BottomOrderPrice>
+        </section>
+        <S.BottomOrderBtn onClick={handleOrder}>
+          {store?.name}에서 주문하기
+        </S.BottomOrderBtn>
+      </S.BottomOrder>
+      <S.HomeIndicator>
+        <img src={HIImg} />
+      </S.HomeIndicator>
+    </S.BottomContainer>
   );
 };
 
