@@ -94,8 +94,7 @@ const StyledSpan3 = styled.span`
 `
 
 const OrderBtn = styled.button`
-  
-  background-color: #4caf50;
+  background-color: #3182F6;
   color: white;
   border: none;
   border-radius: 16px;
@@ -104,8 +103,15 @@ const OrderBtn = styled.button`
   margin-top: 20px;
 
   &:hover {
-    background-color: #45a049;
+    background-color: #D0DFFB;
   }
+  width: 350px;
+height: 56px;
+top: 39px;
+left: 20px;
+border-radius: 16px;
+opacity: 0px;
+
 `;
 
 const AddMoreBtn = styled.button`
