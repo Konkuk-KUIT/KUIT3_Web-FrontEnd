@@ -146,6 +146,7 @@ const menuGroup = {
         isBest: true,
         price: 9200,
         ingredients: "비트, 쿼리노아, 아몬드, 양배추, 사과 사이더 드레싱",
+        count: 2,
       },
       {
         storeId: 2,
@@ -154,9 +155,19 @@ const menuGroup = {
         isBest: false,
         price: 8700,
         ingredients: "호박, 피칸, 크랜베리, 아루굴라, 발사믹 드레싱",
+        count: 3,
       },
   ]
 }
+
+if (store != null && menus.length > 0) { alert('장바구니에는 하나의 가게만 담을 수 있음') }
+
+const totalPricePerStore = menus.reduce((acc, prev) => {
+  return acc.price * acc.count + prev
+}, 0)
+// 9200 * 2 + 8700 * 3
+
+{ store.minBlah > totalPricePerStore && <span>최소 금액 미달</span> }
 
 const dict = { foo: 'a', bar: 'b' }
 Object.keys(dict) // ['foo', 'bar']
