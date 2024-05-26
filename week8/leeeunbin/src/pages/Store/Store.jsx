@@ -8,13 +8,13 @@ import MenuItem from "../../components/MenuItem/MenuItem";
 import OrderBar from "../../components/OrderBar/OrderBar";
 
 import stores from "../../models/stores";
-import { setStore } from "../../data-access/menu/actions"; // setStore 액션을 가져옴
+import { setStore } from "../../data-access/menu/actions";
 import Header from "../../components/header/Header";
 
 import './Store.scss';
 
 const Store = () => {
-  const dispatch = useDispatch(); // useDispatch 훅을 사용하여 디스패치 함수를 가져옴
+  const dispatch = useDispatch();
   const { storeId } = useParams();
 
   const store = stores.find((s) => s.id.toString() === storeId);
