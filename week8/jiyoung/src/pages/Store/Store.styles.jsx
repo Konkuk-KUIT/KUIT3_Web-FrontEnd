@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 // 가게 정보 <div>
 export const StoreInfo = styled.div`
-  margin: 26px 0px 13px 24px;
+  margin: 26px 0px 0px 24px;
 `;
 
 // 가게 이름 <h1>
