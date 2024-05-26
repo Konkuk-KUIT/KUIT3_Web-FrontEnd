@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import stores from "../models/stores";
@@ -6,6 +6,7 @@ import leftChevron from '../assets/left-chevron.svg';
 import yellowStar from '../assets/yellowStar.svg';
 import MenuItem from '../components/MenuItem';
 import OrderBar from '../components/OrderBar';
+import useCartStore from '../store/useCartStore';
 
 const StyledHeader = styled.div`
   display: flex;
@@ -136,6 +137,13 @@ const StoreItem = ({ store }) => (
 const Store = () => {
   const { id } = useParams();
   const store = stores.find(store => store.id === parseInt(id));
+  const setStore = useCartStore((state) => state.setStore);
+
+  useEffect(() => {
+    if (store) {
+      setStore(store);
+    }
+  }, [store, setStore]);
 
   if (!store) {
     return <div>Store not found</div>;

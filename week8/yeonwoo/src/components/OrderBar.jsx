@@ -60,13 +60,13 @@ const OrderBar = () => {
   const menus = useCartStore((state) => state.menus);
   const navigate = useNavigate();  // useNavigate 훅 사용
   const handleOrder = () => {
-    navigate('./cart');  // ./cart로 네비게이트
+    navigate("/cart");  // ./cart로 네비게이트
   };
   return (
     <StyledDiv>
       <div>
       <StyledTotal>총 주문금액</StyledTotal>
-      <StyledMoney>{menus.reduce((acc, cur) => acc + cur.price, 0)}원</StyledMoney>
+      <StyledMoney>{menus.reduce((acc, cur) => acc + cur.price, 0).toLocaleString()}원</StyledMoney>
       </div>
       <StyledButton onClick={handleOrder} type="button">주문하기</StyledButton>
     </StyledDiv>

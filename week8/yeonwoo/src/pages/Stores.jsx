@@ -17,7 +17,7 @@ const StyledHeader = styled.div`
   background: #FFFFFF;
 `;
 
-const StyledButton = styled.button`
+const StyledButton = styled(Link)`
   border: 0px;
   background: transparent;
   margin-top: 54px;
