@@ -8,10 +8,16 @@ import {
   StyledMenuPrice,
   StyledMenuIng,
 } from "../MenuItem/MenuItem.styles";
+import { useNavigate } from "react-router-dom";
 
 const StoreItem = ({ store }) => {
+  const navigate = useNavigate();
+  const handleStore = () => {
+    navigate(`/store/${store.id}`);
+  };
+
   return (
-    <StyledMenuBox>
+    <StyledMenuBox onClick={handleStore}>
       <StyledMenuLeftDiv>
         <StyledMenuImg />
         <StyledMenuTv>
