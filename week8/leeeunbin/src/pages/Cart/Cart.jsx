@@ -13,11 +13,21 @@ const Cart = () => {
   const firstStoreInfo = useSelector((state) => state.menu.store);
 
   const orderpay = cartItems.length > 0 ?
-  cartItems.reduce((acc, cur) => acc + cur.items.reduce((total, item) => total + item.price, 0), 0) :
-  0;
+    cartItems.reduce((acc, cur) => acc + cur.items.reduce((total, item) => total + item.price, 0), 0) :
+    0;
 
-  // console.log(typeof orderpay);
-
+  const items = cartItems.reduce((acc, cur) => {
+    cur.items.forEach(item => {
+      const foundItem = acc.find(accItem => accItem.name === item.name);
+      if (foundItem) {
+        foundItem.quantity += 1;
+        foundItem.totalPrice += item.price;
+      } else {
+        acc.push({ ...item, quantity: 1, totalPrice: item.price });
+      }
+    });
+    return acc;
+  }, []);
 
   const handlePayment = () => {
     dispatch((dispatch) => {
@@ -45,30 +55,31 @@ const Cart = () => {
           )}
         </div>
         
-        {cartItems.map((cartItem) => (
-          <div className="orderGroup" key={cartItem.id}>
+        {items.map((item, index) => (
+          <div className="orderGroup" key={index}>
             <div className="menuimg">
               <img src={`http://via.placeholder.com/54x54`} alt="placeholder" />
             </div>
 
-            {cartItem.items.map((item, index) => (
-            <div className="orderMenu" key={index}>
+            <div className="orderMenu">
               <div>
                 <div className="menuName">{item.name}</div>
-                <div className="menuPrice">{item.price}원</div>
+                <div className="menuPrice">{item.totalPrice}원</div>
               </div>
             </div>
-            ))}
 
-            <button className="detail"> {'>'} </button>
+            <div className="menuCount">{item.quantity}개 
+              <button className="detail"> {'>'} </button>
+            </div>
+          
           </div>
         ))}
 
         <div className="plus">
           <Link to="/">
-              <button>
-                더 담기 <FontAwesomeIcon icon={faPlus} />
-              </button>
+            <button>
+              더 담기 <FontAwesomeIcon icon={faPlus} />
+            </button>
           </Link>
         </div>
 
@@ -89,7 +100,7 @@ const Cart = () => {
           </div>
         )}
 
-        <Link to ="/order">
+        <Link to="/order">
           <div className="orderButton">
             <button disabled={orderpay < firstStoreInfo.minDeliveryPrice} onClick={handlePayment}>
               {orderpay + firstStoreInfo.deliveryFee}원 결제하기
@@ -99,7 +110,6 @@ const Cart = () => {
 
       </footer>
     </>
-    
   );
 };
 
