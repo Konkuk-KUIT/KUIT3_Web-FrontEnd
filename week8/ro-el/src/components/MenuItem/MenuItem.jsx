@@ -9,9 +9,18 @@ const MenuItem = ({ menu, store }) => {
   const setStore = useCartStore((state) => state.setStore);
 
   const handleAddMenu = () => {
-    console.log(previousStore, store);
     if (previousStore !== store) {
-      setStore(store);
+      if (!previousStore) {
+        setStore(store);
+      } else if (
+        window.confirm(
+          "같은 가게의 메뉴만 담을 수 있습니다. 가게를 변경하시겠습니까?"
+        )
+      ) {
+        setStore(store);
+      } else {
+        return;
+      }
     }
     addMenu(menu);
   };
@@ -22,7 +31,7 @@ const MenuItem = ({ menu, store }) => {
         <img src={CircleDefaultImg} alt="메뉴 기본 빈 이미지" />
         <S.MenuInfoContentBox>
           <h3>{menu.name}</h3>
-          <span>{menu.price.toLocaleString('ko-KR')}원</span>
+          <span>{menu.price.toLocaleString("ko-KR")}원</span>
           <p>{menu.ingredients}</p>
         </S.MenuInfoContentBox>
       </S.MenuInfoBox>
