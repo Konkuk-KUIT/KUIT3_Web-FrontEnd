@@ -23,8 +23,18 @@ import {
   StyledMenuPrice,
   StyledMenuIng,
 } from "../../components/MenuItem/MenuItem.styles";
+import useCartStore from "../../store/useCartStore";
 
 const Cart = () => {
+  const store = useCartStore((state) => state.store); // 전역 상태에서 store 가져오기
+  const menus = useCartStore((state) => state.menus);
+  const totalMenuFee = menus.reduce((acc, cur) => acc + cur.price, 0); // 주문금액
+  const isOrderable = totalMenuFee >= store.minDeliveryPrice; // 주문가능여부
+
+  if (!store || menus.length === 0) {
+    return <div>장바구니가 비어 있습니다.</div>; // 메뉴가 없을 경우 메시지 출력
+  }
+
   return (
     <>
       <CartBox>
@@ -34,22 +44,24 @@ const Cart = () => {
       <CartDivider />
 
       <CartBox>
-        <CartBoxTitle>가게명</CartBoxTitle>
-        <CartMinNotifyTv>최소금액 미달</CartMinNotifyTv>
+        <CartBoxTitle>{store.name}</CartBoxTitle>
+        {!isOrderable && <CartMinNotifyTv>최소금액 미달</CartMinNotifyTv>}
       </CartBox>
 
-      <StyledMenuBox>
-        <StyledMenuLeftDiv>
-          <StyledMenuImg />
-          <StyledMenuTv>
-            <StyledMenuName>메뉴명</StyledMenuName>
-            <StyledMenuIng>메뉴재료</StyledMenuIng>
-            <StyledMenuPrice>000원</StyledMenuPrice>
-          </StyledMenuTv>
-        </StyledMenuLeftDiv>
+      {menus.map((menu, index) => (
+        <StyledMenuBox key={index}>
+          <StyledMenuLeftDiv>
+            <StyledMenuImg />
+            <StyledMenuTv>
+              <StyledMenuName>{menu.name}</StyledMenuName>
+              <StyledMenuIng>{menu.ingredients}</StyledMenuIng>
+              <StyledMenuPrice>{menu.price}원</StyledMenuPrice>
+            </StyledMenuTv>
+          </StyledMenuLeftDiv>
 
-        <CartMenuAmount>0개</CartMenuAmount>
-      </StyledMenuBox>
+          <CartMenuAmount>1개</CartMenuAmount>
+        </StyledMenuBox>
+      ))}
 
       <CartAddBtn>더 담기 +</CartAddBtn>
 
@@ -58,25 +70,27 @@ const Cart = () => {
       <CartFeeBox>
         <CartFeeTvBox>
           <CartFeeTv color="#8b95A1">주문금액</CartFeeTv>
-          <CartFeeTv color="#505967">000원</CartFeeTv>
+          <CartFeeTv color="#505967">{totalMenuFee}원</CartFeeTv>
         </CartFeeTvBox>
 
         <CartFeeTvBox>
           <CartFeeTv color="#8b95A1">배달요금</CartFeeTv>
-          <CartFeeTv color="#505967">000원</CartFeeTv>
+          <CartFeeTv color="#505967">{store.deliveryFee}원</CartFeeTv>
         </CartFeeTvBox>
 
         <CartTotalFeeTvBox>
           <CartFeeTv color="#4E5968">총 결제금액</CartFeeTv>
           <CartFeeTv color="#4E5968" weight={600}>
-            000원
+            {totalMenuFee + store.deliveryFee}원
           </CartFeeTv>
         </CartTotalFeeTvBox>
       </CartFeeBox>
 
       <CartBtnBox>
-        <CartBtnTv>최소 주문금액 000원</CartBtnTv>
-        <CartBtn>000원 결제하기</CartBtn>
+        <CartBtnTv>최소 주문금액 {store.minDeliveryPrice}원</CartBtnTv>
+        <CartBtn bgColor={isOrderable ? "#3182f6" : "#D0DFFB"}>
+          {totalMenuFee + store.deliveryFee}원 결제하기
+        </CartBtn>
       </CartBtnBox>
     </>
   );

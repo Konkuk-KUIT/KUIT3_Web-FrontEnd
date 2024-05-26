@@ -7,11 +7,16 @@ import {
   StyledOrderLeftDiv2,
   StyledOrderBtn,
 } from "./OrderBar.styles";
+import { useNavigate } from "react-router-dom";
 
 const OrderBar = () => {
   const menus = useCartStore((state) => state.menus);
-  const handleOrder = () => {};
-  const store = useCartStore((state) => state.store);
+  const navigate = useNavigate();
+  const handleOrder = () => {
+    navigate("/cart");
+    console.log(menus);
+  };
+  // const store = useCartStore((state) => state.store);
 
   return (
     <StyledOrderBox>

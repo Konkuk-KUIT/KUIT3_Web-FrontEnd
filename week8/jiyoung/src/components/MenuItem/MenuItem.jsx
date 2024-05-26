@@ -11,10 +11,18 @@ import {
   StyledMenuBtn,
 } from "./MenuItem.styles";
 
-const MenuItem = ({ menu }) => {
+const MenuItem = ({ menu, store }) => {
   const addMenu = useCartStore((state) => state.addMenu);
+  const setStore = useCartStore((state) => state.setStore);
+  const currentStore = useCartStore((state) => state.store);
+
   const handleAddMenu = () => {
     addMenu(menu);
+    if (!currentStore || currentStore.id !== store.id) {
+      setStore(store);
+    }
+    console.log("메뉴:", menu);
+    console.log("가게:", store);
   };
 
   return (

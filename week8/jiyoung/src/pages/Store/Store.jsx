@@ -54,7 +54,7 @@ const Store = () => {
 
       <div>
         {store.menus.map((menu) => {
-          return <MenuItem key={menu.id} menu={menu} />;
+          return <MenuItem key={menu.id} menu={menu} store={store} />;
         })}
       </div>
 

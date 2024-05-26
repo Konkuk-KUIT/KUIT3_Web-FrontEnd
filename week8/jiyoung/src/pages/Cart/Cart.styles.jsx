@@ -111,7 +111,7 @@ export const CartBtn = styled.button`
   height: 56px;
   border: none;
   border-radius: 16px;
-  background-color: #3182f6;
+  background-color: ${({ bgColor }) => bgColor};
   color: white;
   font-family: Pretendard;
   font-size: 16px;
