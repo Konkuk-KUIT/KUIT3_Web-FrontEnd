@@ -1,13 +1,14 @@
 import React from "react";
 import Header from "../../components/header/Header";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
 import "./Cart.scss"
+import { addOrder } from "../../data-access/order/actions";
 
 const Cart = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.items);
   const firstStoreInfo = useSelector((state) => state.menu.store);
 
@@ -15,10 +16,20 @@ const Cart = () => {
   cartItems.reduce((acc, cur) => acc + cur.items.reduce((total, item) => total + item.price, 0), 0) :
   0;
 
+  // console.log(typeof orderpay);
 
 
   const handlePayment = () => {
-    alert("기능 구현 중입니다.");
+    dispatch((dispatch) => {
+      const newOrder = {
+        orders: cartItems,
+        deliveryFee: firstStoreInfo.deliveryFee,
+        orderPrice : orderpay,
+        totalPrice: orderpay + firstStoreInfo.deliveryFee,
+      };
+
+      dispatch(addOrder(newOrder));
+    });
   };
 
   return (
@@ -78,11 +89,14 @@ const Cart = () => {
           </div>
         )}
 
-        <div className="orderButton">
-          <button disabled={orderpay < firstStoreInfo.minDeliveryPrice} onClick={handlePayment}>
-            {orderpay + firstStoreInfo.deliveryFee}원 결제하기
-          </button>
-        </div>
+        <Link to ="/order">
+          <div className="orderButton">
+            <button disabled={orderpay < firstStoreInfo.minDeliveryPrice} onClick={handlePayment}>
+              {orderpay + firstStoreInfo.deliveryFee}원 결제하기
+            </button>
+          </div>
+        </Link>
+
       </footer>
     </>
     

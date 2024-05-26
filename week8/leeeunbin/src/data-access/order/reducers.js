@@ -1,7 +1,11 @@
-import { ADD_ORDER } from './actions';
+import { ADD_ORDER, UPDATE_TO_RIDER ,UPDATE_TO_OWNER, UPDATE_TO_PAYMENTMETHOD } from './actions';
 
 const initialState = {
   address : "한남중앙로 40길 (한남 빌리지)",
+  toRider : "",
+  phoneNum : "010-1234-5678",
+  toOwner: "",
+  paymentMethod: "",
   orders: [
     {
       id : 0,
@@ -11,8 +15,9 @@ const initialState = {
       ingredients : []
     },
   ],
-  deliveryPrice : "",
-  totalPrice : "",
+  deliveryFee : 0,
+  orderPrice: 0,
+  totalPrice : 0,
 };
 
 const orderReducer = (state = initialState, action) => {
@@ -21,7 +26,25 @@ const orderReducer = (state = initialState, action) => {
       return {
         ...state,
         orders: [...state.orders, action.payload],
+        deliveryFee: action.payload.deliveryFee,
+        orderPrice: action.payload.orderPrice,
+        totalPrice: action.payload.totalPrice,
       };
+      case UPDATE_TO_RIDER:
+        return {
+          ...state,
+          toRider: action.payload,
+        }
+      case UPDATE_TO_OWNER:
+        return {
+          ...state,
+          toOwner: action.payload,
+        }
+      case UPDATE_TO_PAYMENTMETHOD:
+        return {
+          ...state,
+          paymentMethod: action.payload,
+        }
     default:
       return state;
   }

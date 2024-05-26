@@ -5,6 +5,7 @@ import Home from "./Home/Home";
 import Stores from "./Stores/Stores";
 import Store from "./Store/Store";
 import Cart from "./Cart/Cart";
+import Order from "./Order/Order";
 
 const AppRouter = () => {
   return (
@@ -14,6 +15,7 @@ const AppRouter = () => {
         <Route path="/:categoryId" element={<Stores />} />
         <Route path="/:categoryId/:storeId" element={<Store />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/order" element={<Order />} />
       </Routes>
     </Router>
   );
