@@ -8,29 +8,22 @@ import "./Order.scss"
 const Order = () => {
   const dispatch = useDispatch();
   const order = useSelector((state) => state.order);
+  const [toRider, setToRider] = useState("");
+  const [ toOwner, setToOwner] = useState("");
 
-  const [toRider, setToRider] = useState(order.toRider);
-  const [toOwner, setToOwner] = useState(order.toOwner);
 
   const handleToRiderChange = (e) =>{
     const { value } = e.target;
-
     setToRider(value);
+    dispatch(updateToRider(toRider));
   }
 
   const handleToOwnerChange = (e) => {
     const { value } = e.target;
-
     setToOwner(value);
-  }
-
-  const handleUpdateToRider = () => {
-    dispatch(updateToRider(toRider));
-  }
-
-  const handleUpdateToOwner = () => {
     dispatch(updateToOwner(toOwner));
   }
+
 
   const handleUpdateToPaymentMethod = (e) => {
     const value = e.target.id;
@@ -45,6 +38,8 @@ const Order = () => {
       const confirmPay = window.confirm(
         `주문 정보가 맞는지 확인해주세요.
         주소 : ${order.address}
+        라이더님께  : ${order.toRider}
+        가게 사장님께 : ${order.toOwner}
         총금액 : ${order.totalPrice}
         주문 수단 : ${order.paymentMethod}`
       );
@@ -72,7 +67,6 @@ const Order = () => {
               value={toRider}
               placeholder="요청사항 없음"
               onChange={handleToRiderChange} />
-              <button onClick={handleUpdateToRider}>입력</button>
           </div>
         </div>
       </div>
@@ -90,7 +84,6 @@ const Order = () => {
               value={toOwner}
               placeholder="요청사항 없음"
               onChange={handleToOwnerChange} />
-              <button onClick={handleUpdateToOwner}>입력</button>
           </div>
         </div>
 

@@ -14,7 +14,7 @@ const Home = () => {
     <>
     <Header />
       <div className="container">
-        <div className="Title">
+        <div className="TitleContainer">
           <p className="title">오늘은 무엇을 먹을까요?</p>
           <Link to = '/myPage'>
             <button className="info">{customerData}(으)로 배달 {`>`}</button>

@@ -7,13 +7,14 @@ body {
 .container {
   height: 93px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   font-family: Pretendard;
 }
 
-.Title {
-  width: 100%;
+.TitleContainer {
+  width: calc(100% - 48px);
   height: 64px;
   padding-top: 25px;
   padding-left: 24px;
