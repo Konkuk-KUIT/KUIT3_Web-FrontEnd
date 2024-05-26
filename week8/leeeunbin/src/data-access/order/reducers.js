@@ -48,12 +48,12 @@ const orderReducer = (state = initialState, action) => {
       case UPDATE_ADDRESS:
         return {
           ...state,
-          updateAddress: action.payload,
+          address: action.payload,
         }
       case UPDATE_PHONENUM:
         return {
           ...state,
-          updatePhonenum : action.payload,
+          phoneNum : action.payload,
         }
     default:
       return state;

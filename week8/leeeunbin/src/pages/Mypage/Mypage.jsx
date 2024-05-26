@@ -13,6 +13,7 @@ const Mypage = () => {
 
   const handleUpdateAddress = () => {
     const value = window.prompt("주소를 입력하세요:", order.address);
+    console.log(value);
     if(value !== null) {
       dispatch(updateAddress(value));
     }
