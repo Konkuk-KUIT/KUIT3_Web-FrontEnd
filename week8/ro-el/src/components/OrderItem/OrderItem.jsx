@@ -5,8 +5,6 @@ import RectangleDefaultImg from "../../assets/rectangle-default-img.svg";
 import RightChevron from "../../assets/right-chevron.svg";
 
 const OrderItem = ({ menu }) => {
-  console.log(menu);
-
   return (
     <S.OrderItem>
       <S.MenuInfoBox>
