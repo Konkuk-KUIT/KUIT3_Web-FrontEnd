@@ -19,7 +19,7 @@ const Order = () => {
   }
 
   const handleToOwnerChange = (e) => {
-    const { value } = e. target;
+    const { value } = e.target;
 
     setToOwner(value);
   }
@@ -38,15 +38,20 @@ const Order = () => {
   }
 
   const handlePay = () => {
-    const confirmPay = window.confirm(
-      `주문 정보가 맞는지 확인해주세요.
-      주소 : ${order.address}
-      총금액 : ${order.totalPrice}
-      주문 수단 : ${order.paymentMethod}`
-    );
-
-    if(confirmPay) {
-      alert ('결제 링크로 연결합니다.')
+    
+    if(!order.paymentMethod) {
+      alert('결제수단을 선택해주세요.')
+    } else {
+      const confirmPay = window.confirm(
+        `주문 정보가 맞는지 확인해주세요.
+        주소 : ${order.address}
+        총금액 : ${order.totalPrice}
+        주문 수단 : ${order.paymentMethod}`
+      );
+  
+      if(confirmPay) {
+        alert ('결제 링크로 연결합니다.')
+      }
     }
   }
 

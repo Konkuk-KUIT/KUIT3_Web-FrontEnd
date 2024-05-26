@@ -181,7 +181,7 @@ body {
   color: #505967;
 }
 
-.footer {
+footer {
   position: fixed;
   bottom: 0;
   left: 0;
@@ -192,6 +192,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  background-color: #ffffff;
 }
 
 .payButton {

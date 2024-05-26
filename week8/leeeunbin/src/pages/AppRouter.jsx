@@ -6,6 +6,7 @@ import Stores from "./Stores/Stores";
 import Store from "./Store/Store";
 import Cart from "./Cart/Cart";
 import Order from "./Order/Order";
+import Mypage from "./Mypage/Mypage";
 
 const AppRouter = () => {
   return (
@@ -16,6 +17,7 @@ const AppRouter = () => {
         <Route path="/:categoryId/:storeId" element={<Store />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/order" element={<Order />} />
+        <Route path="/myPage" element={<Mypage />} />
       </Routes>
     </Router>
   );

@@ -85,7 +85,7 @@ const Cart = () => {
       <footer>
         {orderpay < firstStoreInfo.minDeliveryPrice && (
           <div className="minDelivery">
-            최소 주문 금액 {firstStoreInfo.minDeliveryPrice}
+            최소 주문 금액 {firstStoreInfo.minDeliveryPrice}원
           </div>
         )}
 

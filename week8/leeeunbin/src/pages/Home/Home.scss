@@ -32,8 +32,12 @@ body {
 
 .info {
   font-size: 14px;
-  color: #333D4B;
+  color: #333D4B;  
+  background-color: #FAFAFB;
+  border: #FAFAFB;
+  cursor: pointer;
 }
+
 
 .buttonBody {
   width: 342px;
@@ -54,7 +58,7 @@ body {
   padding: 0;
   font: inherit;
   cursor: pointer;
-  
+
   width: 108px;
   height: 74Px; 
   border-radius: 8px;

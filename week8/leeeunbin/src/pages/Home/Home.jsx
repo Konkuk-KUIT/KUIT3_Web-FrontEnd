@@ -16,7 +16,9 @@ const Home = () => {
       <div className="container">
         <div className="Title">
           <p className="title">오늘은 무엇을 먹을까요?</p>
-          <p className="info">{customerData}(으)로 배달 {'>'} </p>
+          <Link to = '/myPage'>
+            <button className="info">{customerData}(으)로 배달 {`>`}</button>
+          </Link>
         </div>
       </div>
       
@@ -104,7 +106,7 @@ const Home = () => {
           </button>
         </Link>
       </div>
-      
+
       <OrderBar />
     </>
     

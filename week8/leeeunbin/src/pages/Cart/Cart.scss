@@ -25,6 +25,7 @@ body {
 .storeName {
   font-weight: 700;
   font-size: 17px;
+  padding-left: 24px;
   color: #6B7684;
 }
 
@@ -155,6 +156,8 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  background-color: #ffffff;
 
 }
 
