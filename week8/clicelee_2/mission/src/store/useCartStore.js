@@ -15,6 +15,12 @@ const useCartStore = create((set) => ({
   setStore: (store) => {
     set((state) => ({ ...state, store: store }));
   },
+  removeMenu: (menuId) => {
+    set((state) => ({
+      ...state,
+      menus: state.menus.filter((menu) => menu.id !== menuId),
+    }));
+  },
 }));
 
 export default useCartStore;

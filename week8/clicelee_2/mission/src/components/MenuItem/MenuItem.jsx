@@ -12,9 +12,9 @@ const MenuItem = ({ menu }) => {
       <h3>{menu.name}</h3>
       <span>{menu.price}</span>
       <p>{menu.ingredients}</p>
-      <button onClick={handleAddMenu} type="button">
+      {/* <button onClick={handleAddMenu} type="button">
         담기
-      </button>
+      </button> */}
     </div>
   );
 };
