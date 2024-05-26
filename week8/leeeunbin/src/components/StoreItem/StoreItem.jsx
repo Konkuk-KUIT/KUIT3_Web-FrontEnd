@@ -13,7 +13,9 @@ const StoreItem = ({ categoryId }) => {
     dispatch(setStore(storesData));
   }, [dispatch]);
 
-  const filteredStores = store.filter ( store => store.menus.some(menu => menu.category === categoryId));
+  const filteredStores = Object.keys(store)
+    .map(key => store[key])
+    .filter(store => store.menus.some(menu => menu.category === categoryId));
 
   return (
     <>

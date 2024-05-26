@@ -10,6 +10,7 @@ import { addOrder } from "../../data-access/order/actions";
 const Cart = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.items);
+  console.log(cartItems)
   const firstStoreInfo = useSelector((state) => state.menu.store);
 
   const orderpay = cartItems.length > 0 ?
