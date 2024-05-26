@@ -51,11 +51,12 @@ margin-left: 189px;
 border-radius: 8px;
 opacity: 0px;
 
+
 background: #3182F6;
 `
 
 const StyledText = styled.div`
-Width: 52px;
+
 Height: 18px;
 margin-top: 10px;
 margin-left: 16px;
@@ -73,12 +74,11 @@ color: #FFFFFF;
 `
 
 const OrderBar = () => {
-  // const addMenu = useCartStore((state) => state.addMenu);
   const navigate = useNavigate();
   const menus = useCartStore((state) => state.menus);
 
   const handleOrder = () => {
-    //console.log(menus);
+
     navigate('/cart');
   };
   const store = useCartStore((state) => state.store);

@@ -3,6 +3,7 @@ import useCartStore from "../../store/useCartStore";
 import styled from "styled-components";
 import StoreList from "../../components/StoreList/StoreList";
 import stores from '../../models/stores'
+import { useNavigate } from 'react-router-dom';
 
 const StyledHeader = styled.div`
 width: 390px;
@@ -43,14 +44,23 @@ opacity: 0px;
 
 
 const Stores = () => {
+  const navigate = useNavigate();
+  const setStore = useCartStore((state) => state.setStore);
+  const handleOrder = (store) => {
+    const url = '/store/'+store.id;
+    setStore(store);
+    navigate(url);
+  };
+
+
   return (
   <div>
   <StyledHeader>샐러드</StyledHeader>
 
         {stores.map((store) => {
-          return <StyledList>
+          return <StyledList onClick={() => handleOrder(store)}>
             <StyledImg></StyledImg>
-            <StoreList store={store} />
+            <StoreList  store={store} />
             </StyledList>;
         })}
 

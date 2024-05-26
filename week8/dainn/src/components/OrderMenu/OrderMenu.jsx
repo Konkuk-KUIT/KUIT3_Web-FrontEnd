@@ -40,7 +40,8 @@ border-radius: 16px;
 opacity: 0px;
 display: flex;
 justify-content: center;
-background: #D0DFFB;
+background: ${props => props.isAble ? '#1514db' : '#D0DFFB'};
+
 `
 
 const StyledP = styled.div`
@@ -48,6 +49,7 @@ const StyledP = styled.div`
     color: #FFFFFF;
 
 `
+
 
 const OrderMenu = () => {
     const store = useCartStore((state) => state.store);
@@ -57,10 +59,12 @@ const OrderMenu = () => {
     const deliveryFee = store.deliveryFee;
 //    const totalPrice = useCartStore((state) => state.totalPrice);
 
+    const isOverMin = totalPrice >= store.minDeliveryPrice;
+
     return (
       <StyledOrder>
         <StyledMin>최소 주문 금액 {store.minDeliveryPrice}원</StyledMin>
-        <StyledButton type="button">
+        <StyledButton isAble={isOverMin} type="button">
             <StyledP>{totalPrice+deliveryFee}원 결제하기</StyledP>
         </StyledButton>
       </StyledOrder>

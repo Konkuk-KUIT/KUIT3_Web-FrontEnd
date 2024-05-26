@@ -95,8 +95,28 @@ const StyledText = styled.div`
 const MenuItem = ({ menu }) => {
   console.log("menu");
   const addMenu = useCartStore((state) => state.addMenu);
+  const store = useCartStore((state) => state.store);
+  const storeId = useCartStore((state) => state.storeId);
+
+  const setStoreId = useCartStore((state) => state.setStoreId);
+
   const handleAddMenu = () => {
-    addMenu(menu);
+    console.log("담기 ---- : ", storeId);
+
+
+    if(storeId == -1){
+      setStoreId(store.id);
+      addMenu(menu);
+    } else if (storeId != store.id){  // alert
+      const confirmMessage = "장바구니를 비우고 다시 채우시겠습니까?";
+      if (window.confirm(confirmMessage)) { // 확인을 클릭한 경우
+        setStoreId(store.id);
+        addMenu(menu);
+      }
+    }else {
+      addMenu(menu);
+    }
+
   };
 
   return (

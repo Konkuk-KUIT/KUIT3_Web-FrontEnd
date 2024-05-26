@@ -29,7 +29,6 @@ const Cart = () => {
 
 
   const StyledStoreName = styled.div`
-  width: 93px;
   height: 20px;
   margin-top: 26px;
   margin-left: 24px;
@@ -46,7 +45,7 @@ const Cart = () => {
   `
 
   const StyledMenu = styled.div`
-  width: 390px;
+
   height: 110px;
   top: 58px;
   gap: 0px;
@@ -184,6 +183,31 @@ const StyledImg = styled.img`
   text-align: right;
   color: #4E5968;
   `
+    
+  const StyleCartHeader= styled.div`
+  width: 390px;
+  display:flex;
+  justify-content: space-between;
+  
+
+  `
+  const StyleAlarm= styled.div`
+
+  height: 18px;
+  margin-top: 27px;
+  margin-left: 147px;
+  gap: 0px;
+  opacity: 0px;
+
+
+  font-family: Pretendard;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 17.9px;
+  text-align: right;
+  color: #F04452;
+
+  `
 
 
 
@@ -191,8 +215,11 @@ const StyledImg = styled.img`
   return (
     <StyledDiv>
       <StyledOrderInfo>
-        <StyledStoreName>{store.name}</StyledStoreName>
-      
+        <StyleCartHeader>
+          <StyledStoreName>{store.name}</StyledStoreName>
+
+          { totalPrice < store.minDeliveryPrice ? <StyleAlarm>최고 금액 미달</StyleAlarm> : null}
+        </StyleCartHeader>
           {menus.map((menu, index) => (
             <Styledul>
             <StyledImg></StyledImg>
