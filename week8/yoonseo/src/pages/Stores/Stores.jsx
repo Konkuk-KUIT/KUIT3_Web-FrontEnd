@@ -91,6 +91,11 @@ const StyledDetail = styled.div`
   text-decoration: none;
 `;
 
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+`;
+
 const Stores = () => {
   return (
     <>
@@ -103,7 +108,7 @@ const Stores = () => {
 
         <StyledCategory>샐러드</StyledCategory>
         {stores.map((store) => (
-          <Link key={store.id} to={`/store/${store.id}`}><StoreItem store={store} /></Link>
+          <StyledLink key={store.id} to={`/store/${store.id}`}><StoreItem store={store} /></StyledLink>
         ))}
       </div>
 
