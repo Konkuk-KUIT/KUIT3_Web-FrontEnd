@@ -139,9 +139,9 @@ const Store = () => {
         <StyledReview>리뷰{store.reviewCnt.toLocaleString()}</StyledReview>
       </StyledRating>
 
-      <StyledDescription>결제방법   토스결제만 현장결제 안됨</StyledDescription>
-      <StyledDescription>최소주문   13,000원</StyledDescription>
-      <StyledDescription>배달시간   약 15-25분</StyledDescription>
+      <StyledDescription>결제방법  토스결제만 현장결제 안됨</StyledDescription>
+      <StyledDescription>최소주문  {store.minDeliveryPrice.toLocaleString()}원</StyledDescription>
+      <StyledDescription>배달시간  약 {store.minDeliveryTime}-{store.maxDeliveryTime}분</StyledDescription>
 
       <StyledLine />
 
