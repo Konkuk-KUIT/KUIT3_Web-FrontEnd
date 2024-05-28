@@ -1,5 +1,47 @@
 import React from "react";
 import useCartStore from "../../store/useCartStore";
+import styled from "styled-components";
+import ic_menu_circle from "../../assets/ic_menu_circle.svg"
+
+const StyledMenuItem = styled.div`
+  width: 100%;
+  heigth: 100px;
+  display: flex;
+  justify-content: space-between;
+`;
+
+const StyledDescription = styled.div`
+  
+`;
+
+const StyledImg = styled.div`
+
+`;
+
+const StyledDetail = styled.div`
+
+`;
+
+const StyledName = styled.div`
+
+`;
+
+const StyledPrice = styled.div`
+
+`;
+
+const StyledIngredients = styled.div`
+
+`;
+
+const StyledAddButton = styled.div`
+  color: #FFFFFF;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 15.51px;
+  text-align: center;
+  background: #3182F6;
+`;
 
 const MenuItem = ({ menu }) => {
   const addMenu = useCartStore((state) => state.addMenu);
@@ -8,14 +50,20 @@ const MenuItem = ({ menu }) => {
   };
 
   return (
-    <div>
-      <h3>{menu.name}</h3>
-      <span>{menu.price}</span>
-      <p>{menu.ingredients}</p>
-      <button onClick={handleAddMenu} type="button">
-        담기
-      </button>
-    </div>
+    <StyledMenuItem>
+
+      <StyledDescription>
+        <StyledImg src={ic_menu_circle} alt="menu_image"></StyledImg>
+        <StyledDetail>
+          <StyledName>{menu.name}</StyledName>
+          <StyledPrice>{menu.price}</StyledPrice>
+          <StyledIngredients>{menu.ingredients}</StyledIngredients>
+        </StyledDetail>
+      </StyledDescription>
+
+      <StyledAddButton onClick={handleAddMenu} type="button">담기</StyledAddButton>
+      
+    </StyledMenuItem>
   );
 };
 
