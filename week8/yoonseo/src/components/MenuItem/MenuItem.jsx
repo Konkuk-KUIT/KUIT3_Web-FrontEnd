@@ -35,7 +35,7 @@ const StyledName = styled.div`
   display: flex;
 `;
 
-const StyledBest = styled.div`
+const StyledIsBest = styled.div`
   margin-left: 6px;
   color: #3182F6;
   font-size: 17px;
@@ -92,7 +92,7 @@ const MenuItem = ({ menu }) => {
       <StyledDescription>
         <StyledImg src={ic_menu_circle} alt="menu_image"></StyledImg>
         <StyledDetail>
-          <StyledName>{menu.name}{menu.isBest && <StyledBest>BEST</StyledBest>}</StyledName>
+          <StyledName>{menu.name}{menu.isBest && <StyledIsBest>BEST</StyledIsBest>}</StyledName>
           <StyledPrice>{menu.price.toLocaleString()}원</StyledPrice>
           <StyledIngredients>{menu.ingredients}</StyledIngredients>
         </StyledDetail>
