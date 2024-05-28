@@ -121,18 +121,18 @@ const StoreItem = ({ store }) => {
   return (
     <StyledStoreItem>
 
-    <StyledImage src={ic_store_rect} alt="store_image"></StyledImage>
+      <StyledImage src={ic_store_rect} alt="store_image"></StyledImage>
 
-    <StyledDescription>
-      <StyledName>{store.id}위</StyledName>
-      <StyledName>{store.name}</StyledName>
-      <StyledDetail>
-        <img src={ic_star_gray} alt="star"/> {store.rate} ({store.reviewCnt.toLocaleString()})
-      </StyledDetail>
-      <StyledDetail>{store.minDeliveryTime}분~{store.maxDeliveryTime}분 ∙ 배달비 {store.deliveryFee.toLocaleString()}원</StyledDetail>
-    </StyledDescription>
+      <StyledDescription>
+        <StyledName>{store.id}위</StyledName>
+        <StyledName>{store.name}</StyledName>
+        <StyledDetail>
+          <img src={ic_star_gray} alt="star"/> {store.rate} ({store.reviewCnt.toLocaleString()})
+        </StyledDetail>
+        <StyledDetail>{store.minDeliveryTime}분~{store.maxDeliveryTime}분 ∙ 배달비 {store.deliveryFee.toLocaleString()}원</StyledDetail>
+      </StyledDescription>
 
-  </StyledStoreItem>
+    </StyledStoreItem>
   );
 };
 
