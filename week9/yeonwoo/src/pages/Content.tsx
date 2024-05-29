@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import DarkModeToggle from '../components/atoms/DarkModeToggle';
 
@@ -9,15 +9,20 @@ import SearchHeader from '../components/organisms/Appbar';
 import { useFeedDataQuery } from '../apis/fetchFeedsData';
 
 import useContentEditMutation from '../apis/useContentEditMutation';
-import ScrollToTop from './../components/atoms/ScrollToTop';
+import useContentDeleteMutation from '../apis/useContentDeleteMutation';
+import ScrollToTop from '../components/atoms/ScrollToTop';
 import ContentEditing from '../components/organisms/ContentEditing';
 import ContentView from '../components/organisms/ContentView';
+import useContentLikeMutation from '../apis/useContentLikeMutation';
 
 const Content: React.FC = () => {
   // useParams를 통하여 uri에 있는 id를 가져옴
   const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
 
   const contentEditMutation = useContentEditMutation(id!);
+  const contentDeleteMutation = useContentDeleteMutation(id!);
+  const likeMutation = useContentLikeMutation();  // 좋아요 뮤테이션 훅
 
   // GET
   const { feedData, isFeedDataLoading } = useFeedDataQuery(id!);
@@ -73,7 +78,34 @@ const Content: React.FC = () => {
   if (feedData == null) {
     return <Loading />;
   }
-
+  
+  const handleContentDeleteClick = () => {
+    if (id) {
+      contentDeleteMutation.mutate(id, {
+        onSuccess: () => {
+          navigate('/'); // 삭제 성공 후 페이지 리다이렉션
+        }
+      });
+    }
+  };
+  
+  const handleLikeClick = () => {
+    if (id && feedData) {
+      likeMutation.mutate({
+        id: id,
+        currentLikeCount: feedData.likeCount
+      }, {
+        onSuccess: () => {
+          console.log('Successfully liked the content.');
+        },
+        onError: (error) => {
+          console.error('Failed to like the content:', error);
+        }
+      });
+    }
+  };
+  
+  
   return (
     <div className="font-pretendard min-h-screen w-screen bg-white dark:bg-zinc-700 text-black dark:text-white flex flex-col">
       <SearchHeader />
@@ -94,9 +126,11 @@ const Content: React.FC = () => {
             author={feedData.author}
             time={feedData.time}
             body={feedData.body}
+            id={feedData.id}
             likeCount={feedData.likeCount}
             handleEditClick={handleEditClick}
-            // handleContentDeleteClick = {handleContentDeleteClick} <- 미션 구현
+            handleContentDeleteClick = {handleContentDeleteClick}
+            handleLikeClick={handleLikeClick}
           />
         )}
       </div>

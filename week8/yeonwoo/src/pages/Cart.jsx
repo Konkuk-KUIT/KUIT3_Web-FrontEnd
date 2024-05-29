@@ -229,6 +229,7 @@ const Cart = () => {
           </div>
         )}
       </OrderItemTitleBox>
+      
       <OrderItemList>
         {distinctOrderItems.map((menu) => (
           <div key={menu.id}>

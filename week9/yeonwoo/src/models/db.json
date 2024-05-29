@@ -1,0 +1,26 @@
+{
+  "code": 1000,
+  "status": 200,
+  "message": "요청에 성공하였습니다.",
+  "result": [
+    {
+      "id": "cdc4f32f-def9-a5ac-100f-8c77514a014b",
+      "title": "냥냥냥",
+      "body": "먕먕먕",
+      "time": "2024-05-28 15:34:43",
+      "commentCount": 0,
+      "author": "작성자",
+      "likeCount": 7
+    },
+    {
+      "id": "82aea893-d21f-27d7-ed22-9617216b6816",
+      "title": "안녕하세요",
+      "body": "방가방가",
+      "time": "2024-05-29 16:11:23",
+      "commentCount": 0,
+      "author": "작성자",
+      "likeCount": 0
+    }
+  ],
+  "messages": "요청에 성공하였습니다."
+}
