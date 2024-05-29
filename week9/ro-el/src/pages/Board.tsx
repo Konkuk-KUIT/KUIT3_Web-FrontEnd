@@ -17,13 +17,13 @@ const Board = () => {
   }
 
   return (
-    <div className="font-pretendard min-h-screen w-screen bg-white dark:bg-zinc-700 flex flex-col"> 
+    <div className="font-pretendard min-h-screen w-screen bg-white dark:bg-zinc-700 flex flex-col"> //tailwind css
       <SearchHeader />
       <div className="h-64  flex-shrink-0">
         <BoardIntroduce />
       </div>
       <div className="px-8">
-        <div>
+        <div> 
           <BoardFilterLine />
         </div>
         <hr className="border-gray-300 dark:border-white" />

@@ -6,7 +6,7 @@ import instance from './instance';
 const useContentSubmitMutation = () => {
   const queryClient = useQueryClient();
 
-  const mutation = useMutation({
+  const mutation = useMutation({ //GET을 제외하고는 useMutation 사용
     mutationFn: async (newData: CardResult) => {
       return await instance.post('/result', newData);
     },
