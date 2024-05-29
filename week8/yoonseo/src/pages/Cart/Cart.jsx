@@ -6,6 +6,8 @@ import ic_arrow_back from "../../assets/ic_arrow_back.svg";
 import ic_status_bar_time from "../../assets/ic_status_bar_time.svg";
 import ic_status_bar_util from "../../assets/ic_status_bar_util.svg";
 import ic_alert from "../../assets/ic_alert.svg";
+import ic_store_rect from "../../assets/ic_store_rect.svg";
+import ic_arrow_detail from "../../assets/ic_arrow_detail.svg";
 
 const StyledStatusBar = styled.div`
   width: 100%;
@@ -53,10 +55,11 @@ const StyledCancelButton = styled.div`
   margin-right: 15px;
 `;
 
-const StyledLine = styled.div`
+const StyledBoldLine = styled.div`
   width: 100%;
   height: 16px;
   background-color: #F2F4F6;
+  margin-bottom: 16px;
 `;
 
 const StyledName = styled.div`
@@ -67,7 +70,7 @@ const StyledName = styled.div`
   line-height: 20.29px;
   text-align: left;
   margin-left: 24px;
-  margin-top: 26px;
+  margin-top: 10px;
 `;
 
 const StyledContainer = styled.div`
@@ -75,6 +78,7 @@ const StyledContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 12px;
 `;
 
 const StyledAlertContainer = styled.div`
@@ -89,22 +93,205 @@ const StyledAlert = styled.div`
   font-weight: 500;
   line-height: 17.9px;
   text-align: right;
-  margin-top: 26px;
+  margin-top: 10px;
 `;
 
 const StyledAlertImage = styled.img`
   width: 13px;
   height: 13px;
-  margin-top: 26px;
+  margin-top: 10px;
   margin-left: 6px;
   margin-right: 25px;
 `;
+
+const StyledCartItem = styled.div`
+  width: 100%;
+  heigth: 110px;
+  display: flex;
+  justify-content: space-between;
+`;
+
+const StyledDescription = styled.div`
+  display: flex;
+  width: 100%;
+  font-family: 'Pretendard', sans-serif;
+`;
+
+const StyledImg = styled.img`
+  width: 54px;
+  height: 54px;
+  margin-left: 24px;
+  margin-top: 19px;
+`;
+
+const StyledDetail = styled.div`
+  margin-top: 16px;
+  margin-left: 16px;
+  flex-grow: 1;
+`;
+
+const StyledMenuName = styled.div`
+  color: #333D4B;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 20.29px;
+  text-align: left;
+`;
+
+const StyledPrice = styled.div`
+  margin-top: 5px;
+  margin-bottom: 16px;
+  color: #6B7684;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 15.51px;
+  text-align: left;
+`;
+
+const StyledIngredients = styled.div`
+  margin-top: 5px;
+  color: #6B7684;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 15.51px;
+  text-align: left;
+`;
+
+const StyledCount = styled.div`
+  color: #6B7684;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 17.9px;
+  text-align: left;
+  margin-top: 46px;
+`;
+
+const StyledDetailButton = styled.img`
+  width: 16px;
+  height: 16px;
+  margin-top: 48px;
+  margin-left: 14px;
+  margin-right: 20px;
+`;
+
+const StyledMore = styled.div`
+  margin-top: 19px;
+  margin-bottom: 20px;
+  color: #3182F6;
+  font-family: 'Pretendard', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+  cursor: pointer;
+`;
+
+const StyledLine = styled.div`
+  width: 100%;
+  height: 1px;
+  background-color: #E5E8EB;
+`;
+
+const StyledCalculation = styled.div`
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  font-family: 'Pretendard', sans-serif;
+  padding: 9px 23px 9px 24px;
+`;
+
+const StyledCalName = styled.div`
+  color: #8B95A1;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 20.29px;
+  text-align: left;
+`;
+
+const StyledCalPrice = styled.div`
+  color: #505967;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 20.29px;
+  text-align: right;
+`;
+
+const StyledTotal = styled.div`
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  height: 54px;
+  font-family: 'Pretendard', sans-serif;
+  padding: 16px 23px 18px 24px;
+`;
+
+const StyledTotalName = styled.div`
+  color: #4E5968;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 20.29px;
+  text-align: left;
+`;
+
+const StyledTotalPrice = styled.div`
+  color: #4E5968;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 20.29px;
+  text-align: right;
+`;
+
+const StyledFooterContainer = styled.div`
+  position: fixed;
+  bottom: 56px;
+  width: 100%;
+`;
+
+const StyledMinDelivery = styled.div`
+  width: 100%;
+  color: #6B7684;
+  font-family: 'Pretendard', sans-serif;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 20.29px;
+  text-align: center;
+`;
+
+const StyledTotalButton = styled.div`
+  width: calc(100% - 40px);
+  height: 56px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: ${(props) => props.disabled ? '#D0DFFB' : '#3182F6'};
+  border-radius: 16px;
+  margin-top: 19px;
+  margin-left: 20px;
+  margin-right: 20px;
+  color: #FFFFFF;
+  font-family: 'Pretendard', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19.09px;
+`;
+
 
 const Cart = () => {
   const menus = useCartStore((state) => state.menus);
   const store = useCartStore((state) => state.store);
 
-  const totalPrice = menus.reduce((acc, cur) => acc + cur.price, 0) + store.deliveryFee;
+  const totalPrice = menus.reduce((acc, cur) => acc + cur.price, 0) + store?.deliveryFee;
+  const meetsMinPrice = totalPrice >= store?.minDeliveryPrice;
+
+  const cartItems = menus.reduce((acc, item) => {
+    const presentItems = acc.find((menu) => menu.id === item.id);
+    if (presentItems) {
+      presentItems += 1;
+    } else {
+      acc.push({ ...item, count: 1});
+    }
+    return acc;
+  }, []);
 
   return (
     <div>
@@ -118,16 +305,66 @@ const Cart = () => {
         <StyledCancelButton>주문취소</StyledCancelButton>
       </StyledAppBar>
 
-      <StyledLine />
+      <StyledBoldLine />
 
       <StyledContainer>
         <StyledName>{store.name}</StyledName>
-        <StyledAlertContainer>
-          <StyledAlert>최소금액 미달</StyledAlert>
-          <StyledAlertImage src={ic_alert} alt="alert"></StyledAlertImage>
-        </StyledAlertContainer>
+        {!meetsMinPrice && (
+          <StyledAlertContainer>
+            <StyledAlert>최소금액 미달</StyledAlert>
+            <StyledAlertImage src={ic_alert} alt="alert"></StyledAlertImage>
+          </StyledAlertContainer>
+        )}
       </StyledContainer>
-      
+      {cartItems.map((menu) =>(
+        <CartItem key={menu.id} menu={menu} />
+      ))}
+
+      <StyledLine />
+
+      <StyledMore>더 담기 +</StyledMore>
+
+      <StyledBoldLine />
+
+      <StyledCalculation>
+        <StyledCalName>주문금액</StyledCalName>
+        <StyledCalPrice>{menus.reduce((acc, cur) => acc + cur.price, 0).toLocaleString()}원</StyledCalPrice>
+      </StyledCalculation>
+
+      <StyledCalculation>
+        <StyledCalName>배달요금</StyledCalName>
+        <StyledCalPrice>{store?.deliveryFee.toLocaleString()}원</StyledCalPrice>
+      </StyledCalculation>
+
+      <StyledTotal>
+        <StyledTotalName>총 결제금액</StyledTotalName>
+        <StyledTotalPrice>{totalPrice.toLocaleString()}원</StyledTotalPrice>
+      </StyledTotal>
+
+      <StyledFooterContainer>  
+        <StyledMinDelivery>최소 주문금액 {store?.minDeliveryPrice.toLocaleString()}원</StyledMinDelivery>
+        <StyledTotalButton type="button" disabled={!meetsMinPrice}>{totalPrice.toLocaleString()}원 결제하기</StyledTotalButton>
+      </StyledFooterContainer>
+    </div>
+  );
+};
+
+const CartItem = ({ menu }) => {
+  return (
+    <div>
+      <StyledCartItem>
+        <StyledDescription>
+          <StyledImg src={ic_store_rect} alt="menu_image"></StyledImg>
+          <StyledDetail>
+            <StyledMenuName>{menu.name}</StyledMenuName>
+            <StyledIngredients>{menu.ingredients}</StyledIngredients>
+            <StyledPrice>{menu.price.toLocaleString()}원</StyledPrice>
+          </StyledDetail>
+          <StyledCount>{menu.count}개</StyledCount>
+          <StyledDetailButton src={ic_arrow_detail} alt="detail_button"></StyledDetailButton>
+        </StyledDescription>
+
+      </StyledCartItem>
     </div>
   );
 };
