@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import useCartStore from "../../store/useCartStore";
+import { useNavigate } from "react-router-dom";
 
 import ic_arrow_back from "../../assets/ic_arrow_back.svg";
 import ic_status_bar_time from "../../assets/ic_status_bar_time.svg";
@@ -293,6 +294,13 @@ const Cart = () => {
     return acc;
   }, []);
 
+  const navigate = useNavigate();
+  const goBack = () => {
+    if (store) {
+      navigate(`../../store/${store.id}`);
+    }
+  };
+
   return (
     <div>
       <StyledStatusBar>
@@ -301,7 +309,7 @@ const Cart = () => {
       </StyledStatusBar>
 
       <StyledAppBar>
-        <StyledBackButton src={ic_arrow_back} alt="back_button"></StyledBackButton>
+        <StyledBackButton onClick={goBack} src={ic_arrow_back} alt="back_button"></StyledBackButton>
         <StyledCancelButton>주문취소</StyledCancelButton>
       </StyledAppBar>
 
