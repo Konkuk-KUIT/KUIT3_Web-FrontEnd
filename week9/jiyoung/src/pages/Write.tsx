@@ -1,3 +1,5 @@
+// 글 작성 페이지 ('/write')
+
 import React, { useState } from 'react';
 import SearchHeader from '../components/organisms/Appbar';
 import SendIcon from '@mui/icons-material/Send';

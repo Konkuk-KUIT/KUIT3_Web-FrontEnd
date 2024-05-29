@@ -1,3 +1,5 @@
+// 글 작성 후 제출 시 POST mutation hook
+
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { CardResult } from '../type/card';
 import instance from './instance';

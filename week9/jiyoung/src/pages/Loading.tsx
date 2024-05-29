@@ -1,3 +1,5 @@
+// 로딩화면 페이지(‘/loading’)
+
 import { PacmanLoader } from 'react-spinners';
 
 const Loading = () => {

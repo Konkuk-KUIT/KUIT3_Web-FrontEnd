@@ -1,3 +1,5 @@
+// axios instance 생성 (json-server baseURL 설정)
+
 import axios from 'axios';
 
 // axios 인스턴스 생성

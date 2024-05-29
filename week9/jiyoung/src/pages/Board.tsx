@@ -1,3 +1,5 @@
+// 맨 처음 접속하면 나오는 온보딩 페이지, 게시물 표시 (‘/')
+
 import BoardIntroduce from '../components/organisms/BoardIntroduce';
 import BoardFilterLine from '../components/organisms/BoardFilterLine';
 import DarkModeToggle from '../components/atoms/DarkModeToggle';

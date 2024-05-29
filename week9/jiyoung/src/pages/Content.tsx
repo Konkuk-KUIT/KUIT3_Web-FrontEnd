@@ -1,3 +1,5 @@
+// 글 상세 확인 페이지 (‘/content/:id’)
+
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
@@ -63,7 +65,7 @@ const Content: React.FC = () => {
   // 수정 버튼을 눌렀을 때
   const handleEditClick = () => {
     if (feedData !== undefined) {
-      setIsEditing(true);
+      setIsEditing(true); // isEditing 값(수정 여부 상태값)을 true로 변경
       setEditedTitle(feedData.title);
       setEditedBody(feedData.body);
     }

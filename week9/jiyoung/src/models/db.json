@@ -29,6 +29,15 @@
       "commentCount": 0,
       "author": "작성자",
       "likeCount": 0
+    },
+    {
+      "id": "6d68c115-e466-7e6b-aaac-70385d19ac8a",
+      "title": "테스트 05292118",
+      "body": "테스트 05292118 본문입니다. (수정)",
+      "time": "2024-05-29 21:18:31",
+      "commentCount": 0,
+      "author": "작성자",
+      "likeCount": 0
     }
   ],
   "messages": "요청에 성공하였습니다."

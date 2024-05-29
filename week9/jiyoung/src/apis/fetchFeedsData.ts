@@ -1,3 +1,5 @@
+// 데이터 조회 API 함수들, GET 함수들
+
 import instance from './instance';
 import { CardResult } from '../type/card';
 import { useQuery } from '@tanstack/react-query';
@@ -19,7 +21,7 @@ export const fetchFeedData = async (id: string) => {
 // 피드들의 데이터 GET
 export const useFeedsDataQuery = () => {
   const { data: feedsData, isLoading: isFeedsDataLoading } = useQuery({
-    // 캐시에서 데이터를 찾는 데 사용됨
+    // queryKey => 캐시에서 데이터를 찾는 데 사용됨
     // 같은 queryKey를 가지고 있으면 같은 캐시 데이터를 공유
     // queryKey가 변경될 때마다 refetching이 일어남
     queryKey: ['fetchFeedsData'],

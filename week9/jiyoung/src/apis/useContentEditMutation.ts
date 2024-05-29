@@ -1,3 +1,5 @@
+// 글 수정 완료 후 제출 시 PATCH mutation hook
+
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import instance from './instance';
 import { CardResult } from '../type/card';
