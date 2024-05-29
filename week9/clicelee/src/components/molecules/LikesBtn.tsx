@@ -10,7 +10,7 @@ const LikesBtn: React.FC<Props> = ({ likeCount }) => {
   const [likeCountState, setLikeCountState] = useState<number>(likeCount);
 
   return (
-    <div className="font-pretendard items-center flex gap-x-2">
+    <div className="items-center flex gap-x-2">
       <div className="cursor-pointer">
         <ThumbUpAltIcon
           width={16}

@@ -19,7 +19,7 @@ const WriteBtn = () => {
         width={16}
         stroke={darkMode ? 'white' : 'black'}
       />
-      <div className="font-pretendard text-bold text-black dark:text-white ">
+      <div className="text-bold text-black dark:text-white ">
         글쓰기
       </div>
     </button>

@@ -29,6 +29,15 @@
       "commentCount": 0,
       "author": "작성자",
       "likeCount": 0
+    },
+    {
+      "id": "5c73c4e7-18f4-0699-5d1c-9f42073d7dd2",
+      "title": "히히",
+      "body": "json-server --watch src/models/db.json --port 8080  ",
+      "time": "2024-05-29 17:35:29",
+      "commentCount": 0,
+      "author": "작성자",
+      "likeCount": 0
     }
   ],
   "messages": "요청에 성공하였습니다."
