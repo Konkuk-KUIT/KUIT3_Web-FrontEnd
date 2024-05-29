@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import DarkModeToggle from '../components/atoms/DarkModeToggle';
 
@@ -9,6 +10,7 @@ import SearchHeader from '../components/organisms/Appbar';
 import { useFeedDataQuery } from '../apis/fetchFeedsData';
 
 import useContentEditMutation from '../apis/useContentEditMutation';
+import useContentDeleteMutation from '../apis/useContentDeleteMutation';
 import ScrollToTop from './../components/atoms/ScrollToTop';
 import ContentEditing from '../components/organisms/ContentEditing';
 import ContentView from '../components/organisms/ContentView';
@@ -18,6 +20,9 @@ const Content: React.FC = () => {
   const { id } = useParams<{ id: string }>();
 
   const contentEditMutation = useContentEditMutation(id!);
+  const contentDeleteMutation = useContentDeleteMutation(id!);
+
+  const navigate = useNavigate();
 
   // GET
   const { feedData, isFeedDataLoading } = useFeedDataQuery(id!);
@@ -74,6 +79,13 @@ const Content: React.FC = () => {
     return <Loading />;
   }
 
+  const handleContentDeleteClick = () => {
+    if (id) {
+      contentDeleteMutation.mutate(id);
+      navigate("/");
+    }
+  };
+
   return (
     <div className="font-pretendard min-h-screen w-screen bg-white dark:bg-zinc-700 text-black dark:text-white flex flex-col">
       <SearchHeader />
@@ -96,7 +108,7 @@ const Content: React.FC = () => {
             body={feedData.body}
             likeCount={feedData.likeCount}
             handleEditClick={handleEditClick}
-            // handleContentDeleteClick = {handleContentDeleteClick} <- 미션 구현
+            handleContentDeleteClick = {handleContentDeleteClick}
           />
         )}
       </div>

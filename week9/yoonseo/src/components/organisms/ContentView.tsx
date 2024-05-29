@@ -24,7 +24,7 @@ interface Props {
   handleEditClick: () => void;
 
   // 삭제 버튼을 눌렀을 때
-  // handleContentDeleteClick <- 미션 구현
+  handleContentDeleteClick: () => void;
 
   // 좋아요 버튼을 눌렀을 때
   // handleLikeClick <- 미션 구현
@@ -37,6 +37,7 @@ const ContentView: React.FC<Props> = ({
   body,
   likeCount,
   handleEditClick,
+  handleContentDeleteClick
 }) => {
   return (
     <>
@@ -58,7 +59,7 @@ const ContentView: React.FC<Props> = ({
           </IconButton>
 
           {/* 삭제 버튼 미션 구현*/}
-          <IconButton aria-label="delete" onClick={() => {}}>
+          <IconButton aria-label="delete" onClick={handleContentDeleteClick}>
             <DeleteIcon sx={{ color: 'black' }} className="dark:text-white" />
           </IconButton>
         </div>

@@ -5,3 +5,26 @@
 // 1. apis/useContentDeleteMutation.ts 구현
 // 2. pages/Content.tsx에서 handleContentDeleteClick 구현
 // 3. organisms/ContentView.tsx도 코드 추가
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import instance from './instance';
+
+const useContentDeleteMutation = (id: string) => {
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation({
+    mutationFn: async (id: string) => {
+      const response = await instance.delete(`result/${id}`);
+      return response;
+    },
+
+    onSuccess: () => {
+      console.log('deleteCompleteMutation success!');
+
+      queryClient.invalidateQueries({ queryKey: ['fetchFeedsData'] });
+    },
+  });
+
+  return mutation;
+};
+
+export default useContentDeleteMutation;
