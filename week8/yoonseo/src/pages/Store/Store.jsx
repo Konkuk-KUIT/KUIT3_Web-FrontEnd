@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 import MenuItem from "../../components/MenuItem/MenuItem";
 import OrderBar from "../../components/OrderBar/OrderBar";
@@ -113,11 +114,19 @@ const Store = () => {
 
   const setStore = useCartStore((state) => state.setStore);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     if (store) {
       setStore(store);
     }
-  }, [store]);
+  }, [store, setStore]);
+
+  const goBack = () => {
+    if (store) {
+      navigate(`../../store`);
+    }
+  };
 
   if (!store) {
     return <div>가게를 찾을 수 없어요 🥺</div>;
@@ -130,7 +139,7 @@ const Store = () => {
         <StyledStatusBarUtil src={ic_status_bar_util} alt="status_bar_util"></StyledStatusBarUtil>
       </StyledStatusBar>
 
-      <StyledBackButton src={ic_arrow_back} alt="back_button"></StyledBackButton>
+      <StyledBackButton onClick={goBack} src={ic_arrow_back} alt="back_button"></StyledBackButton>
 
       <StyledName>{store.name}</StyledName>
 

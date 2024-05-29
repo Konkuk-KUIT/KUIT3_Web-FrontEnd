@@ -284,7 +284,7 @@ const Cart = () => {
   const totalPrice = menus.reduce((acc, cur) => acc + cur.price, 0) + store?.deliveryFee;
   const meetsMinPrice = totalPrice >= store?.minDeliveryPrice;
 
-  const cartItems = menus.reduce((acc, item) => {
+  let cartItems = menus.reduce((acc, item) => {
     const presentItems = acc.find((menu) => menu.id === item.id);
     if (presentItems) {
       presentItems += 1;
@@ -325,7 +325,7 @@ const Cart = () => {
         )}
       </StyledContainer>
       {cartItems.map((menu) =>(
-        <CartItem key={menu.id} menu={menu} />
+        <CartItem key={menu.id} menu={menu} count={menu.count}/>
       ))}
 
       <StyledLine />
@@ -357,7 +357,7 @@ const Cart = () => {
   );
 };
 
-const CartItem = ({ menu }) => {
+const CartItem = ({ menu, count }) => {
   return (
     <div>
       <StyledCartItem>
@@ -368,7 +368,7 @@ const CartItem = ({ menu }) => {
             <StyledIngredients>{menu.ingredients}</StyledIngredients>
             <StyledPrice>{menu.price.toLocaleString()}원</StyledPrice>
           </StyledDetail>
-          <StyledCount>{menu.count}개</StyledCount>
+          <StyledCount>{count}개</StyledCount>
           <StyledDetailButton src={ic_arrow_detail} alt="detail_button"></StyledDetailButton>
         </StyledDescription>
 
