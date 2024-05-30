@@ -54,6 +54,7 @@ const ContentView: React.FC<Props> = ({
     author: author,
     likeCount: likeCount
   };
+  
 
   return (
     <>
