@@ -51,9 +51,7 @@ const ContentView: React.FC<Props> = ({
       </div>
       <div className="flex justify-between mt-10">
         {/* feedData의 likeCount 전달 */}
-        <div onClick={handleLikeClick}>
-          <LikesBtn likeCount={likeCount} />
-        </div>
+        <LikesBtn likeCount={likeCount} onClick={handleLikeClick} />
 
         <div className="flex gap-x-2 whitespace-nowrap">
           {/* 수정 버튼 */}
