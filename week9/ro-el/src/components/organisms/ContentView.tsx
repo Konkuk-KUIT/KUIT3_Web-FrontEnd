@@ -1,8 +1,8 @@
-import React from 'react';
-import LikesBtn from '../molecules/LikesBtn';
-import { IconButton } from '@mui/material';
-import BuildIcon from '@mui/icons-material/Build';
-import DeleteIcon from '@mui/icons-material/Delete';
+import React from "react";
+import LikesBtn from "../molecules/LikesBtn";
+import { IconButton } from "@mui/material";
+import BuildIcon from "@mui/icons-material/Build";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 interface Props {
   // 제목
@@ -24,7 +24,7 @@ interface Props {
   handleEditClick: () => void;
 
   // 삭제 버튼을 눌렀을 때
-  // handleContentDeleteClick <- 미션 구현
+  handleContentDeleteClick: () => void;
 
   // 좋아요 버튼을 눌렀을 때
   // handleLikeClick <- 미션 구현
@@ -37,6 +37,7 @@ const ContentView: React.FC<Props> = ({
   body,
   likeCount,
   handleEditClick,
+  handleContentDeleteClick,
 }) => {
   return (
     <>
@@ -54,12 +55,12 @@ const ContentView: React.FC<Props> = ({
         <div className="flex gap-x-2 whitespace-nowrap">
           {/* 수정 버튼 */}
           <IconButton aria-label="fix" onClick={handleEditClick}>
-            <BuildIcon sx={{ color: 'black' }} className="dark:text-white" />
+            <BuildIcon sx={{ color: "black" }} className="dark:text-white" />
           </IconButton>
 
           {/* 삭제 버튼 미션 구현*/}
-          <IconButton aria-label="delete" onClick={() => {}}>
-            <DeleteIcon sx={{ color: 'black' }} className="dark:text-white" />
+          <IconButton aria-label="delete" onClick={handleContentDeleteClick}>
+            <DeleteIcon sx={{ color: "black" }} className="dark:text-white" />
           </IconButton>
         </div>
       </div>

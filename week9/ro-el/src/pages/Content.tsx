@@ -1,23 +1,29 @@
-import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
-import DarkModeToggle from '../components/atoms/DarkModeToggle';
+import DarkModeToggle from "../components/atoms/DarkModeToggle";
 
-import Loading from './Loading';
-import SearchHeader from '../components/organisms/Appbar';
+import Loading from "./Loading";
+import SearchHeader from "../components/organisms/Appbar";
 
-import { useFeedDataQuery } from '../apis/fetchFeedsData';
+import { useFeedDataQuery } from "../apis/fetchFeedsData";
 
-import useContentEditMutation from '../apis/useContentEditMutation';
-import ScrollToTop from './../components/atoms/ScrollToTop';
-import ContentEditing from '../components/organisms/ContentEditing';
-import ContentView from '../components/organisms/ContentView';
+import useContentEditMutation from "../apis/useContentEditMutation";
+import ScrollToTop from "./../components/atoms/ScrollToTop";
+import ContentEditing from "../components/organisms/ContentEditing";
+import ContentView from "../components/organisms/ContentView";
+import useContentDeleteMutation from "../apis/useContentDeleteMutation";
+import useContentLikeMutation from "../apis/useContentLikeMutation";
 
 const Content: React.FC = () => {
+  const navigate = useNavigate();
+
   // useParams를 통하여 uri에 있는 id를 가져옴
   const { id } = useParams<{ id: string }>();
 
   const contentEditMutation = useContentEditMutation(id!);
+  const contentLikeMutation = useContentLikeMutation(id!);
+  const contentDeleteMutation = useContentDeleteMutation(id!);
 
   // GET
   const { feedData, isFeedDataLoading } = useFeedDataQuery(id!);
@@ -26,10 +32,10 @@ const Content: React.FC = () => {
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
   // 수정된 제목
-  const [editedTitle, setEditedTitle] = useState<string>('');
+  const [editedTitle, setEditedTitle] = useState<string>("");
 
   // 수정된 본문
-  const [editedBody, setEditedBody] = useState<string>('');
+  const [editedBody, setEditedBody] = useState<string>("");
 
   // 제목 수정 함수
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -69,6 +75,14 @@ const Content: React.FC = () => {
     }
   };
 
+  //삭제 버튼을 눌렀을 때
+  const handleContentDeleteClick = async () => {
+    if (feedData) {
+      await contentDeleteMutation.mutate();
+      navigate(`/`);
+    }
+  };
+
   // feedData가 undefined일 때를 대비하기 위한 early return
   if (feedData == null) {
     return <Loading />;
@@ -96,7 +110,8 @@ const Content: React.FC = () => {
             body={feedData.body}
             likeCount={feedData.likeCount}
             handleEditClick={handleEditClick}
-            // handleContentDeleteClick = {handleContentDeleteClick} <- 미션 구현
+            handleContentDeleteClick={handleContentDeleteClick}
+            handleLikeClick={handleLikeClick} //<- 미션 구현
           />
         )}
       </div>
