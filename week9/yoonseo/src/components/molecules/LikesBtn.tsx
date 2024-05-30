@@ -3,17 +3,21 @@ import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import useContentLikeMutation from '../../apis/useContentLikeMutation';
 
 interface Props {
+  id: string;
   likeCount: number;
-  handleContentLikeClick: () => void;
 }
 
-const LikesBtn: React.FC<Props> = ({ likeCount, handleContentLikeClick }) => {
+const LikesBtn: React.FC<Props> = ({ id, likeCount }) => {
   // 좋아요 갯수 상태
   const [likeCountState, setLikeCountState] = useState<number>(likeCount);
+  const { mutate } = useContentLikeMutation();
 
   const handleClick = () => {
-    setLikeCountState(prev => prev + 1);
-    handleContentLikeClick();
+    mutate({ id, currentLikeCount: likeCountState }, {
+      onSuccess: () => {
+        setLikeCountState(prev => prev + 1);
+      }
+    });
   };
 
   return (

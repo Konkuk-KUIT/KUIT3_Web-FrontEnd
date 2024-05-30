@@ -90,9 +90,9 @@ const Content: React.FC = () => {
 
   const handleContentLikeClick = () => {
     if (id && feedData) {
-      feedData.likeCount += 1;
+      //feedData.likeCount += 1;
       contentLikeMutation.mutate({
-        id,
+        id: id,
         currentLikeCount: feedData.likeCount,
       });
     }
@@ -114,6 +114,7 @@ const Content: React.FC = () => {
         ) : (
           // 수정 중이 아닐 때
           <ContentView
+            id={id!}
             title={feedData.title}
             author={feedData.author}
             time={feedData.time}
