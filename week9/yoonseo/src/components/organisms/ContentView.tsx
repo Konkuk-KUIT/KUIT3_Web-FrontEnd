@@ -5,8 +5,6 @@ import BuildIcon from '@mui/icons-material/Build';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 interface Props {
-  //id: string;
-
   // 제목
   title: string;
 
@@ -33,7 +31,6 @@ interface Props {
 }
 
 const ContentView: React.FC<Props> = ({
-  //id,
   title,
   author,
   time,
