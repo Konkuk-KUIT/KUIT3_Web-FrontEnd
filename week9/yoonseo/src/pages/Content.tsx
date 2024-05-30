@@ -11,6 +11,7 @@ import { useFeedDataQuery } from '../apis/fetchFeedsData';
 
 import useContentEditMutation from '../apis/useContentEditMutation';
 import useContentDeleteMutation from '../apis/useContentDeleteMutation';
+import useContentLikeMutation from '../apis/useContentLikeMutation';
 import ScrollToTop from './../components/atoms/ScrollToTop';
 import ContentEditing from '../components/organisms/ContentEditing';
 import ContentView from '../components/organisms/ContentView';
@@ -21,6 +22,7 @@ const Content: React.FC = () => {
 
   const contentEditMutation = useContentEditMutation(id!);
   const contentDeleteMutation = useContentDeleteMutation(id!);
+  const contentLikeMutation = useContentLikeMutation();
 
   const navigate = useNavigate();
 
@@ -86,6 +88,16 @@ const Content: React.FC = () => {
     }
   };
 
+  const handleContentLikeClick = () => {
+    if (id && feedData) {
+      feedData.likeCount += 1;
+      contentLikeMutation.mutate({
+        id,
+        currentLikeCount: feedData.likeCount,
+      });
+    }
+  };
+
   return (
     <div className="font-pretendard min-h-screen w-screen bg-white dark:bg-zinc-700 text-black dark:text-white flex flex-col">
       <SearchHeader />
@@ -109,6 +121,7 @@ const Content: React.FC = () => {
             likeCount={feedData.likeCount}
             handleEditClick={handleEditClick}
             handleContentDeleteClick = {handleContentDeleteClick}
+            handleContentLikeClick = {handleContentLikeClick}
           />
         )}
       </div>

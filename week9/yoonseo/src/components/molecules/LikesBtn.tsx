@@ -1,13 +1,20 @@
 import React, { useState } from 'react';
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
+import useContentLikeMutation from '../../apis/useContentLikeMutation';
 
 interface Props {
   likeCount: number;
+  handleContentLikeClick: () => void;
 }
 
-const LikesBtn: React.FC<Props> = ({ likeCount }) => {
+const LikesBtn: React.FC<Props> = ({ likeCount, handleContentLikeClick }) => {
   // 좋아요 갯수 상태
   const [likeCountState, setLikeCountState] = useState<number>(likeCount);
+
+  const handleClick = () => {
+    setLikeCountState(prev => prev + 1);
+    handleContentLikeClick();
+  };
 
   return (
     <div className="font-pretendard items-center flex gap-x-2">
@@ -17,7 +24,7 @@ const LikesBtn: React.FC<Props> = ({ likeCount }) => {
           height={16}
           sx={{ color: 'black' }}
           className="dark:text-white"
-          onClick={() => {}}
+          onClick={handleClick}
         />
       </div>
 
