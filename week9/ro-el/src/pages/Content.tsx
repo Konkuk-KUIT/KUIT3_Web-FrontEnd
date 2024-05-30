@@ -83,6 +83,17 @@ const Content: React.FC = () => {
     }
   };
 
+  //좋아요 버튼 눌렀을 때
+  const handleLikeClick = async () => {
+    if (feedData) {
+      await contentLikeMutation.mutate({
+        ...feedData,
+        likeCount: feedData!.likeCount + 1,
+      });
+      
+    }
+  };
+
   // feedData가 undefined일 때를 대비하기 위한 early return
   if (feedData == null) {
     return <Loading />;
