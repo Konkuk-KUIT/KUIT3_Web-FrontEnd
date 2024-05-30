@@ -1,8 +1,10 @@
+// ContentView.tsx
 import React from 'react';
 import LikesBtn from '../molecules/LikesBtn';
 import { IconButton } from '@mui/material';
 import BuildIcon from '@mui/icons-material/Build';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { CardResult } from '../../type/card'; // CardResult 타입 추가
 
 interface Props {
   // 제목
@@ -24,10 +26,12 @@ interface Props {
   handleEditClick: () => void;
 
   // 삭제 버튼을 눌렀을 때
-  // handleContentDeleteClick <- 미션 구현
+  handleContentDeleteClick: (id: string) => Promise<void>;
 
   // 좋아요 버튼을 눌렀을 때
-  // handleLikeClick <- 미션 구현
+  handleLikeClick: () => void; // handleLikeClick 추가
+
+  id: string;
 }
 
 const ContentView: React.FC<Props> = ({
@@ -37,7 +41,20 @@ const ContentView: React.FC<Props> = ({
   body,
   likeCount,
   handleEditClick,
+  handleContentDeleteClick,
+  handleLikeClick,
+  id
 }) => {
+  const cardResult: CardResult = {
+    id: id,
+    title: title,
+    body: body,
+    time: time,
+    commentCount: 0,
+    author: author,
+    likeCount: likeCount
+  };
+
   return (
     <>
       <div className="text-2xl font-bold dark:text-white mt-4">{title}</div>
@@ -48,8 +65,8 @@ const ContentView: React.FC<Props> = ({
         {body}
       </div>
       <div className="flex justify-between mt-10">
-        {/* feedData의 likeCount 전달 */}
-        <LikesBtn likeCount={likeCount} />
+        {/* 좋아요 버튼 */}
+        <LikesBtn likeCount={likeCount} cardResult={cardResult} handleLikeClick={handleLikeClick} /> {/* cardResult 전달 */}
 
         <div className="flex gap-x-2 whitespace-nowrap">
           {/* 수정 버튼 */}
@@ -57,8 +74,8 @@ const ContentView: React.FC<Props> = ({
             <BuildIcon sx={{ color: 'black' }} className="dark:text-white" />
           </IconButton>
 
-          {/* 삭제 버튼 미션 구현*/}
-          <IconButton aria-label="delete" onClick={() => {}}>
+          {/* 삭제 버튼 */}
+          <IconButton aria-label="delete" onClick={() => handleContentDeleteClick(id)}>
             <DeleteIcon sx={{ color: 'black' }} className="dark:text-white" />
           </IconButton>
         </div>

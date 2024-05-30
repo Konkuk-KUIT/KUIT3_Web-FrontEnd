@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import DarkModeToggle from '../components/atoms/DarkModeToggle';
 
@@ -12,13 +12,15 @@ import useContentEditMutation from '../apis/useContentEditMutation';
 import ScrollToTop from '../components/atoms/ScrollToTop';
 import ContentEditing from '../components/organisms/ContentEditing';
 import ContentView from '../components/organisms/ContentView';
+import useContentDeleteMutation from '../apis/useContentDeleteMutation';
 
 const Content: React.FC = () => {
   // useParams를 통하여 uri에 있는 id를 가져옴
   const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
 
   const contentEditMutation = useContentEditMutation(id!);
-
+  const contentDeleteMutation = useContentDeleteMutation(id!);
   // GET
   const { feedData, isFeedDataLoading } = useFeedDataQuery(id!);
 
@@ -69,6 +71,16 @@ const Content: React.FC = () => {
     }
   };
 
+  //미션 구현 1
+const handleContentDeleteClick = async () => {
+  try {
+    await contentDeleteMutation.mutateAsync();
+    navigate('/');
+  } catch (error) {
+    console.error('An error occurred while deleting content:', error)
+  }
+}
+
   // feedData가 undefined일 때를 대비하기 위한 early return
   if (feedData == null) {
     return <Loading />;
@@ -96,7 +108,8 @@ const Content: React.FC = () => {
             body={feedData.body}
             likeCount={feedData.likeCount}
             handleEditClick={handleEditClick}
-            // handleContentDeleteClick = {handleContentDeleteClick} <- 미션 구현
+            handleContentDeleteClick = {handleContentDeleteClick}
+            id={feedData.id}
           />
         )}
       </div>
