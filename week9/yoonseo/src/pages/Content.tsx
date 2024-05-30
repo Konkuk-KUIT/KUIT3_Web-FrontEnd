@@ -96,12 +96,17 @@ const Content: React.FC = () => {
     }
   };
 
-  const handleContentLikeClick = () => {
+  const handleContentLikeClick = async () => {
     if (id) {
       setLikeCount(prev => prev + 1);
-      contentLikeMutation.mutate({
+      await contentLikeMutation.mutate({
         id,
         currentLikeCount: likeCount,
+      },
+      {
+        onSuccess: (data) => {
+          setLikeCount(data.likeCount);
+        },
       });
     }
   };
