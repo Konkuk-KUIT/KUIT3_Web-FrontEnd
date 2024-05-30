@@ -15,6 +15,7 @@ import ScrollToTop from "./../components/atoms/ScrollToTop";
 import ContentEditing from "../components/organisms/ContentEditing";
 import ContentView from "../components/organisms/ContentView";
 import useContentDeleteMutation from "../apis/useContentDeleteMutation";
+import useContentLikeMutation from "../apis/useContentLikeMutation";
 
 const Content: React.FC = () => {
   // useParams를 통하여 uri에 있는 id를 가져옴
@@ -22,6 +23,7 @@ const Content: React.FC = () => {
 
   const contentEditMutation = useContentEditMutation(id!);
   const contentDeleteMutation = useContentDeleteMutation(id!);
+  const contentLikeMutation = useContentLikeMutation(id!);
 
   const navigate = useNavigate();
 
@@ -88,6 +90,13 @@ const Content: React.FC = () => {
     }
   };
 
+  // 좋아요 버튼을 눌렀을 때
+  const handleContentLikeClick = () => {
+    if (id) {
+      contentLikeMutation.mutate();
+    }
+  };
+
   return (
     <div className="font-pretendard min-h-screen w-screen bg-white dark:bg-zinc-700 text-black dark:text-white flex flex-col">
       <SearchHeader />
@@ -111,6 +120,7 @@ const Content: React.FC = () => {
             likeCount={feedData.likeCount}
             handleEditClick={handleEditClick}
             handleContentDeleteClick={handleContentDeleteClick} // 미션 1
+            handleLikeClick={handleContentLikeClick} // 미션 2
           />
         )}
       </div>
