@@ -5,7 +5,7 @@ import BuildIcon from '@mui/icons-material/Build';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 interface Props {
-  id: string;
+  //id: string;
 
   // 제목
   title: string;
@@ -33,7 +33,7 @@ interface Props {
 }
 
 const ContentView: React.FC<Props> = ({
-  id,
+  //id,
   title,
   author,
   time,
@@ -54,7 +54,7 @@ const ContentView: React.FC<Props> = ({
       </div>
       <div className="flex justify-between mt-10">
         {/* feedData의 likeCount 전달 */}
-        <LikesBtn id={id} likeCount={likeCount}/>
+        <LikesBtn likeCount={likeCount} handleContentLikeClick={handleContentLikeClick}/>
 
         <div className="flex gap-x-2 whitespace-nowrap">
           {/* 수정 버튼 */}

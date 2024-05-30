@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
@@ -37,6 +37,14 @@ const Content: React.FC = () => {
 
   // 수정된 본문
   const [editedBody, setEditedBody] = useState<string>('');
+
+  const [likeCount, setLikeCount] = useState<number>(0);
+
+  useEffect(() => {
+    if (feedData) {
+      setLikeCount(feedData.likeCount);
+    }
+  }, [feedData]);
 
   // 제목 수정 함수
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -89,11 +97,29 @@ const Content: React.FC = () => {
   };
 
   const handleContentLikeClick = () => {
-    if (id && feedData) {
-      //feedData.likeCount += 1;
+    // if (id && feedData) {
+    //   //feedData.likeCount += 1;
+    //   contentLikeMutation.mutate({
+    //     id: id,
+    //     currentLikeCount: feedData.likeCount,
+    //   });
+    // }
+
+    // if (id) {
+    //   contentLikeMutation.mutate({
+    //     id,
+    //     currentLikeCount: likeCount,
+    //   }, {
+    //     onSuccess: () => {
+    //       setLikeCount(prev => prev + 1);
+    //     },
+    //   });
+    // }
+    if (id) {
+      setLikeCount(prev => prev + 1);
       contentLikeMutation.mutate({
-        id: id,
-        currentLikeCount: feedData.likeCount,
+        id,
+        currentLikeCount: likeCount,
       });
     }
   };
@@ -114,7 +140,7 @@ const Content: React.FC = () => {
         ) : (
           // 수정 중이 아닐 때
           <ContentView
-            id={id!}
+            //id={id!}
             title={feedData.title}
             author={feedData.author}
             time={feedData.time}
