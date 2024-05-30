@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import DarkModeToggle from "../components/atoms/DarkModeToggle";
@@ -27,6 +27,8 @@ const Content: React.FC = () => {
 
   // GET
   const { feedData, isFeedDataLoading } = useFeedDataQuery(id!);
+
+  useEffect(() => {}, [feedData]);
 
   // 수정 중인지
   const [isEditing, setIsEditing] = useState<boolean>(false);
@@ -90,7 +92,6 @@ const Content: React.FC = () => {
         ...feedData,
         likeCount: feedData!.likeCount + 1,
       });
-      
     }
   };
 

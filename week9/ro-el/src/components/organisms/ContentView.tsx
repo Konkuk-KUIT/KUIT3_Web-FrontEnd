@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import LikesBtn from "../molecules/LikesBtn";
 import { IconButton } from "@mui/material";
 import BuildIcon from "@mui/icons-material/Build";
