@@ -28,8 +28,6 @@ const Content: React.FC = () => {
   // GET
   const { feedData, isFeedDataLoading } = useFeedDataQuery(id!);
 
-  useEffect(() => {}, [feedData]);
-
   // 수정 중인지
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
