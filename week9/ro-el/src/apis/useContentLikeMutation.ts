@@ -13,17 +13,16 @@ const useContentLikeMutation = (id: string) => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
-    mutationFn: async (newData: CardResult) => {
+    mutationFn: async (likeCount: number) => {
       // delete 사용
-      const response = await instance.patch(`result/${id}`, newData);
+      const response = await instance.patch(`result/${id}`, {likeCount: likeCount});
       return response.data;
     },
 
     // mutation이 성공했을 때
     onSuccess: () => {
-      console.log('likeCompleteMutation success!');
-      queryClient.invalidateQueries({ queryKey: ['fetchFeedData'] }); //좋아요 성공하면 쿼리를 다시 가져옴
-
+      console.log("likeCompleteMutation success!");
+      queryClient.invalidateQueries({ queryKey: ["fetchFeedData"] }); //좋아요 성공하면 쿼리를 다시 가져옴
     },
   });
 

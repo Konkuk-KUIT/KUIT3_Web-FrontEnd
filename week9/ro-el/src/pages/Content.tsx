@@ -86,10 +86,7 @@ const Content: React.FC = () => {
   //좋아요 버튼 눌렀을 때
   const handleLikeClick = async () => {
     if (feedData) {
-      await contentLikeMutation.mutate({
-        ...feedData,
-        likeCount: feedData!.likeCount + 1,
-      });
+      await contentLikeMutation.mutate(feedData!.likeCount + 1);
     }
   };
 
