@@ -20,6 +20,9 @@ interface Props {
   // 좋아요 개수
   likeCount: number;
 
+  //글의 id
+  id: string;
+
   // 수정 버튼을 눌렀을 때
   handleEditClick: () => void;
 
@@ -27,10 +30,11 @@ interface Props {
   handleContentDeleteClick: () => void;
 
   // 좋아요 버튼을 눌렀을 때
-  // handleLikeClick <- 미션 구현
+  //handleLikeClick;
 }
 
 const ContentView: React.FC<Props> = ({
+  id,
   title,
   author,
   time,
@@ -50,7 +54,7 @@ const ContentView: React.FC<Props> = ({
       </div>
       <div className="flex justify-between mt-10">
         {/* feedData의 likeCount 전달 */}
-        <LikesBtn likeCount={likeCount} />
+        <LikesBtn id={id} likeCount={likeCount} />
 
         <div className="flex gap-x-2 whitespace-nowrap">
           {/* 수정 버튼 */}

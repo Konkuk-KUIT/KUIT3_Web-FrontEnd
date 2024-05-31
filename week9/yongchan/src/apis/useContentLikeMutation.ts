@@ -4,3 +4,23 @@
 // likeCountState에 1을 더해줘야 겠네요?
 // 1. apis/useContentLikeMutation.ts 구현
 // 2. molecules/LikesBtn.tsx에서 handleContentLikeClick 구현(다른 곳에 구현해도 됨)
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { CardResult } from '../type/card';
+import instance from './instance';
+
+const useContentLikeMutation = () => {
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation({
+    mutationFn: async ({id,likeCount} : {id:string; likeCount:number}) => {
+      return await instance.patch(`/result/${id}`,{likeCount});
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['fetchFeedsData'] });
+    },
+  });
+
+  return mutation;
+};
+
+export default useContentLikeMutation;
