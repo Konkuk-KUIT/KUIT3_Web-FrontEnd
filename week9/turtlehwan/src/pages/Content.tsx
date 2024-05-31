@@ -1,23 +1,28 @@
-import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
-import DarkModeToggle from '../components/atoms/DarkModeToggle';
+import DarkModeToggle from "../components/atoms/DarkModeToggle";
 
-import Loading from './Loading';
-import SearchHeader from '../components/organisms/Appbar';
+import Loading from "./Loading";
+import SearchHeader from "../components/organisms/Appbar";
 
-import { useFeedDataQuery } from '../apis/fetchFeedsData';
+import { useFeedDataQuery } from "../apis/fetchFeedsData";
 
-import useContentEditMutation from '../apis/useContentEditMutation';
-import ScrollToTop from '../components/atoms/ScrollToTop';
-import ContentEditing from '../components/organisms/ContentEditing';
-import ContentView from '../components/organisms/ContentView';
+import useContentEditMutation from "../apis/useContentEditMutation";
+import useContentDeleteMutation from "../apis/useContentDeleteMutation";
+import ScrollToTop from "../components/atoms/ScrollToTop";
+import ContentEditing from "../components/organisms/ContentEditing";
+import ContentView from "../components/organisms/ContentView";
 
 const Content: React.FC = () => {
   // useParams를 통하여 uri에 있는 id를 가져옴
   const { id } = useParams<{ id: string }>();
 
   const contentEditMutation = useContentEditMutation(id!);
+
+  const contentDeleteMutation = useContentDeleteMutation(id!);
+
+  const navigate = useNavigate();
 
   // GET
   const { feedData, isFeedDataLoading } = useFeedDataQuery(id!);
@@ -26,10 +31,10 @@ const Content: React.FC = () => {
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
   // 수정된 제목
-  const [editedTitle, setEditedTitle] = useState<string>('');
+  const [editedTitle, setEditedTitle] = useState<string>("");
 
   // 수정된 본문
-  const [editedBody, setEditedBody] = useState<string>('');
+  const [editedBody, setEditedBody] = useState<string>("");
 
   // 제목 수정 함수
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -74,6 +79,14 @@ const Content: React.FC = () => {
     return <Loading />;
   }
 
+  // delete btn
+  const handleContentDeleteClick = async () => {
+    if (feedData) {
+      await contentDeleteMutation.mutate();
+      await navigate(`/`);
+    }
+  };
+
   return (
     <div className="font-pretendard min-h-screen w-screen bg-white dark:bg-zinc-700 text-black dark:text-white flex flex-col">
       <SearchHeader />
@@ -96,7 +109,7 @@ const Content: React.FC = () => {
             body={feedData.body}
             likeCount={feedData.likeCount}
             handleEditClick={handleEditClick}
-            // handleContentDeleteClick = {handleContentDeleteClick} <- 미션 구현
+            handleContentDeleteClick={handleContentDeleteClick} //<- 미션 구현
           />
         )}
       </div>
