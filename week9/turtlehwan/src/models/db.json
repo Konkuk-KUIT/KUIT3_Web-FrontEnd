@@ -29,6 +29,15 @@
       "commentCount": 0,
       "author": "작성자",
       "likeCount": 0
+    },
+    {
+      "id": "ae92357c-68ff-c15f-7fa7-95b3ec134407",
+      "title": "test",
+      "body": "search test",
+      "time": "2024-05-31 22:34:26",
+      "commentCount": 0,
+      "author": "작성자",
+      "likeCount": 0
     }
   ],
   "messages": "요청에 성공하였습니다."

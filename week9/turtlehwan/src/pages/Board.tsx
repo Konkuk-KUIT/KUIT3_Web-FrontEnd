@@ -1,13 +1,16 @@
-import BoardIntroduce from '../components/organisms/BoardIntroduce';
-import BoardFilterLine from '../components/organisms/BoardFilterLine';
-import DarkModeToggle from '../components/atoms/DarkModeToggle';
-import Loading from './Loading';
-import SearchHeader from '../components/organisms/Appbar';
-import { useFeedsDataQuery } from '../apis/fetchFeedsData';
-import FeedArea from '../components/organisms/FeedArea';
-import ScrollToTop from '../components/atoms/ScrollToTop';
+import BoardIntroduce from "../components/organisms/BoardIntroduce";
+import BoardFilterLine from "../components/organisms/BoardFilterLine";
+import DarkModeToggle from "../components/atoms/DarkModeToggle";
+import Loading from "./Loading";
+import SearchHeader from "../components/organisms/Appbar";
+import { useFeedsDataQuery } from "../apis/fetchFeedsData";
+import FeedArea from "../components/organisms/FeedArea";
+import ScrollToTop from "../components/atoms/ScrollToTop";
+import { useState } from "react";
 
 const Board = () => {
+  //search
+  const [searchWord, setSearchWord] = useState("");
   // GET
   const { feedsData, isFeedsDataLoading } = useFeedsDataQuery();
 
@@ -18,7 +21,7 @@ const Board = () => {
 
   return (
     <div className="font-pretendard min-h-screen w-screen bg-white dark:bg-zinc-700 flex flex-col">
-      <SearchHeader />
+      <SearchHeader setSearchWord={setSearchWord} />
       <div className="h-64  flex-shrink-0">
         <BoardIntroduce />
       </div>
@@ -27,9 +30,10 @@ const Board = () => {
           <BoardFilterLine />
         </div>
         <hr className="border-gray-300 dark:border-white" />
-
         {/* feedsData를 FeedArea에 전달 */}
-        {feedsData !== undefined && <FeedArea feedsData={feedsData} />}
+        {feedsData !== undefined && (
+          <FeedArea feedsData={feedsData} searchWord={searchWord} />
+        )}
       </div>
       <DarkModeToggle />
       <ScrollToTop />
