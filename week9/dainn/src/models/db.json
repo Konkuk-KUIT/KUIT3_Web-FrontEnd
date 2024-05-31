@@ -1,0 +1,17 @@
+{
+  "code": 1000,
+  "status": 200,
+  "message": "요청에 성공하였습니다.",
+  "result": [
+    {
+      "id": "0079f757-a142-77c3-c7c1-6018d52d2d62",
+      "title": "d",
+      "body": "d",
+      "time": "2024-05-31 21:22:11",
+      "commentCount": 0,
+      "author": "작성자",
+      "likeCount": 0
+    }
+  ],
+  "messages": "요청에 성공하였습니다."
+}
