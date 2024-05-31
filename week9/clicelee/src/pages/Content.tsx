@@ -11,6 +11,7 @@ import SearchHeader from '../components/organisms/Appbar';
 import { useFeedDataQuery } from '../apis/fetchFeedsData';
 
 import useContentEditMutation from '../apis/useContentEditMutation';
+import useContentDeleteMutation from '../apis/useContentDeleteMutation';
 import ScrollToTop from './../components/atoms/ScrollToTop';
 import ContentEditing from '../components/organisms/ContentEditing';
 import ContentView from '../components/organisms/ContentView';
@@ -18,7 +19,8 @@ import ContentView from '../components/organisms/ContentView';
 const Content: React.FC = () => {
   // useParams를 통하여 uri에 있는 id를 가져옴
   const { id } = useParams<{ id: string }>();
-
+  const navigate = useNavigate();
+  const { mutate: deleteContent } = useContentDeleteMutation();
   const contentEditMutation = useContentEditMutation(id!);
 
   // GET
@@ -71,6 +73,19 @@ const Content: React.FC = () => {
     }
   };
 
+//삭제 버튼을 눌렀을 때
+  const handleContentDeleteClick = () => {
+    if (id) {
+      deleteContent(id, {
+        onSuccess: () => {
+          navigate('/board'); // 삭제 성공 후 board 페이지로 이동
+        },
+      });
+    }
+  };
+
+
+
   // feedData가 undefined일 때를 대비하기 위한 early return
   if (feedData == null) {
     return <Loading />;
@@ -98,7 +113,7 @@ const Content: React.FC = () => {
             body={feedData.body}
             likeCount={feedData.likeCount}
             handleEditClick={handleEditClick}
-            // handleContentDeleteClick = {handleContentDeleteClick} <- 미션 구현
+            handleContentDeleteClick = {handleContentDeleteClick} //<- 미션 구현
           />
         )}
       </div>
