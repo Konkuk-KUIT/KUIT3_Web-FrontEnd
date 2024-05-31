@@ -1,15 +1,10 @@
 import React, { useState } from 'react';
-// import { useParams } from 'react-router-dom';
 import { useNavigate, useParams } from 'react-router-dom';
-
-
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import DarkModeToggle from '../components/atoms/DarkModeToggle';
-
 import Loading from './Loading';
 import SearchHeader from '../components/organisms/Appbar';
-
 import { useFeedDataQuery } from '../apis/fetchFeedsData';
-
 import useContentEditMutation from '../apis/useContentEditMutation';
 import useContentDeleteMutation from '../apis/useContentDeleteMutation';
 import ScrollToTop from './../components/atoms/ScrollToTop';
@@ -73,16 +68,28 @@ const Content: React.FC = () => {
     }
   };
 
-//삭제 버튼을 눌렀을 때
-  const handleContentDeleteClick = () => {
-    if (id) {
-      deleteContent(id, {
-        onSuccess: () => {
-          useNavigate(['Board']); // 삭제 성공 후 board 페이지로 이동
-        },
-      });
-    }
-  };
+// 본문 삭제 버튼을 눌렀을 때 mutation
+// const contentDeleteMutation = useMutation({
+//   mutationFn: async () => {
+//     return await instance.delete('');
+//   },
+//   onSuccess: () => {
+//     // board로 이동
+//     navigate('/board');
+//   },
+// });
+
+// 본문 삭제 버튼을 눌렀을 때
+const handleContentDeleteClick = () => {
+  if (id) {
+    deleteContent(id, {
+      onSuccess: () => {
+        navigate('/'); // /board가 아니라 /를 했어야 했음
+      },
+    });
+  }
+};
+
 
   // feedData가 undefined일 때를 대비하기 위한 early return
   if (feedData == null) {
