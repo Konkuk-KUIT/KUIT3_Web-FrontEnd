@@ -5,3 +5,23 @@
 // 1. apis/useContentDeleteMutation.ts 구현
 // 2. pages/Content.tsx에서 handleContentDeleteClick 구현
 // 3. organisms/ContentView.tsx도 코드 추가
+// apis/useContentDeleteMutation.ts
+import { useMutation, useQueryClient } from 'react-query';
+import axios from 'axios';
+
+const deleteContent = async (contentId: string) => {
+  const response = await axios.delete(`/api/content/${contentId}`);
+  return response.data;
+};
+
+const useContentDeleteMutation = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation(deleteContent, {
+    onSuccess: () => {
+      queryClient.invalidateQueries('contentList'); // 삭제 후 콘텐츠 목록 갱신
+    },
+  });
+};
+
+export default useContentDeleteMutation;
