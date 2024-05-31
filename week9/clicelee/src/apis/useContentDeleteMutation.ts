@@ -9,24 +9,25 @@
 
 
 // import { CardResult } from '../type/card';
-// import instance from './instance';
+import instance from './instance';
 
 // import { useMutation, useQueryClient } from 'react-query';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import axios from 'axios';
+// import axios from 'axios';
 
-const deleteContent = async (id: string) => {
-  const response = await axios.delete(`/api/content/${id}`);
-  return response.data;
-};
+// const deleteContent = async (id: string) => {
+//   const response = await axios.delete(`/api/content/${id}`); //api? apis?
+//   return response.data;
+// };
 
 const useContentDeleteMutation = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn:deleteContent, 
+    mutationFn:async(id:string)=> await instance.delete(`result/${id}`) ,
     onSuccess: () => {
-      queryClient.invalidateQueries(['Board']); // 삭제 후 콘텐츠 목록 갱신
+    //   queryClient.invalidateQueries(['Board']); // 삭제 후 콘텐츠 목록 갱신
+    queryClient.invalidateQueries({ queryKey: ["fetchFeedsData"] });
     },
   });
 };

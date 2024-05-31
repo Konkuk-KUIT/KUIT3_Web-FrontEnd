@@ -61,7 +61,7 @@ const ContentView: React.FC<Props> = ({
           </IconButton>
 
           {/* 삭제 버튼 미션 구현*/}
-          <IconButton aria-label="delete" onClick={(handleContentDeleteClick)}>
+          <IconButton aria-label="delete" onClick={handleContentDeleteClick}>
             <DeleteIcon sx={{ color: 'black' }} className="dark:text-white" />
           </IconButton>
         </div>

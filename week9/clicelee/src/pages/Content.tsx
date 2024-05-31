@@ -78,13 +78,11 @@ const Content: React.FC = () => {
     if (id) {
       deleteContent(id, {
         onSuccess: () => {
-          navigate('/board'); // 삭제 성공 후 board 페이지로 이동
+          useNavigate(['Board']); // 삭제 성공 후 board 페이지로 이동
         },
       });
     }
   };
-
-
 
   // feedData가 undefined일 때를 대비하기 위한 early return
   if (feedData == null) {
