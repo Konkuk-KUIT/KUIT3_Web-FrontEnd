@@ -27,7 +27,7 @@ interface Props {
   handleContentDeleteClick: () => void; //<- 미션 구현
 
   // 좋아요 버튼을 눌렀을 때
-  // handleLikeClick <- 미션 구현
+  //handleLikeClick: () => void; //<- 미션 구현
 }
 
 const ContentView: React.FC<Props> = ({
