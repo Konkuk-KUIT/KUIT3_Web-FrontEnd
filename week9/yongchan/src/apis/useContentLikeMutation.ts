@@ -5,7 +5,6 @@
 // 1. apis/useContentLikeMutation.ts 구현
 // 2. molecules/LikesBtn.tsx에서 handleContentLikeClick 구현(다른 곳에 구현해도 됨)
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { CardResult } from '../type/card';
 import instance from './instance';
 
 const useContentLikeMutation = () => {

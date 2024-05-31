@@ -23,7 +23,7 @@ const Content: React.FC = () => {
   const contentDeleteMutation = useContentDeleteMutation();
 
   // GET
-  const { feedData, isFeedDataLoading } = useFeedDataQuery(id!);
+  const { feedData, isFeedDataLoading} = useFeedDataQuery(id!);
 
   // 수정 중인지
   const [isEditing, setIsEditing] = useState<boolean>(false);
@@ -100,6 +100,7 @@ const Content: React.FC = () => {
         ) : (
           // 수정 중이 아닐 때
           <ContentView
+            id={feedData.id}
             title={feedData.title}
             author={feedData.author}
             time={feedData.time}
