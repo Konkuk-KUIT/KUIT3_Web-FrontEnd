@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import DarkModeToggle from '../components/atoms/DarkModeToggle';
 
@@ -9,6 +10,8 @@ import SearchHeader from '../components/organisms/Appbar';
 import { useFeedDataQuery } from '../apis/fetchFeedsData';
 
 import useContentEditMutation from '../apis/useContentEditMutation';
+import useContentDeleteMutation from '../apis/useContentDeleteMutation';
+import useContentLikeMutation from '../apis/useContentLikeMutation';
 import ScrollToTop from './../components/atoms/ScrollToTop';
 import ContentEditing from '../components/organisms/ContentEditing';
 import ContentView from '../components/organisms/ContentView';
@@ -16,8 +19,11 @@ import ContentView from '../components/organisms/ContentView';
 const Content: React.FC = () => {
   // useParams를 통하여 uri에 있는 id를 가져옴
   const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
 
   const contentEditMutation = useContentEditMutation(id!);
+  const contentDeleteMutation = useContentDeleteMutation(id!);
+  const contentLikeMutation = useContentLikeMutation(id!);
 
   // GET
   const { feedData, isFeedDataLoading } = useFeedDataQuery(id!);
@@ -56,9 +62,29 @@ const Content: React.FC = () => {
     }
   };
 
+  //삭제하기 버튼을 눌렀을 때
+  const handleContentDeleteClick = async () => {
+    try {
+      await contentDeleteMutation.mutate(); // mutation 실행
+      console.log('게시글 삭제 성공!');
+      navigate(-1);
+    } catch (error) {
+      console.error('게시글 삭제 실패:', error);
+    }
+  };
+
   if (isFeedDataLoading) {
     return <Loading />;
   }
+
+  // 좋아요 버튼을 눌렀을 때
+  const handleLikeClick = async () => {
+    if (feedData) {
+      feedData.likeCount++;
+      await contentLikeMutation.mutate(feedData);
+      console.log(feedData.likeCount);
+    }
+  };
 
   // 수정 버튼을 눌렀을 때
   const handleEditClick = () => {
@@ -73,6 +99,8 @@ const Content: React.FC = () => {
   if (feedData == null) {
     return <Loading />;
   }
+
+ 
 
   return (
     <div className="font-pretendard min-h-screen w-screen bg-white dark:bg-zinc-700 text-black dark:text-white flex flex-col">
@@ -96,7 +124,8 @@ const Content: React.FC = () => {
             body={feedData.body}
             likeCount={feedData.likeCount}
             handleEditClick={handleEditClick}
-            // handleContentDeleteClick = {handleContentDeleteClick} <- 미션 구현
+            handleContentDeleteClick = {handleContentDeleteClick} //<- 미션 구현
+            handleLikeClick = {handleLikeClick}
           />
         )}
       </div>

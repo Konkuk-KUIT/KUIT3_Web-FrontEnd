@@ -1,3 +1,24 @@
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { CardResult } from '../type/card';
+import instance from './instance';
+
+const useContentDeleteMutation = (deletingId: string) => {
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation({
+    mutationFn: async () => {
+      return await instance.delete(`/result/${deletingId}`);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['fetchFeedsData'] });
+    },
+  });
+
+  return mutation;
+};
+
+export default useContentDeleteMutation;
+
 // 미션: 글 삭제 시 DELETE mutation hook 구현하기
 
 // 삭제 버튼을 눌렀을 때 mutation

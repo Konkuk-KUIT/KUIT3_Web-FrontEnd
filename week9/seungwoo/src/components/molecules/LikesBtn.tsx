@@ -3,12 +3,13 @@ import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 
 interface Props {
   likeCount: number;
+  handleLikeClick: () => void;
 }
 
-const LikesBtn: React.FC<Props> = ({ likeCount }) => {
+const LikesBtn: React.FC<Props> = ({ likeCount, handleLikeClick }) => {
   // 좋아요 갯수 상태
-  const [likeCountState, setLikeCountState] = useState<number>(likeCount);
-
+  //const [likeCountState, setLikeCountState] = useState<number>(likeCount);
+  
   return (
     <div className="font-pretendard items-center flex gap-x-2">
       <div className="cursor-pointer">
@@ -17,11 +18,11 @@ const LikesBtn: React.FC<Props> = ({ likeCount }) => {
           height={16}
           sx={{ color: 'black' }}
           className="dark:text-white"
-          onClick={() => {}}
+          onClick={handleLikeClick}
         />
       </div>
 
-      <div className="text-black dark:text-white">{likeCountState}</div>
+      <div className="text-black dark:text-white">{likeCount}</div>
     </div>
   );
 };
