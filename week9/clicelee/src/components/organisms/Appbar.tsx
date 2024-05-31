@@ -169,7 +169,7 @@ export default function SearchHeader() {
             }}
             onClick={() => navigate('/')}
           >
-            KUIT WEB 미션
+            🎲 주사위 공식 팬카페
           </Typography>
           <Search>
             <SearchIconWrapper>
