@@ -24,10 +24,11 @@ interface Props {
   handleEditClick: () => void;
 
   // 삭제 버튼을 눌렀을 때
-  handleContentDeleteClick:()=>void; //<- 미션 구현
+  handleContentDeleteClick: () => void; //<- 미션 구현
 
   // 좋아요 버튼을 눌렀을 때
-  // handleLikeClick <- 미션 구현
+  handleLikeClick: () => void; //<- 미션 구현
+  contentId: string;
 }
 
 const ContentView: React.FC<Props> = ({
@@ -38,8 +39,8 @@ const ContentView: React.FC<Props> = ({
   likeCount,
   handleEditClick,
   handleContentDeleteClick,
-  // handleLikeClick
-
+  handleLikeClick,
+  contentId,
 }) => {
   return (
     <>
@@ -52,7 +53,7 @@ const ContentView: React.FC<Props> = ({
       </div>
       <div className="flex justify-between mt-10">
         {/* feedData의 likeCount 전달 */}
-        <LikesBtn likeCount={likeCount} />
+        <LikesBtn likeCount={likeCount} contentId={contentId} />
 
         <div className="flex gap-x-2 whitespace-nowrap">
           {/* 수정 버튼 */}
