@@ -10,10 +10,6 @@ const LikesBtn: React.FC<Props> = ({ likeCount, handleContentLikeClick }) => {
   // 좋아요 갯수 상태
   const [likeCountState, setLikeCountState] = useState<number>(likeCount);
 
-  useEffect(() => {
-    setLikeCountState(likeCount);
-  }, [likeCount]);
-
   const handleClick = () => {
     setLikeCountState(prev => prev + 1);
     handleContentLikeClick();
