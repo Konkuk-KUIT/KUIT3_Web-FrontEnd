@@ -287,7 +287,7 @@ const Cart = () => {
   let cartItems = menus.reduce((acc, item) => {
     const presentItems = acc.find((menu) => menu.id === item.id);
     if (presentItems) {
-      presentItems += 1;
+      presentItems.count += 1;
     } else {
       acc.push({ ...item, count: 1});
     }
