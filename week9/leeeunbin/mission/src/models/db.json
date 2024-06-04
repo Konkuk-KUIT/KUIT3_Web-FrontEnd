@@ -1,0 +1,26 @@
+{
+  "code": 1000,
+  "status": 200,
+  "message": "요청에 성공하였습니다.",
+  "result": [
+    {
+      "id": "94a4cb80-d9d1-ccd7-d462-6933461d4353",
+      "title": "테스트2",
+      "body": "테스트2",
+      "time": "2024-05-30 16:11:38",
+      "commentCount": 0,
+      "author": "작성자",
+      "likeCount": 0
+    },
+    {
+      "id": "247e9894-43c9-48a0-6cba-e5001d21fdc7",
+      "title": "테스트3",
+      "body": "테스트3",
+      "time": "2024-05-30 16:11:47",
+      "commentCount": 0,
+      "author": "작성자",
+      "likeCount": 0
+    }
+  ],
+  "messages": "요청에 성공하였습니다."
+}
