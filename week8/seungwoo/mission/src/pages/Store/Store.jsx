@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import MenuItem from "../../components/MenuItem/MenuItem";
 import OrderBar from "../../components/OrderBar/OrderBar";
-import TopBar from "../../components/TopBar/TopBar";
+import TopBar from "../../components/topBar/topBar";
 
 import stores from "../../models/stores";
 import useCartStore from "../../store/useCartStore";
