@@ -1,7 +1,0 @@
-{
-    "compilerOptions": {
-      "target": "ES6",
-      "strict": true,
-      "lib": ["dom", "es2015", "esnext.asynciterable"]
-    }
-  }
