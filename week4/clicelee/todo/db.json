@@ -1,0 +1,34 @@
+{
+  "todos": [
+    {
+      "id": 1,
+      "title": "할일 1",
+      "createdAt": "Mon Sep 25 2023",
+      "completed": true
+    },
+    {
+      "id": 2,
+      "title": "할일2",
+      "createdAt": "Mon Sep 25 2023",
+      "completed": true
+    },
+    {
+      "id": 3,
+      "title": "할일3",
+      "createdAt": "Mon Sep 25 2023",
+      "completed": true
+    },
+    {
+      "id": 4,
+      "title": "할일4",
+      "createdAt": "Mon Sep 25 2023",
+      "completed": false
+    },
+    {
+      "id": 5,
+      "title": "할일5",
+      "createdAt": "Mon Sep 25 2023",
+      "completed": false
+    },
+  ]
+}
