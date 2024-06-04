@@ -1,0 +1,26 @@
+{
+  "code": 1000,
+  "status": 200,
+  "message": "요청에 성공하였습니다.",
+  "result": [
+    {
+      "id": "aaacf4ae-0db7-6ade-3776-68fd2b70b673",
+      "title": "Delete완료",
+      "body": "굳",
+      "time": "2024-05-31 11:40:48",
+      "commentCount": 0,
+      "author": "작성자",
+      "likeCount": 14
+    },
+    {
+      "id": "7d9a37d3-a428-9606-6108-30b43714836b",
+      "title": "Like 완료",
+      "body": "굳",
+      "time": "2024-05-31 12:00:30",
+      "commentCount": 0,
+      "author": "작성자",
+      "likeCount": 6
+    }
+  ],
+  "messages": "요청에 성공하였습니다."
+}
